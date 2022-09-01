@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Travel Luxury</string>
+    <string name="flight_icon">flight icon</string>
+    <string name="hotel_icon">hotel icon</string>
+    <string name="xperience_icon">xperience icon</string>
+    <string name="flights">Flights</string>
+    <string name="hotels">Hotels</string>
+    <string name="xperience">Xperience</string>
 </resources>
