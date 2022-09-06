@@ -20,13 +20,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/footer_left_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="6dp"
                 android:text="@string/don_t_have_a_travel_luxury_account" />
 
             <TextView
-                android:id="@+id/text_view_button_in_footer"
+                android:id="@+id/footer_right_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/register_now"

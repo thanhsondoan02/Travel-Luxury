@@ -16,4 +16,9 @@
     <string name="don_t_have_a_travel_luxury_account">Don\'t have a Travel Luxury account?</string>
     <string name="register_now">Register now</string>
     <string name="login">Login</string>
+    <string name="your_data_will_be_protected_and_will_not_be_shared">Your data will be protected and will not be shared.</string>
+    <string name="or_register_with">Or register with</string>
+    <string name="register">Register</string>
+    <string name="why_register">Why register?</string>
+    <string name="lock_icon">lock_icon</string>
 </resources>

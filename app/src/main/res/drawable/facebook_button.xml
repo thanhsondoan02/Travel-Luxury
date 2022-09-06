@@ -7,5 +7,8 @@
 
     <!-- và đây là bán kính đường tròn ở 4 góc -->
     <corners android:radius="5dp" />
+    <padding
+        android:left="15dp"
+        android:right="15dp"/>
 
 </shape>

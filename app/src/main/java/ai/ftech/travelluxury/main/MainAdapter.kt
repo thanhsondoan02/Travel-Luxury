@@ -34,14 +34,14 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             BIG_FEATURES -> BigFeaturesViewHolder(
                 View.inflate(
                     parent.context,
-                    R.layout.big_features,
+                    R.layout.big_features_item,
                     null
                 )
             )
             else -> SmallFeaturesViewHolder(
                 View.inflate(
                     parent.context,
-                    R.layout.small_features,
+                    R.layout.small_features_item,
                     null
                 )
             )
