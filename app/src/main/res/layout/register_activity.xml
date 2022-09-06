@@ -67,7 +67,7 @@
         android:layout_height="45dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/botron_button"
+        android:background="@drawable/shape"
         android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="@color/white"

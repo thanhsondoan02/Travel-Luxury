@@ -26,4 +26,5 @@
     <string name="my_booking">My booking</string>
     <string name="saved">Saved</string>
     <string name="my_account">My account</string>
+    <string name="search_for_items_destinations">Search for items, destinations...</string>
 </resources>

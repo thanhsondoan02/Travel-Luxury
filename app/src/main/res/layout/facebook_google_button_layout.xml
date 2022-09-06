@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
-            android:background="@drawable/google_button"
+            android:background="@drawable/google_shape"
             android:paddingHorizontal="15dp">
 
             <ImageView
@@ -47,7 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/facebook_button"
+            android:background="@drawable/facebook_shape"
             android:paddingHorizontal="15dp">
 
             <ImageView
