@@ -56,7 +56,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
 //    }
 
     private fun setUpTextInLayout() {
-        findViewById<TextView>(R.id.tool_bar_title).text = "Become a Travel Luxury Member"
+//        findViewById<TextView>(R.id.tool_bar_title).text = "Become a Travel Luxury Member"
         findViewById<TextView>(R.id.footer_left_text_view).text = "Already have a Travel Luxury account?"
         findViewById<TextView>(R.id.footer_right_text_view).text = "Log in now"
         findViewById<TextView>(R.id.email_error_text_view).text = ""

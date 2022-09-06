@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
     }
 
     private fun setUpTextInLayout() {
-        findViewById<TextView>(R.id.tool_bar_title).text = "Login"
+//        findViewById<TextView>(R.id.tool_bar_title).text = "Login"
         findViewById<TextView>(R.id.footer_left_text_view).text = "Don't have a Travel Luxury account?"
         findViewById<TextView>(R.id.footer_right_text_view).text = "Register now"
         findViewById<TextView>(R.id.email_error_text_view).text = ""
