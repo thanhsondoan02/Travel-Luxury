@@ -21,4 +21,9 @@
     <string name="register">Register</string>
     <string name="why_register">Why register?</string>
     <string name="lock_icon">lock_icon</string>
+    <string name="home">Home</string>
+    <string name="explore">Explore</string>
+    <string name="my_booking">My booking</string>
+    <string name="saved">Saved</string>
+    <string name="my_account">My account</string>
 </resources>
