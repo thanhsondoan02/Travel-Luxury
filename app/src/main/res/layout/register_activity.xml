@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".register.RegisterActivity">
 
-    <include
+    <ai.ftech.travelluxury.view.ActionBarView
         android:id="@+id/action_bar"
-        layout="@layout/login_register_toolbar_layout" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/email_edit_text"
@@ -115,20 +117,18 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <ai.ftech.travelluxury.view.FacebookGoogleButtonView
+        android:id="@+id/facebook_google_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/center_line">
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@id/center_line" />
 
-        <include
-            android:id="@+id/facebook_google_button"
-            layout="@layout/facebook_google_button_layout" />
-
-    </LinearLayout>
-
-    <include
+    <ai.ftech.travelluxury.view.FooterView
         android:id="@+id/footer"
-        layout="@layout/footer_layout" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

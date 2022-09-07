@@ -1,7 +1,9 @@
 package ai.ftech.travelluxury.register
 
+import ai.ftech.travelluxury.view.ActionBarView
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.login.LoginActivity
+import ai.ftech.travelluxury.view.FooterView
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -38,27 +40,21 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
         findViewById<TextView>(R.id.footer_right_text_view).setOnClickListener(this)
 
         // email change -> remove error text
-        resetErrorTextOnInputTextChange(findViewById(R.id.email_edit_text), findViewById(R.id.email_error_text_view))
+        resetErrorTextOnInputTextChange(
+            findViewById(R.id.email_edit_text),
+            findViewById(R.id.email_error_text_view)
+        )
     }
 
-//    private fun resetErrorTextOnEmailChange() {
-//        findViewById<TextView>(R.id.edit_text_email).addTextChangedListener(object : TextWatcher {
-//            override fun afterTextChanged(s: Editable) {
-//            }
-//
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                findViewById<TextView>(R.id.email_error_text_view).text = ""
-//            }
-//        })
-//    }
-
     private fun setUpTextInLayout() {
-//        findViewById<TextView>(R.id.tool_bar_title).text = "Become a Travel Luxury Member"
-        findViewById<TextView>(R.id.footer_left_text_view).text = "Already have a Travel Luxury account?"
-        findViewById<TextView>(R.id.footer_right_text_view).text = "Log in now"
+        // action bar
+        findViewById<ActionBarView>(R.id.action_bar).setTitle("Become a Travel Luxury Member")
+
+        // footer
+        findViewById<FooterView>(R.id.footer).setLeftTextView("Already have a Travel Luxury account?")
+        findViewById<FooterView>(R.id.footer).setRightTextView("Log in now")
+
+        // error text
         findViewById<TextView>(R.id.email_error_text_view).text = ""
     }
 
