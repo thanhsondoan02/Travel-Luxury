@@ -28,4 +28,7 @@
     <string name="my_account">My account</string>
     <string name="search_for_items_destinations">Search for items, destinations...</string>
     <string name="action_bar_title">Action bar title</string>
+    <string name="search_icon">search icon</string>
+    <string name="notification_icon">notification icon</string>
+    <string name="message_icon">message icon</string>
 </resources>

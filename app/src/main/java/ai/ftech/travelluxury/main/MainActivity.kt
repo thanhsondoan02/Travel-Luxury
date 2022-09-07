@@ -10,8 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        val actionBarView = findViewById<ActionBarView>(R.id.actionView)
 
-        actionBarView.setTitle("logout")
     }
 }
