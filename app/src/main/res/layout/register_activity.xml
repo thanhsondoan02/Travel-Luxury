@@ -7,13 +7,13 @@
     tools:context=".register.RegisterActivity">
 
     <ai.ftech.travelluxury.view.ActionBarView
-        android:id="@+id/action_bar"
+        android:id="@+id/abvRegisterActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/email_edit_text"
+        android:id="@+id/edtRegisterEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -21,28 +21,28 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/action_bar" />
+        app:layout_constraintTop_toBottomOf="@id/abvRegisterActionBar" />
 
     <TextView
-        android:id="@+id/email_error_text_view"
+        android:id="@+id/tvRegisterEmailError"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:text="@string/app_name"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="13sp"
-        app:layout_constraintTop_toBottomOf="@+id/email_edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/edtRegisterEmail" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/date_protected_line"
+        android:id="@+id/constRegisterDataProtect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/email_error_text_view">
+        app:layout_constraintTop_toBottomOf="@id/tvRegisterEmailError">
 
         <ImageView
-            android:id="@+id/lock_icon"
+            android:id="@+id/ivRegisterLock"
             android:layout_width="wrap_content"
             android:layout_height="15sp"
             android:contentDescription="@string/lock_icon"
@@ -52,19 +52,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_view_data_protected"
+            android:id="@+id/tvRegisterDataProtect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/your_data_will_be_protected_and_will_not_be_shared"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/lock_icon"
+            app:layout_constraintStart_toEndOf="@id/ivRegisterLock"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button_register"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginHorizontal="16dp"
@@ -74,7 +74,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/date_protected_line" />
+        app:layout_constraintTop_toBottomOf="@id/constRegisterDataProtect" />
 
     <TextView
         android:layout_width="match_parent"
@@ -85,10 +85,10 @@
         android:textAlignment="center"
         android:textColor="#1E90FF"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/button_register" />
+        app:layout_constraintTop_toBottomOf="@id/btnRegister" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/center_line"
+    <RelativeLayout
+        android:id="@+id/rlLoginCenterLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -98,14 +98,17 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_centerVertical="true"
             android:background="#D3D3D3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_view_or_login_with"
+            android:id="@+id/tvRegisterCenterLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:background="@color/white"
             android:paddingHorizontal="6dp"
             android:text="@string/or_register_with"
@@ -115,18 +118,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
-    <ai.ftech.travelluxury.view.FacebookGoogleButtonView
-        android:id="@+id/facebook_google_button"
+    <ai.ftech.travelluxury.view.SocialNetworkView
+        android:id="@+id/snvRegisterSocialNetwork"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/center_line" />
+        app:layout_constraintTop_toBottomOf="@id/rlLoginCenterLine" />
 
     <ai.ftech.travelluxury.view.FooterView
-        android:id="@+id/footer"
+        android:id="@+id/fvRegisterFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent" />

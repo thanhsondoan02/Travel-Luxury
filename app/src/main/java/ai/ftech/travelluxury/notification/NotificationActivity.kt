@@ -17,7 +17,7 @@ class NotificationActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        actionbar = findViewById(R.id.action_bar)
+        actionbar = findViewById(R.id.abvNotificationActionBar)
 
         actionbar.setTitle("Notification")
     }

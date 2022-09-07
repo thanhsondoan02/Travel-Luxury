@@ -1,6 +1,5 @@
 package ai.ftech.travelluxury.main
 
-import ai.ftech.travelluxury.view.ActionBarView
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.message.MessageActivity
 import ai.ftech.travelluxury.notification.NotificationActivity
@@ -14,34 +13,37 @@ import android.widget.RelativeLayout
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var searchBar: RelativeLayout
-    private lateinit var notificationIcon: ImageView
-    private lateinit var messageIcon: ImageView
+    private lateinit var rlSearchBox: RelativeLayout
+    private lateinit var ivNotification: ImageView
+    private lateinit var ivMessage: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
         initView()
-
-        searchBar.setOnClickListener(this)
-        notificationIcon.setOnClickListener(this)
-        messageIcon.setOnClickListener(this)
-    }
-
-    private fun initView() {
-        searchBar = findViewById(R.id.search_bar)
-        notificationIcon = findViewById(R.id.notification_icon)
-        messageIcon = findViewById(R.id.message_icon)
-
+        setOnCLickListener()
     }
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
-            R.id.search_bar -> startActivity(Intent(this, SearchActivity::class.java))
-            R.id.notification_icon -> startActivity(Intent(this, NotificationActivity::class.java))
-            R.id.message_icon -> startActivity(Intent(this, MessageActivity::class.java))
+            R.id.rlMainSearchBox -> startActivity(Intent(this, SearchActivity::class.java))
+            R.id.ivMainNotification -> startActivity(Intent(this, NotificationActivity::class.java))
+            R.id.ivMainMessage -> startActivity(Intent(this, MessageActivity::class.java))
         }
+    }
+
+    private fun initView() {
+        rlSearchBox = findViewById(R.id.rlMainSearchBox)
+        ivNotification = findViewById(R.id.ivMainNotification)
+        ivMessage = findViewById(R.id.ivMainMessage)
+
+    }
+
+    private fun setOnCLickListener() {
+        rlSearchBox.setOnClickListener(this)
+        ivNotification.setOnClickListener(this)
+        ivMessage.setOnClickListener(this)
     }
 
 }

@@ -17,7 +17,7 @@ class MessageActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        actionBar = findViewById(R.id.action_bar)
+        actionBar = findViewById(R.id.abvMessageActionBar)
 
         // init text
         actionBar.setTitle("Message")

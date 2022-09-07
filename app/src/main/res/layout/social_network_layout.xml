@@ -16,7 +16,7 @@
         android:paddingHorizontal="15dp">
 
         <ImageView
-            android:id="@+id/google_icon"
+            android:id="@+id/ivSocialNetworkGoogle"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:contentDescription="@string/google"
@@ -33,7 +33,7 @@
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/google_icon"
+            app:layout_constraintStart_toEndOf="@id/ivSocialNetworkGoogle"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -46,7 +46,7 @@
         android:paddingHorizontal="15dp">
 
         <ImageView
-            android:id="@+id/facebook_icon"
+            android:id="@+id/ivSocialNetworkFacebook"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:contentDescription="@string/facebook"
@@ -56,7 +56,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_view_facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/facebook"
@@ -64,7 +63,7 @@
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/facebook_icon"
+            app:layout_constraintStart_toEndOf="@id/ivSocialNetworkFacebook"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
