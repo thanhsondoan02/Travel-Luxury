@@ -68,12 +68,11 @@
         android:id="@+id/flMainContent"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/bnvMainNavigation"
-        android:layout_below="@+id/abvMessageActionBar"
-        android:background="@android:color/holo_green_light" />
+        android:layout_above="@+id/bnvMainNavigator"
+        android:layout_below="@+id/abvMessageActionBar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnvMainNavigation"
+        android:id="@+id/bnvMainNavigator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
