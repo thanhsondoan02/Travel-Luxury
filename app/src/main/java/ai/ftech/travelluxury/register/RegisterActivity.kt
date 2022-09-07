@@ -17,11 +17,9 @@ import android.widget.Toast
 
 fun resetErrorTextOnInputTextChange(inputText: EditText, errorText: TextView) {
     inputText.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(s: Editable) {
-        }
+        override fun afterTextChanged(s: Editable) {}
 
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             errorText.text = ""
@@ -30,41 +28,52 @@ fun resetErrorTextOnInputTextChange(inputText: EditText, errorText: TextView) {
 }
 
 class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClickListener {
+
+    private lateinit var buttonRegister: Button
+    private lateinit var footerRightTextView: TextView
+    private lateinit var emailEditText: EditText
+    private lateinit var emailErrorTextView: TextView
+    private lateinit var actionBar: ActionBarView
+    private lateinit var footer: FooterView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_activity)
 
-        setUpTextInLayout()
+        initView()
 
-        findViewById<Button>(R.id.button_register).setOnClickListener(this)
-        findViewById<TextView>(R.id.footer_right_text_view).setOnClickListener(this)
+        buttonRegister.setOnClickListener(this)
+        footerRightTextView.setOnClickListener(this)
 
         // email change -> remove error text
         resetErrorTextOnInputTextChange(
-            findViewById(R.id.email_edit_text),
-            findViewById(R.id.email_error_text_view)
+            emailEditText,
+            emailErrorTextView
         )
     }
 
-    private fun setUpTextInLayout() {
-        // action bar
-        findViewById<ActionBarView>(R.id.action_bar).setTitle("Become a Travel Luxury Member")
+    private fun initView() {
+        buttonRegister = findViewById(R.id.button_register)
+        footerRightTextView = findViewById(R.id.footer_right_text_view)
+        emailEditText = findViewById(R.id.email_edit_text)
+        emailErrorTextView = findViewById(R.id.email_error_text_view)
+        actionBar = findViewById(R.id.action_bar)
+        footer = findViewById(R.id.footer)
 
-        // footer
-        findViewById<FooterView>(R.id.footer).setLeftTextView("Already have a Travel Luxury account?")
-        findViewById<FooterView>(R.id.footer).setRightTextView("Log in now")
-
-        // error text
-        findViewById<TextView>(R.id.email_error_text_view).text = ""
+        // init text
+        actionBar.setTitle("Become a Travel Luxury Member")
+        footer.setLeftTextView("Already have a Travel Luxury account?")
+        footer.setRightTextView("Log in now")
+        emailErrorTextView.text = ""
     }
 
     override fun onRegisterResult(state: REGISTER_STATE, message: String) {
         when (state) {
             REGISTER_STATE.EMPTY_EMAIL_FIELD -> {
-                findViewById<TextView>(R.id.email_error_text_view).text = message
+                emailErrorTextView.text = message
             }
             REGISTER_STATE.INVALID_EMAIL_FORMAT -> {
-                findViewById<TextView>(R.id.email_error_text_view).text = message
+                emailErrorTextView.text = message
             }
             REGISTER_STATE.CONFIRM_EMAIL -> {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -78,7 +87,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
                 startActivity(Intent(this, LoginActivity::class.java))
             }
             R.id.button_register -> {
-                val email = findViewById<TextView>(R.id.email_edit_text).text.toString()
+                val email = emailEditText.text.toString()
                 val presenter = RegisterPresenter(this)
                 presenter.handleRegister(email)
             }
