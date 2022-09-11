@@ -17,7 +17,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="15dp"
-        android:src="@drawable/notification2_icon"
+        android:src="@drawable/ic_notification"
         app:layout_constraintBottom_toBottomOf="@id/ivMsg"
         app:layout_constraintEnd_toStartOf="@id/ivMsg"
         app:layout_constraintTop_toTopOf="@id/ivMsg" />
@@ -27,7 +27,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="15dp"
-        android:src="@drawable/message_icon"
+        android:src="@drawable/ic_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

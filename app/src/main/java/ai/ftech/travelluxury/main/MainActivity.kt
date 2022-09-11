@@ -2,6 +2,7 @@ package ai.ftech.travelluxury.main
 
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.main.fragment.*
+import ai.ftech.travelluxury.main.myaccount.MyAccountFragment
 import ai.ftech.travelluxury.message.MessageActivity
 import ai.ftech.travelluxury.notification.NotificationActivity
 import ai.ftech.travelluxury.search.SearchActivity
@@ -18,8 +19,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var rlSearchBox: RelativeLayout
-    private lateinit var ivNotification: ImageView
-    private lateinit var ivMessage: ImageView
+    private lateinit var ivNotification: RelativeLayout
+    private lateinit var ivMessage: RelativeLayout
     private lateinit var flContent: FrameLayout
     private lateinit var bnvNavigator: BottomNavigationView
 
@@ -38,15 +39,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.rlMainSearchBox -> startActivity(Intent(this, SearchActivity::class.java))
-            R.id.ivMainNotification -> startActivity(Intent(this, NotificationActivity::class.java))
-            R.id.ivMainMessage -> startActivity(Intent(this, MessageActivity::class.java))
+            R.id.rlMainNotification -> startActivity(Intent(this, NotificationActivity::class.java))
+            R.id.rlMainMessage -> startActivity(Intent(this, MessageActivity::class.java))
         }
     }
 
     private fun initView() {
         rlSearchBox = findViewById(R.id.rlMainSearchBox)
-        ivNotification = findViewById(R.id.ivMainNotification)
-        ivMessage = findViewById(R.id.ivMainMessage)
+        ivNotification = findViewById(R.id.rlMainNotification)
+        ivMessage = findViewById(R.id.rlMainMessage)
         flContent = findViewById(R.id.flMainContent)
         bnvNavigator = findViewById(R.id.bnvMainNavigator)
     }

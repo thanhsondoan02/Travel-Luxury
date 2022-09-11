@@ -3,26 +3,26 @@
     <item
         android:id="@+id/itmBottomNavigationHome"
         android:enabled="true"
-        android:icon="@drawable/home_icon"
+        android:icon="@drawable/ic_home"
         android:title="@string/home"/>
     <item
         android:id="@+id/itmBottomNavigationExplore"
         android:enabled="true"
-        android:icon="@drawable/explore_icon"
+        android:icon="@drawable/ic_explore"
         android:title="@string/explore"/>
     <item
         android:id="@+id/itmBottomNavigationMyBooking"
         android:enabled="true"
-        android:icon="@drawable/my_booking_icon"
+        android:icon="@drawable/ic_my_booking"
         android:title="@string/my_booking"/>
     <item
         android:id="@+id/itmBottomNavigationSaved"
         android:enabled="true"
-        android:icon="@drawable/saved_icon"
+        android:icon="@drawable/ic_saved"
         android:title="@string/saved"/>
     <item
         android:id="@+id/itmBottomNavigationMyAccount"
         android:enabled="true"
-        android:icon="@drawable/my_account_icon"
+        android:icon="@drawable/ic_my_account"
         android:title="@string/my_account"/>
 </menu>
