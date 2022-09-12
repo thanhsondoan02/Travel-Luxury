@@ -43,4 +43,10 @@
     <string name="category">Category</string>
     <string name="email_example_com">email@example.com</string>
     <string name="full_name">Full Name</string>
+    <string name="login_activity_action_bar_title">Login</string>
+    <string name="login_activity_footer_left_text">Don\'t have a Travel Luxury account?</string>
+    <string name="login_activity_footer_right_text">Register now</string>
+    <string name="register_activity_action_bar_title">Become a Travel Luxury Member</string>
+    <string name="register_activity_footer_left_text">Already have a Travel Luxury account?</string>
+    <string name="register_activity_footer_right_text">Log in now</string>
 </resources>

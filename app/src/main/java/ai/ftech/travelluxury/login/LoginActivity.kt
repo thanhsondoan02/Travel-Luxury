@@ -96,9 +96,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
         tvPasswordError = findViewById(R.id.tvLoginPasswordError)
 
         // init text
-        abvActionBar.setTitle("Login")
-        fvFooter.setLeftTextView("Don't have a Travel Luxury account?")
-        fvFooter.setRightTextView("Register now")
+        abvActionBar.setTitle(getString(R.string.login_activity_action_bar_title))
+        fvFooter.setLeftTextView(getString(R.string.login_activity_footer_left_text))
+        fvFooter.setRightTextView(getString(R.string.login_activity_footer_right_text))
         tvEmailError.text = ""
         tvPasswordError.text = ""
     }

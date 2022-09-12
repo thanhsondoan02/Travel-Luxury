@@ -96,9 +96,9 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
         tvFooterRight = findViewById(R.id.tvFooterRight)
 
         // init text
-        abvActionBar.setTitle("Become a Travel Luxury Member")
-        fvFooter.setLeftTextView("Already have a Travel Luxury account?")
-        fvFooter.setRightTextView("Log in now")
+        abvActionBar.setTitle(getString(R.string.register_activity_action_bar_title))
+        fvFooter.setLeftTextView(getString(R.string.register_activity_footer_left_text))
+        fvFooter.setRightTextView(getString(R.string.register_activity_footer_right_text))
         tvEmailError.text = ""
     }
 
