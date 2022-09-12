@@ -1,4 +1,4 @@
-package ai.ftech.travelluxury.main.fragment
+package ai.ftech.travelluxury.main.mybooking
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
