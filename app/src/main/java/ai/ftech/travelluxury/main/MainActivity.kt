@@ -1,8 +1,11 @@
 package ai.ftech.travelluxury.main
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.main.fragment.*
+import ai.ftech.travelluxury.main.explore.ExploreFragment
+import ai.ftech.travelluxury.main.home.HomeFragment
 import ai.ftech.travelluxury.main.myaccount.MyAccountFragment
+import ai.ftech.travelluxury.main.mybooking.MyBookingFragment
+import ai.ftech.travelluxury.main.saved.SavedFragment
 import ai.ftech.travelluxury.message.MessageActivity
 import ai.ftech.travelluxury.notification.NotificationActivity
 import ai.ftech.travelluxury.search.SearchActivity
@@ -11,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -37,7 +39,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         initView()
         setOnCLickListener()
 
-        loadFragment(HomeFragment())
+        if (!this::homeFragment.isInitialized) homeFragment = HomeFragment()
+        loadFragment(homeFragment)
 
         setNavigatorListener()
     }
