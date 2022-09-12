@@ -24,6 +24,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var flContent: FrameLayout
     private lateinit var bnvNavigator: BottomNavigationView
 
+    private lateinit var homeFragment: HomeFragment
+    private lateinit var exploreFragment: ExploreFragment
+    private lateinit var myBookingFragment: MyBookingFragment
+    private lateinit var savedFragment: SavedFragment
+    private lateinit var myAccountFragment: MyAccountFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
@@ -68,23 +74,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         bnvNavigator.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.itmBottomNavigationHome -> {
-                    loadFragment(HomeFragment())
+                    if (!this::homeFragment.isInitialized) homeFragment = HomeFragment()
+                    loadFragment(homeFragment)
                     return@setOnItemSelectedListener true
                 }
                 R.id.itmBottomNavigationExplore -> {
-                    loadFragment(ExploreFragment())
+                    if (!this::exploreFragment.isInitialized) exploreFragment = ExploreFragment()
+                    loadFragment(exploreFragment)
                     return@setOnItemSelectedListener true
                 }
                 R.id.itmBottomNavigationMyBooking -> {
-                    loadFragment(MyBookingFragment())
+                    if (!this::myBookingFragment.isInitialized) myBookingFragment = MyBookingFragment()
+                    loadFragment(myBookingFragment)
                     return@setOnItemSelectedListener true
                 }
                 R.id.itmBottomNavigationSaved -> {
-                    loadFragment(SavedFragment())
+                    if (!this::savedFragment.isInitialized) savedFragment = SavedFragment()
+                    loadFragment(savedFragment)
                     return@setOnItemSelectedListener true
                 }
                 R.id.itmBottomNavigationMyAccount -> {
-                    loadFragment(MyAccountFragment())
+                    if (!this::myAccountFragment.isInitialized) myAccountFragment = MyAccountFragment()
+                    loadFragment(myAccountFragment)
                     return@setOnItemSelectedListener true
                 }
                 else -> false
