@@ -6,12 +6,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 
-class FacebookGoogleButtonView @JvmOverloads constructor(
+class SocialNetworkView @JvmOverloads constructor(
     ctx: Context,
     attributes: AttributeSet
 ) : LinearLayout(ctx, attributes) {
 
     init {
-        LayoutInflater.from(ctx).inflate(R.layout.facebook_google_button_layout, this, true)
+        LayoutInflater.from(ctx).inflate(R.layout.social_network_layout, this, true)
     }
 }

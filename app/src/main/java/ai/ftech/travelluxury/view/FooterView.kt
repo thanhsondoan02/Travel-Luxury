@@ -19,8 +19,8 @@ class FooterView @JvmOverloads constructor(
     init {
         val view = LayoutInflater.from(ctx).inflate(R.layout.footer_layout, this, true)
 
-        leftTextView = view.findViewById(R.id.footer_left_text_view)
-        rightTextView = view.findViewById(R.id.footer_right_text_view)
+        leftTextView = view.findViewById(R.id.tvFooterLeft)
+        rightTextView = view.findViewById(R.id.tvFooterRight)
     }
 
     fun setLeftTextView(text: String) {

@@ -31,4 +31,22 @@
     <string name="search_icon">search icon</string>
     <string name="notification_icon">notification icon</string>
     <string name="message_icon">message icon</string>
+    <string name="go_back_button">Go back button</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="view_my_profile">View My Profile</string>
+    <string name="jennie_kim">Jennie Kim</string>
+    <string name="jennie_kim_email">jenniekim1976@gmail.com</string>
+    <string name="_0_points">0 Points</string>
+    <string name="trade_point_for_coupons_and_learn_how_to_earn_more">Trade point for coupons and learn how to earn more! Trade point for coupons and learn how to earn more!</string>
+    <string name="holding_place_text">This is some text for holding place. This is some text for holding place</string>
+    <string name="title">Title</string>
+    <string name="category">Category</string>
+    <string name="email_example_com">email@example.com</string>
+    <string name="full_name">Full Name</string>
+    <string name="login_activity_action_bar_title">Login</string>
+    <string name="login_activity_footer_left_text">Don\'t have a Travel Luxury account?</string>
+    <string name="login_activity_footer_right_text">Register now</string>
+    <string name="register_activity_action_bar_title">Become a Travel Luxury Member</string>
+    <string name="register_activity_footer_left_text">Already have a Travel Luxury account?</string>
+    <string name="register_activity_footer_right_text">Log in now</string>
 </resources>

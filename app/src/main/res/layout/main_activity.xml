@@ -2,30 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".main.MainActivity">
 
     <RelativeLayout
-        android:id="@+id/action_bar"
+        android:id="@+id/rlMainActionBar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_alignParentTop="true"
         android:background="@color/main_blue_color">
 
         <RelativeLayout
-            android:id="@+id/search_bar"
+            android:id="@+id/rlMainSearchBox"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_marginVertical="8dp"
             android:layout_marginStart="15dp"
-            android:layout_toStartOf="@id/notification_icon"
+            android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@id/rlMainNotification"
             android:background="@drawable/main_search_shape">
 
             <ImageView
-                android:id="@+id/search_icon"
+                android:id="@+id/ivMainSearchIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
@@ -39,34 +40,56 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/search_icon"
+                android:layout_toEndOf="@id/ivMainSearchIcon"
                 android:text="@string/search_for_items_destinations" />
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/notification_icon"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_toStartOf="@id/message_icon"
-            android:contentDescription="@string/notification_icon"
-            android:padding="15dp"
-            android:src="@drawable/notification2_icon" />
+        <RelativeLayout
+            android:id="@+id/rlMainNotification"
+            android:layout_width="41dp"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@id/rlMainMessage"
+            android:paddingStart="0dp"
+            android:paddingEnd="16dp">
 
-        <ImageView
-            android:id="@+id/message_icon"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/notification_icon"
+                android:src="@drawable/ic_notification2" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlMainMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:contentDescription="@string/message_icon"
-            android:padding="15dp"
-            android:src="@drawable/message_icon" />
+            android:paddingStart="0dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/message_icon"
+                android:src="@drawable/ic_message2" />
+        </RelativeLayout>
 
     </RelativeLayout>
 
+    <FrameLayout
+        android:id="@+id/flMainContent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/bnvMainNavigator"
+        android:layout_below="@+id/rlMainActionBar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/bnvMainNavigator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

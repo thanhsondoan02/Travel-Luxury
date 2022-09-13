@@ -18,7 +18,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        actionBar = findViewById(R.id.action_bar)
+        actionBar = findViewById(R.id.abvSearchActionBar)
 
         actionBar.setTitle("Search")
     }
