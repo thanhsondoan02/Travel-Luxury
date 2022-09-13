@@ -5,16 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".main.home.HomeFragment">
 
-    <RelativeLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rlHomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:text="Home fragment" />
-    </RelativeLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </FrameLayout>

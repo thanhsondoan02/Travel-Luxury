@@ -6,13 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseAdapter : RecyclerView.Adapter<BaseVH<Any>>(){
 
-    protected var dataList : MutableList<Any> = mutableListOf()
+    protected val dataList by lazy {
+        initData()
+    }
 
     abstract override fun getItemViewType(position: Int) : Int
 
     abstract fun getLayoutResource(viewType: Int) : Int
 
-    abstract fun initData()
+    abstract fun initData() : MutableList<Any>
 
     /**
      * choose type of view holder and return new instance

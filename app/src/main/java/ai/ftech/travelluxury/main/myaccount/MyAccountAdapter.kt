@@ -29,12 +29,14 @@ class MyAccountAdapter : BaseAdapter() {
         }
     }
 
-    override fun initData() {
-        dataList.add(ProfileData("Jennie Kim", "nini@gmail.com"))
+    override fun initData() : MutableList<Any> {
+        val newDataList = mutableListOf<Any>()
 
-        dataList.add(CategoryData("My Rewards", -1))
+        newDataList.add(ProfileData("Jennie Kim", "nini@gmail.com"))
 
-        dataList.add(
+        newDataList.add(CategoryData("My Rewards", -1))
+
+        newDataList.add(
             FeatureData(
                 "My Coupons",
                 "View coupons that you can use now.",
@@ -42,7 +44,7 @@ class MyAccountAdapter : BaseAdapter() {
                 0
             )
         )
-        dataList.add(
+        newDataList.add(
             FeatureData(
                 "Special Rewards",
                 "See available rewards that are just for you!",
@@ -50,7 +52,7 @@ class MyAccountAdapter : BaseAdapter() {
                 2
             )
         )
-        dataList.add(
+        newDataList.add(
             FeatureData(
                 "0 Points",
                 "Trade points for coupons and learn how to earn more!",
@@ -59,9 +61,9 @@ class MyAccountAdapter : BaseAdapter() {
             )
         )
 
-        dataList.add(CategoryData("Member Features", -1))
+        newDataList.add(CategoryData("Member Features", -1))
 
-        dataList.add(
+        newDataList.add(
             FeatureData(
                 "My Refunds",
                 "Mange your refund in one place",
@@ -70,9 +72,9 @@ class MyAccountAdapter : BaseAdapter() {
             )
         )
 
-        dataList.add(CategoryData("", 40))
+        newDataList.add(CategoryData("", 40))
 
-        dataList.add(
+        newDataList.add(
             FeatureData(
                 "My Cards",
                 "Pay your booking in one single tap",
@@ -81,9 +83,9 @@ class MyAccountAdapter : BaseAdapter() {
             )
         )
 
-        dataList.add(CategoryData("", 40))
+        newDataList.add(CategoryData("", 40))
 
-        dataList.add(
+        newDataList.add(
             FeatureData(
                 "Settings",
                 "View and set your account preferences",
@@ -91,7 +93,7 @@ class MyAccountAdapter : BaseAdapter() {
                 0
             )
         )
-        dataList.add(
+        newDataList.add(
             FeatureData(
                 "Help Center",
                 "Find the best answer for your question",
@@ -100,7 +102,9 @@ class MyAccountAdapter : BaseAdapter() {
             )
         )
 
-        dataList.add(CategoryData("", 100))
+        newDataList.add(CategoryData("", 100))
+
+        return newDataList
     }
 
     override fun getLayoutResource(viewType: Int): Int {

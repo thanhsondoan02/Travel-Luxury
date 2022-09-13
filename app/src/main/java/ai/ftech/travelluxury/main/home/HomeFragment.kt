@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.main.myaccount.MyAccountAdapter
+import androidx.recyclerview.widget.RecyclerView
 
 class HomeFragment : Fragment() {
 
@@ -13,7 +15,13 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        val view = inflater.inflate(R.layout.home_fragment, container, false)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rlHomeFragment)
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        recyclerView.adapter = HomeAdapter()
+
+        return view
     }
 
 
