@@ -7,21 +7,31 @@ import android.view.View
 import android.view.ViewGroup
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.main.myaccount.MyAccountAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class HomeFragment : Fragment() {
 
+    private lateinit var inflateView: View
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var homeAdapter: HomeAdapter
+    private lateinit var linearLayoutManager: LinearLayoutManager
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.home_fragment, container, false)
+    ): View {
+        inflateView = inflater.inflate(R.layout.home_fragment, container, false)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rlHomeFragment)
-        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        recyclerView.adapter = HomeAdapter()
+        recyclerView = inflateView.findViewById(R.id.rlHomeFragment)
 
-        return view
+        linearLayoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = linearLayoutManager
+
+        homeAdapter = HomeAdapter()
+        recyclerView.adapter = homeAdapter
+
+        return inflateView
     }
 
 
