@@ -49,4 +49,7 @@
     <string name="register_activity_action_bar_title">Become a Travel Luxury Member</string>
     <string name="register_activity_footer_left_text">Already have a Travel Luxury account?</string>
     <string name="register_activity_footer_right_text">Log in now</string>
+    <string name="place_image">Place image</string>
+    <string name="domestic_destinations">Domestic destinations</string>
+    <string name="international_destinations">International destinations</string>
 </resources>
