@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:paddingBottom="16dp">
+
+    <ImageView
+        android:id="@+id/ivHotelDetailDescriptionDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="#dadada" />
+
+    <TextView
+        android:id="@+id/tvHotelDetailDescriptionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/ivHotelDetailDescriptionDivider"
+        android:text="@string/description"
+        android:textSize="16sp"
+        android:textColor="#434343"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvHotelDetailDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvHotelDetailDescriptionTitle"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/tvHotelDetailDescriptionSeeDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHotelDetailDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/see_details"
+        android:textAllCaps="true"
+        android:textColor="#0770cd"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

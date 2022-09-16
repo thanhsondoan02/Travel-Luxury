@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:paddingHorizontal="16dp">
+
+    <ImageView
+        android:id="@+id/ivHotelDetailFacilitiesDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="#dadada" />
+
+    <TextView
+        android:id="@+id/tvHotelDetailFacilitiesTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivHotelDetailFacilitiesDivider"
+        android:layout_marginTop="16dp"
+        android:text="@string/common_facilities"
+        android:textColor="#434343"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHotelDetailFacilitiesRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHotelDetailFacilitiesTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:id="@+id/tvHotelDetailFacilitiesSeeFacilities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rvHotelDetailFacilitiesRecyclerView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/see_all_facilities"
+        android:textAllCaps="true"
+        android:textColor="#0770cd"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

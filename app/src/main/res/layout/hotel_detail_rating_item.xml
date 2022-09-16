@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp">
+
+    <ImageView
+        android:id="@+id/ivHotelDetailRatingDivider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#dadada" />
+
+    <TextView
+        android:id="@+id/tvHotelDetailRatingTitle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/ivHotelDetailRatingDivider"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="@string/ratings_and_reviews"
+        android:textColor="#434343"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvHotelDetailPoliciesTimeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/tvHotelDetailRatingTitle"
+        android:layout_centerVertical="true"
+        android:text="@string/app_name"
+        android:textColor="#434343"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+
+    <RelativeLayout
+        android:id="@+id/llHotelDetailRatingPointNType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvHotelDetailPoliciesTimeTitle">
+
+        <TextView
+            android:id="@+id/tvHotelDetailRatingPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8.5"
+            android:textColor="#1ba0e2"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvHotelDetailRatingType"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@+id/tvHotelDetailRatingPoint"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Superb"
+            android:textColor="#24a4e3"
+            android:layout_marginStart="5dp"
+            android:textSize="12sp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvHotelDetailRatingCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llHotelDetailRatingPointNType"
+        android:text="From 580 reviews"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/tvHotelDetailRatingSeeReviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHotelDetailRatingCount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/see_all_reviews"
+        android:textAllCaps="true"
+        android:textColor="#0770cd"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
