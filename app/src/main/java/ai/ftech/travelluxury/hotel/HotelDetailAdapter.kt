@@ -1,9 +1,12 @@
 package ai.ftech.travelluxury.hotel
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.data.*
-import ai.ftech.travelluxury.model.HotelDetail.Companion.HOTEL_DETAIL
+import ai.ftech.travelluxury.data.HotelPoliciesHandler
+import ai.ftech.travelluxury.data.TAG
+import ai.ftech.travelluxury.data.loadUrlToImageView
+import ai.ftech.travelluxury.model.hoteldetail.HotelDetail.Companion.HOTEL_DETAIL
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -11,7 +14,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class HotelDetailAdapter(val listener: OnClickListener) :
+class HotelDetailAdapter(private val listener: OnClickListener) :
     RecyclerView.Adapter<HotelDetailAdapter.HotelDetailVH>() {
 
     interface OnClickListener {
@@ -128,41 +131,47 @@ class HotelDetailAdapter(val listener: OnClickListener) :
 
     inner class PreviewVH(itemView: View) : HotelDetailVH(itemView) {
         override fun bindData() {
+            val imageUrlList = HOTEL_DETAIL.imageList
+
+            if (imageUrlList == null) {
+                Log.d(TAG, "bindData: imageUrlList is null")
+                return
+            }
+
+            if (HOTEL_DETAIL.imageList!!.size != 5) {
+                Log.d(TAG, "bindData: imageUrlList size is not 5")
+                return
+            }
+
             val ivTop = itemView.findViewById<ImageView>(R.id.ivHotelDetailPreviewTopPicture)
             val ivBot1 = itemView.findViewById<ImageView>(R.id.ivHotelDetailPreviewBotPicture1)
             val ivBot2 = itemView.findViewById<ImageView>(R.id.ivHotelDetailPreviewBotPicture2)
             val ivBot3 = itemView.findViewById<ImageView>(R.id.ivHotelDetailPreviewBotPicture3)
             val ivBot4 = itemView.findViewById<ImageView>(R.id.ivHotelDetailPreviewBotPicture4)
 
-            if (HOTEL_DETAIL.imageTop != null) {
-                loadUrlToImageView(HOTEL_DETAIL.imageTop!!, ivTop, itemView.context)
-            }
-            if (HOTEL_DETAIL.imageBot1 != null) {
-                loadUrlToImageView(HOTEL_DETAIL.imageBot1!!, ivBot1, itemView.context)
-            }
-            if (HOTEL_DETAIL.imageBot2 != null) {
-                loadUrlToImageView(HOTEL_DETAIL.imageBot2!!, ivBot2, itemView.context)
-            }
-            if (HOTEL_DETAIL.imageBot3 != null) {
-                loadUrlToImageView(HOTEL_DETAIL.imageBot3!!, ivBot3, itemView.context)
-            }
-            if (HOTEL_DETAIL.imageBot4 != null) {
-                loadUrlToImageView(HOTEL_DETAIL.imageBot4!!, ivBot4, itemView.context)
+            val ivList = listOf(ivTop, ivBot1, ivBot2, ivBot3, ivBot4)
+            for (i in imageUrlList.indices) {
+                val iv = ivList[i]
+                loadUrlToImageView(imageUrlList[i], iv, itemView.context)
             }
         }
     }
 
     class TitleVH(itemView: View) : HotelDetailVH(itemView) {
         override fun bindData() {
+            val hotel = HOTEL_DETAIL.hotel
+
+            if (hotel == null) {
+                Log.d(TAG, "bindData: hotel is null")
+                return
+            }
+
             val tvName = itemView.findViewById<TextView>(R.id.tvHotelDetailTitleName)
             val tvAddress = itemView.findViewById<TextView>(R.id.tvHotelDetailTitleAddress)
 
-            tvName.text = HOTEL_DETAIL.hotelName
-            tvAddress.text = HOTEL_DETAIL.address
-
-            if (HOTEL_DETAIL.star != null) {
-                setStar(HOTEL_DETAIL.star!!)
-            }
+            tvName.text = hotel.hotelName
+            tvAddress.text = hotel.address
+            setStar(hotel.star)
         }
 
         private fun setStar(star: Float) {
@@ -186,19 +195,20 @@ class HotelDetailAdapter(val listener: OnClickListener) :
 
     class RatingVH(itemView: View) : HotelDetailVH(itemView) {
         override fun bindData() {
+            val rating = HOTEL_DETAIL.rating
+
+            if (rating == null) {
+                Log.d(TAG, "bindData: rating is null")
+                return
+            }
+
             val tvPoint = itemView.findViewById<TextView>(R.id.tvHotelDetailRatingPoint)
             val tvType = itemView.findViewById<TextView>(R.id.tvHotelDetailRatingType)
             val tvCount = itemView.findViewById<TextView>(R.id.tvHotelDetailRatingCount)
 
-            if (HOTEL_DETAIL.point != null) {
-                tvPoint.text = HOTEL_DETAIL.point.toString()
-            }
-            if (HOTEL_DETAIL.type != null) {
-                tvType.text = HOTEL_DETAIL.type
-            }
-            if (HOTEL_DETAIL.count != null) {
-                tvCount.text = "From ${HOTEL_DETAIL.count} reviews"
-            }
+            tvPoint.text = rating.point.toString()
+            tvType.text = HOTEL_DETAIL.getTypeRating()
+            tvCount.text = HOTEL_DETAIL.getCountText()
         }
     }
 
@@ -206,7 +216,21 @@ class HotelDetailAdapter(val listener: OnClickListener) :
 
     inner class PoliciesVH(itemView: View) : HotelDetailVH(itemView) {
 
+        private val handler = HotelPoliciesHandler()
+
         override fun bindData() {
+            val policyList = HOTEL_DETAIL.policyList
+
+            if (policyList == null) {
+                Log.d(TAG, "bindData: policyList is null")
+                return
+            }
+
+            if (policyList.size != 3) {
+                Log.d(TAG, "Policy list size is not 3")
+                return
+            }
+
             val tvTitle1 = itemView.findViewById<TextView>(R.id.tvHotelDetailPoliciesTitle1)
             val tvTitle2 = itemView.findViewById<TextView>(R.id.tvHotelDetailPoliciesTitle2)
             val tvTitle3 = itemView.findViewById<TextView>(R.id.tvHotelDetailPoliciesTitle3)
@@ -220,49 +244,35 @@ class HotelDetailAdapter(val listener: OnClickListener) :
             val tvDescription3 =
                 itemView.findViewById<TextView>(R.id.ivHotelDetailPoliciesDescription3)
 
-            if (HOTEL_DETAIL.policyType1 != null && isValidPolicyType(HOTEL_DETAIL.policyType1!!)) {
-                val policyType = getPolicyType(HOTEL_DETAIL.policyType1!!)
-                tvTitle1.text = getTitle(policyType)
-                ivIcon1.setImageResource(getIcon(policyType))
-            }
+            val tvTitleList = listOf(tvTitle1, tvTitle2, tvTitle3)
+            val tvDesList = listOf(tvDescription1, tvDescription2, tvDescription3)
+            val ivIconList = listOf(ivIcon1, ivIcon2, ivIcon3)
 
-            if (HOTEL_DETAIL.policyType2 != null && isValidPolicyType(HOTEL_DETAIL.policyType2!!)) {
-                val policyType = getPolicyType(HOTEL_DETAIL.policyType2!!)
-                tvTitle2.text = getTitle(policyType)
-                ivIcon2.setImageResource(getIcon(policyType))
-            }
+            for (i in policyList.indices) {
+                val typeInString = policyList[i].type
 
-            if (HOTEL_DETAIL.policyType3 != null && isValidPolicyType(HOTEL_DETAIL.policyType3!!)) {
-                val policyType = getPolicyType(HOTEL_DETAIL.policyType3!!)
-                tvTitle3.text = getTitle(policyType)
-                ivIcon3.setImageResource(getIcon(policyType))
-            }
-
-            if (HOTEL_DETAIL.policiesDescription1 != null) {
-                tvDescription1.text = HOTEL_DETAIL.policiesDescription1
-            }
-            if (HOTEL_DETAIL.policiesDescription2 != null) {
-                tvDescription2.text = HOTEL_DETAIL.policiesDescription2
-            }
-            if (HOTEL_DETAIL.policiesDescription3 != null) {
-                tvDescription3.text = HOTEL_DETAIL.policiesDescription3
+                if (handler.isValidType(typeInString)) {
+                    val policyType = handler.getType(typeInString)
+                    ivIconList[i].setImageResource(handler.getIcon(policyType))
+                    tvTitleList[i].text = handler.getTitle(policyType)
+                    tvDesList[i].text = policyList[i].description
+                }
             }
         }
-
-
     }
 
     class DescriptionVH(itemView: View) : HotelDetailVH(itemView) {
         @SuppressLint("SetTextI18n")
         override fun bindData() {
+            if (HOTEL_DETAIL.descriptionList == null) return
+            if (HOTEL_DETAIL.descriptionList!!.size != 3) {
+                Log.d(TAG, "Description list size is not 3")
+                return
+            }
+
             val tvDescriptionShort = itemView.findViewById<TextView>(R.id.tvHotelDetailDescription)
 
-            if (HOTEL_DETAIL.descriptionShort1 != null
-                && HOTEL_DETAIL.descriptionShort2 != null
-                && HOTEL_DETAIL.descriptionShort3 != null
-            ) {
-                tvDescriptionShort.text = HOTEL_DETAIL.getDescriptionShort()
-            }
+            tvDescriptionShort.text = HOTEL_DETAIL.getDescriptionShort()
         }
     }
 

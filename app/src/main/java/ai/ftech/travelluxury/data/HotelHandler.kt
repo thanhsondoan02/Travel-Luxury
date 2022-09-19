@@ -11,7 +11,6 @@ interface HotelHandler<TYPE> {
         return map[type]!!
     }
 
-    abstract fun initMap()
-    abstract fun getIcon(type: TYPE): Int
-    abstract fun getTitle(type: TYPE): String
+    fun getIcon(type: TYPE): Int
+    fun getTitle(type: TYPE): String
 }

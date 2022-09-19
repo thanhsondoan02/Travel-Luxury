@@ -1,7 +1,7 @@
 package ai.ftech.travelluxury.hotel
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.model.HotelDetail.Companion.HOTEL_DETAIL
+import ai.ftech.travelluxury.model.hoteldetail.HotelDetail.Companion.HOTEL_DETAIL
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

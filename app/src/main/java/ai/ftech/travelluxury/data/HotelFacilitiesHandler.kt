@@ -3,7 +3,7 @@ package ai.ftech.travelluxury.data
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.hotel.FACILITY_TYPE
 
-class HotelFacilityHandler : HotelHandler<FACILITY_TYPE> {
+class HotelFacilitiesHandler : HotelHandler<FACILITY_TYPE> {
     override val map: Map<String, FACILITY_TYPE>
         get() = mapOf(
             "ac" to FACILITY_TYPE.AC,
@@ -13,10 +13,6 @@ class HotelFacilityHandler : HotelHandler<FACILITY_TYPE> {
             "elevator" to FACILITY_TYPE.ELEVATOR,
             "wifi" to FACILITY_TYPE.WIFI
         )
-
-    override fun initMap() {
-        TODO("Not yet implemented")
-    }
 
     override fun getIcon(type: FACILITY_TYPE): Int {
         return when (type) {
@@ -39,8 +35,6 @@ class HotelFacilityHandler : HotelHandler<FACILITY_TYPE> {
             FACILITY_TYPE.WIFI -> "Wifi"
         }
     }
-
-
 }
 
 
