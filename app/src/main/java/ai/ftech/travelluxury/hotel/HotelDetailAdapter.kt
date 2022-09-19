@@ -3,7 +3,7 @@ package ai.ftech.travelluxury.hotel
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.HotelPoliciesHandler
 import ai.ftech.travelluxury.data.TAG
-import ai.ftech.travelluxury.data.loadUrlToImageView
+import ai.ftech.travelluxury.data.loadUrl
 import ai.ftech.travelluxury.model.hoteldetail.HotelDetail.Companion.HOTEL_DETAIL
 import android.annotation.SuppressLint
 import android.util.Log
@@ -151,8 +151,7 @@ class HotelDetailAdapter(private val listener: OnClickListener) :
 
             val ivList = listOf(ivTop, ivBot1, ivBot2, ivBot3, ivBot4)
             for (i in imageUrlList.indices) {
-                val iv = ivList[i]
-                loadUrlToImageView(imageUrlList[i], iv, itemView.context)
+                ivList[i].loadUrl(imageUrlList[i])
             }
         }
     }
