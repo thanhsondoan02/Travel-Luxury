@@ -1,8 +1,5 @@
 package ai.ftech.travelluxury.model
 
-import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.hotel.FacilitiesAdapter
-
 class HotelDetail {
 
     companion object {
@@ -23,12 +20,13 @@ class HotelDetail {
     var type: String? = null
     var count: Int? = null
 
-    var ac: Boolean? = null
-    var restaurant: Boolean? = null
-    var twentyFourHour: Boolean? = null
-    var parking: Boolean? = null
-    var elevator: Boolean? = null
-    var wifi: Boolean? = null
+//    var ac: Boolean? = null
+//    var restaurant: Boolean? = null
+//    var twentyFourHour: Boolean? = null
+//    var parking: Boolean? = null
+//    var elevator: Boolean? = null
+//    var wifi: Boolean? = null
+var facilitiesList: List<String>? = null
 
     var policyType1: String? = null
     var policyType2: String? = null
@@ -62,12 +60,21 @@ class HotelDetail {
         type = "Superb"
         count = 580
 
-        ac = true
-        restaurant = true
-        twentyFourHour = true
-        parking = true
-        elevator = true
-        wifi = true
+//        ac = true
+//        restaurant = true
+//        twentyFourHour = true
+//        parking = true
+//        elevator = true
+//        wifi = true
+        facilitiesList = listOf(
+            "ac",
+            "restaurant",
+            "hour_24",
+            "parking",
+            "elevator",
+            "wifi"
+        )
+
 
         policyType1 = "check_in_out"
         policyType2 = "additional"
@@ -86,59 +93,59 @@ class HotelDetail {
             "Wifi is available within public areas of the public area of the property to help you to stay connected with family and friends."
     }
 
-    fun getFacilitiesList(): MutableList<FacilitiesAdapter.FacilityData> {
-        val list = mutableListOf<FacilitiesAdapter.FacilityData>()
-
-        if (ac == true)
-            list.add(
-                FacilitiesAdapter.FacilityData(
-                    R.drawable.ic_ac,
-                    "AC"
-                )
-            )
-
-        if (restaurant == true)
-            list.add(
-                FacilitiesAdapter.FacilityData(
-                    R.drawable.ic_restaurant,
-                    "Restaurant"
-                )
-            )
-
-        if (twentyFourHour == true)
-            list.add(
-                FacilitiesAdapter.FacilityData(
-                    R.drawable.ic_24_hour,
-                    "24 Hour Front Desk"
-                )
-            )
-
-        if (parking == true)
-            list.add(
-                FacilitiesAdapter.FacilityData(
-                    R.drawable.ic_parking,
-                    "Parking"
-                )
-            )
-
-        if (elevator == true)
-            list.add(
-                FacilitiesAdapter.FacilityData(
-                    R.drawable.ic_elevator,
-                    "Elevator"
-                )
-            )
-
-        if (wifi == true)
-            list.add(
-                FacilitiesAdapter.FacilityData(
-                    R.drawable.ic_wifi,
-                    "Wifi"
-                )
-            )
-
-        return list
-    }
+//    fun getFacilitiesList(): MutableList<FacilitiesAdapter.FacilityData> {
+//        val list = mutableListOf<FacilitiesAdapter.FacilityData>()
+//
+//        if (ac == true)
+//            list.add(
+//                FacilitiesAdapter.FacilityData(
+//                    R.drawable.ic_ac,
+//                    "AC"
+//                )
+//            )
+//
+//        if (restaurant == true)
+//            list.add(
+//                FacilitiesAdapter.FacilityData(
+//                    R.drawable.ic_restaurant,
+//                    "Restaurant"
+//                )
+//            )
+//
+//        if (twentyFourHour == true)
+//            list.add(
+//                FacilitiesAdapter.FacilityData(
+//                    R.drawable.ic_24_hour,
+//                    "24 Hour Front Desk"
+//                )
+//            )
+//
+//        if (parking == true)
+//            list.add(
+//                FacilitiesAdapter.FacilityData(
+//                    R.drawable.ic_parking,
+//                    "Parking"
+//                )
+//            )
+//
+//        if (elevator == true)
+//            list.add(
+//                FacilitiesAdapter.FacilityData(
+//                    R.drawable.ic_elevator,
+//                    "Elevator"
+//                )
+//            )
+//
+//        if (wifi == true)
+//            list.add(
+//                FacilitiesAdapter.FacilityData(
+//                    R.drawable.ic_wifi,
+//                    "Wifi"
+//                )
+//            )
+//
+//        return list
+//    }
 
     fun clearData() {
         imageTop = null
@@ -155,12 +162,13 @@ class HotelDetail {
         type = null
         count = null
 
-        ac = null
-        restaurant = null
-        twentyFourHour = null
-        parking = null
-        elevator = null
-        wifi = null
+//        ac = null
+//        restaurant = null
+//        twentyFourHour = null
+//        parking = null
+//        elevator = null
+//        wifi = null
+        facilitiesList = null
 
         policyType1 = null
         policyType2 = null

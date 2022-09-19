@@ -41,7 +41,7 @@ class HotelDetailAdapter(val listener: OnClickListener) :
                 val recyclerView =
                     inflateView.findViewById<RecyclerView>(R.id.rvHotelDetailFacilitiesRecyclerView)
                 recyclerView.layoutManager =
-                    LinearLayoutManager(parent.context, LinearLayoutManager.HORIZONTAL, false)
+                    LinearLayoutManager(inflateView.context, LinearLayoutManager.HORIZONTAL, false)
                 recyclerView.adapter = FacilitiesAdapter()
 
                 val tvSeeFacilities =

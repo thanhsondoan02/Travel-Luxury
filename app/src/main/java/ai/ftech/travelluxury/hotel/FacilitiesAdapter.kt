@@ -1,7 +1,10 @@
 package ai.ftech.travelluxury.hotel
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.data.HotelFacilityHandler
+import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.model.HotelDetail.Companion.HOTEL_DETAIL
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -10,9 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class FacilitiesAdapter : RecyclerView.Adapter<FacilitiesAdapter.FacilityVH>() {
 
-    private val dataList by lazy {
-        HOTEL_DETAIL.getFacilitiesList()
-    }
+    private val dataList = HOTEL_DETAIL.facilitiesList
+    private val handler = HotelFacilityHandler()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FacilityVH {
         val view = View.inflate(parent.context, R.layout.hotel_detail_facilities_icon_item, null)
@@ -20,15 +22,23 @@ class FacilitiesAdapter : RecyclerView.Adapter<FacilitiesAdapter.FacilityVH>() {
     }
 
     override fun onBindViewHolder(holder: FacilityVH, position: Int) {
+        if (dataList == null) return
+
         val ivIcon = holder.itemView.findViewById<ImageView>(R.id.ivHotelDetailFacilitiesIcon)
         val tvTitle = holder.itemView.findViewById<TextView>(R.id.tvHotelDetailFacilitiesName)
 
-        ivIcon.setImageResource(dataList[position].iconID)
-        tvTitle.text = dataList[position].name
+        Log.d(TAG, "temp")
+        if (handler.isValidType(dataList[position])) {
+            Log.d(TAG, "valid: ")
+            val type = handler.getType(dataList[position])
+            ivIcon.setImageResource(handler.getIcon(type))
+            tvTitle.text = handler.getTitle(type)
+        }
     }
 
     override fun getItemCount(): Int {
-        return dataList.size
+        if (dataList == null) return 0
+        return dataList!!.size
     }
 
     class FacilityVH(itemView: View) : RecyclerView.ViewHolder(itemView)
