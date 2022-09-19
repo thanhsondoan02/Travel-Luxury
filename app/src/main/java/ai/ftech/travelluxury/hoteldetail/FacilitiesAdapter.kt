@@ -1,4 +1,4 @@
-package ai.ftech.travelluxury.hotel
+package ai.ftech.travelluxury.hoteldetail
 
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.HotelFacilitiesHandler

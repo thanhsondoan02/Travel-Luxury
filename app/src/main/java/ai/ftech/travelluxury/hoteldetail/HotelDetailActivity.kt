@@ -1,6 +1,11 @@
-package ai.ftech.travelluxury.hotel
+package ai.ftech.travelluxury.hoteldetail
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.common.OnClickListener
+import ai.ftech.travelluxury.hoteldetail.description.SeeDescriptionActivity
+import ai.ftech.travelluxury.hoteldetail.facilities.SeeFacilitiesActivity
+import ai.ftech.travelluxury.hoteldetail.policies.SeePoliciesActivity
+import ai.ftech.travelluxury.hoteldetail.reviews.SeeReviewsActivity
 import ai.ftech.travelluxury.model.hoteldetail.HotelDetail.Companion.HOTEL_DETAIL
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class HotelDetailActivity : AppCompatActivity(), HotelDetailAdapter.OnClickListener {
+class HotelDetailActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: HotelDetailAdapter
@@ -40,7 +45,6 @@ class HotelDetailActivity : AppCompatActivity(), HotelDetailAdapter.OnClickListe
     }
 
     private fun initView() {
-
         recyclerView = findViewById(R.id.rvHotelDetailRecyclerView)
 
         adapter = HotelDetailAdapter(this)
@@ -48,7 +52,6 @@ class HotelDetailActivity : AppCompatActivity(), HotelDetailAdapter.OnClickListe
 
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
-
     }
 
     enum class NEXT_ACTIVITY {

@@ -1,4 +1,4 @@
-package ai.ftech.travelluxury.hotel
+package ai.ftech.travelluxury.hoteldetail.facilities
 
 import ai.ftech.travelluxury.R
 import android.os.Bundle

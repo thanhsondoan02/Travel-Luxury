@@ -16,19 +16,19 @@
         android:theme="@style/Theme.TravelLuxury"
         tools:targetApi="31">
         <activity
-            android:name=".hotel.SeeReviewsActivity"
+            android:name=".hoteldetail.reviews.SeeReviewsActivity"
             android:exported="false" />
         <activity
-            android:name=".hotel.SeeFacilitiesActivity"
+            android:name=".hoteldetail.facilities.SeeFacilitiesActivity"
             android:exported="false" />
         <activity
-            android:name=".hotel.SeePoliciesActivity"
+            android:name=".hoteldetail.policies.SeePoliciesActivity"
             android:exported="false" />
         <activity
-            android:name=".hotel.SeeDescriptionActivity"
+            android:name=".hoteldetail.description.SeeDescriptionActivity"
             android:exported="false" />
         <activity
-            android:name=".hotel.HotelDetailActivity"
+            android:name=".hoteldetail.HotelDetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
