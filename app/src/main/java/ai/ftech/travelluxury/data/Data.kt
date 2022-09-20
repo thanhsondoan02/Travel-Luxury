@@ -3,6 +3,10 @@ package ai.ftech.travelluxury.data
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.main.home.HomeAdapter
 import ai.ftech.travelluxury.main.home.HorizontalListAdapter
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+
+const val TAG = "Peswoc"
 
 fun getCategoryData(): MutableList<Any> {
 
@@ -230,4 +234,8 @@ fun getHotelPromosList(): MutableList<Any> {
     )
 
     return dataList
+}
+
+fun ImageView.loadUrl(url: String) {
+    Glide.with(this).load(url).into(this)
 }

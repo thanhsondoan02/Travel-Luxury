@@ -52,4 +52,23 @@
     <string name="place_image">Place image</string>
     <string name="domestic_destinations">Domestic destinations</string>
     <string name="international_destinations">International destinations</string>
+    <string name="common_facilities">Common Facilities</string>
+    <string name="see_all_facilities">See all facilities</string>
+    <string name="accommodation_policies">Accommodation Policies</string>
+    <string name="check_in_check_out_time">Check-in/Check-out Time</string>
+    <string name="additional_policy">Additional Policy</string>
+    <string name="ratings_and_reviews">Ratings and Reviews</string>
+    <string name="see_all_reviews">See all reviews</string>
+    <string name="description">Description</string>
+    <string name="facility_icon">Facility Icon</string>
+    <string name="facility_name">Facility Name</string>
+    <string name="general_check_in_instructions">General Check-in Instructions</string>
+    <string name="policy_title_1">Policy Title 1</string>
+    <string name="policy_description_1">Policy Description 1</string>
+    <string name="policy_description_2">Policy Description 2</string>
+    <string name="policy_description_3">Policy Description 3</string>
+    <string name="policy_title_3">Policy Title 3</string>
+    <string name="policy_title_2">Policy Title 2</string>
+    <string name="read_all">Read all</string>
+    <string name="see_details">See details</string>
 </resources>

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ai.ftech.travelluxury">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +15,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelLuxury"
         tools:targetApi="31">
+        <activity
+            android:name=".hoteldetail.reviews.SeeReviewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hoteldetail.facilities.SeeFacilitiesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hoteldetail.policies.SeePoliciesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hoteldetail.description.SeeDescriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hoteldetail.HotelDetailActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".search.SearchActivity"
             android:exported="false" />
@@ -29,21 +52,23 @@
             android:name=".login.LoginActivity"
             android:exported="true">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
+            <!--             <intent-filter>-->
+            <!--             <action android:name="android.intent.action.MAIN" />-->
 
 
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!--             <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".main.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

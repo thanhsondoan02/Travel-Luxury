@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp">
+
+    <ImageView
+        android:id="@+id/ivHotelDetailPoliciesDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="#dadada" />
+
+    <TextView
+        android:id="@+id/tvHotelDetailPoliciesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivHotelDetailPoliciesDivider"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/accommodation_policies"
+        android:textColor="#434343"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/rlHotelDetailPolicies1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHotelDetailPoliciesTitle"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/ivHotelDetailPoliciesIcon1"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/tvHotelDetailPoliciesTitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/ivHotelDetailPoliciesIcon1"
+            android:text="@string/policy_title_1"
+            android:textColor="#434343"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/ivHotelDetailPoliciesDescription1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlHotelDetailPolicies1"
+        android:layout_marginStart="25dp"
+        android:maxLines="2"
+        android:text="@string/policy_description_1" />
+
+    <RelativeLayout
+        android:id="@+id/rlHotelDetailPolicies2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivHotelDetailPoliciesDescription1"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/ivHotelDetailPoliciesIcon2"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/tvHotelDetailPoliciesTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/ivHotelDetailPoliciesIcon2"
+            android:textSize="15sp"
+            android:text="@string/policy_title_2"
+            android:textColor="#434343"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/ivHotelDetailPoliciesDescription2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlHotelDetailPolicies2"
+        android:layout_marginStart="25dp"
+        android:maxLines="3"
+        android:text="@string/policy_description_2" />
+
+    <RelativeLayout
+        android:id="@+id/rlHotelDetailPolicies3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivHotelDetailPoliciesDescription2"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/ivHotelDetailPoliciesIcon3"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/tvHotelDetailPoliciesTitle3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/ivHotelDetailPoliciesIcon3"
+            android:text="@string/policy_title_3"
+            android:textColor="#434343"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/ivHotelDetailPoliciesDescription3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlHotelDetailPolicies3"
+        android:layout_marginStart="25dp"
+        android:maxLines="3"
+        android:text="@string/policy_description_3" />
+
+    <TextView
+        android:id="@+id/tvHotelDetailPoliciesSeePolicies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivHotelDetailPoliciesDescription3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/read_all"
+        android:textAllCaps="true"
+        android:textColor="#0770cd"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
