@@ -2,6 +2,7 @@ package ai.ftech.travelluxury.hoteldetail.viewholder
 
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.TAG
+import ai.ftech.travelluxury.data.setStar
 import ai.ftech.travelluxury.model.hoteldetail.HotelDetail
 import android.util.Log
 import android.view.View
@@ -29,17 +30,9 @@ class TitleVH(itemView: View) : HotelDetailVH(itemView) {
 
         tvName.text = hotel.hotelName
         tvAddress.text = hotel.address
-        setStar(hotel.star)
+        setStar(hotel.star, listStarImage)
     }
 
-    private fun setStar(star: Float) {
-        for (i in 0 until star.toInt()) {
-            listStarImage[i].setImageResource(R.drawable.ic_full_star)
-        }
 
-        if (star - star.toInt() > 0) {
-            listStarImage[star.toInt()].setImageResource(R.drawable.ic_half_star)
-        }
-    }
 }
 

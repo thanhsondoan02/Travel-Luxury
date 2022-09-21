@@ -106,7 +106,7 @@
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/tvHotelDetailTitleLocationIcon"
             android:text="Hoan Kiem District, Hanoi"
-            android:textColor="#434343"
+            android:textColor="#8f8f8f"
             android:textSize="12sp"
             tools:ignore="HardcodedText" />
 

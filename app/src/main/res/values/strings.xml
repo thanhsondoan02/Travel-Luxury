@@ -71,11 +71,11 @@
     <string name="policy_title_2">Policy Title 2</string>
     <string name="read_all">Read all</string>
     <string name="see_details">See details</string>
-    <string name="hotel_name">Hotel name</string>
-    <string name="hotel_address">Hotel address</string>
+    <string name="hotel_name">Hotel Name</string>
+    <string name="hotel_address">War10, Ho Chi Minh City</string>
     <string name="room_night">/room/night</string>
     <string name="select">Select</string>
-    <string name="price">Price</string>
+    <string name="price">VND 543.726</string>
     <string name="refund_information">refund information</string>
     <string name="breakfast_information">Breakfast information</string>
     <string name="bed_information">Bed information</string>
@@ -83,4 +83,15 @@
     <string name="room_type">Room Type</string>
     <string name="room_name">Room Name</string>
     <string name="type_description">Type Description</string>
+    <string name="tick_icon">tick icon</string>
+    <string name="end_of_section">End of section</string>
+    <string name="change">change</string>
+    <string name="_1_night_s_1_room_s">1 night(s), 1 room(s)</string>
+    <string name="city_name">City Name</string>
+    <string name="sort">Sort</string>
+    <string name="map">Map</string>
+    <string name="filter">Filter</string>
+    <string name="hotel_rating_point">8.5</string>
+    <string name="hotel_rating_count">(324)</string>
+    <string name="hotel_name_example">Central Park Saigon Hotel</string>
 </resources>

@@ -1,6 +1,7 @@
 package ai.ftech.travelluxury.selectroom
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.data.getPriceString
 import ai.ftech.travelluxury.model.selectroom.SelectRoomModel.Companion.SELECT_ROOM_MODEL
 import android.view.View
 import android.widget.TextView
@@ -49,7 +50,7 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             tvBed.text = room.bedType
             tvBreakfast.text = room.breakfast
             tvRefund.text = room.refund
-            tvPrice.text = SELECT_ROOM_MODEL.getPriceString(room.price)
+            tvPrice.text = getPriceString(room.price)
 
             vpImages.adapter = RoomImageAdapter(room.imageList)
         }

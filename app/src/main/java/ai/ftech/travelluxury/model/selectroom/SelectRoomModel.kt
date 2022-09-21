@@ -1,7 +1,5 @@
 package ai.ftech.travelluxury.model.selectroom
 
-import java.text.DecimalFormat
-
 class SelectRoomModel {
 
     companion object {
@@ -114,17 +112,6 @@ class SelectRoomModel {
 
     fun getGuessString(number: Int): String {
         return "$number guest(s)/room"
-    }
-
-    fun getPriceString(price: Int): String {
-        val dec = DecimalFormat("#,###")
-        var tempFormat = dec.format(price)
-        for (i in tempFormat.indices) {
-            if (tempFormat[i] == ',') {
-                tempFormat = tempFormat.substring(0, i) + '.' + tempFormat.substring(i + 1)
-            }
-        }
-        return "VND $tempFormat"
     }
 
 }

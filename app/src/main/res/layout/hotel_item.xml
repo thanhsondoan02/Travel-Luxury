@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="6dp"
+        app:cardCornerRadius="6dp"
+        app:strokeColor="#d4d4d4"
+        app:strokeWidth="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivHotelImage"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/jennie_smile" />
+
+            <TextView
+                android:id="@+id/tvHotelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/ivHotelImage"
+                android:text="@string/hotel_name_example"
+                android:textColor="#434343"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/llHotelStar"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_below="@id/tvHotelName"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@id/ivHotelImage"
+                android:paddingVertical="2dp">
+
+                <ImageView
+                    android:id="@+id/ivHotelStar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true" />
+
+                <ImageView
+                    android:id="@+id/ivHotelStar2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true" />
+
+                <ImageView
+                    android:id="@+id/ivHotelStar3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true" />
+
+                <ImageView
+                    android:id="@+id/ivHotelStar4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true" />
+
+                <ImageView
+                    android:id="@+id/ivHotelStar5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlHotelAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llHotelStar"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@id/ivHotelImage">
+
+                <ImageView
+                    android:id="@+id/ivHotelAddressIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_location" />
+
+                <TextView
+                    android:id="@+id/tvHotelAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@id/ivHotelAddressIcon"
+                    android:text="@string/hotel_address"
+                    android:textColor="#8f8f8f"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rlHotelRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlHotelAddress"
+                android:layout_toEndOf="@id/ivHotelImage">
+
+                <ImageView
+                    android:id="@+id/ivHotelAppIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:id="@+id/tvHotelRatingPoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@id/ivHotelAppIcon"
+                    android:text="@string/hotel_rating_point"
+                    android:textSize="13sp"
+                    android:textColor="#1ba0e2"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvHotelRatingCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@id/tvHotelRatingPoint"
+                    android:text="@string/hotel_rating_count"
+                    android:textColor="#8f8f8f"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@id/ivHotelImage">
+
+                <TextView
+                    android:id="@+id/tvHotelPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price"
+                    android:textAllCaps="true"
+                    android:textColor="#f96d01"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:text="@string/room_night"
+                    android:textColor="#8f8f8f"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

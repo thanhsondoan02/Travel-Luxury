@@ -10,11 +10,11 @@ import ai.ftech.travelluxury.message.MessageActivity
 import ai.ftech.travelluxury.notification.NotificationActivity
 import ai.ftech.travelluxury.search.SearchActivity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
