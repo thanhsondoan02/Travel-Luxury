@@ -4,13 +4,22 @@ import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseAdapter
 import ai.ftech.travelluxury.common.BaseVH
 import ai.ftech.travelluxury.data.getFlightList
-import ai.ftech.travelluxury.data.getHotelList
 import ai.ftech.travelluxury.data.getHotelPromosList
+import ai.ftech.travelluxury.data.loadUrl
+import ai.ftech.travelluxury.model.home.City
+import ai.ftech.travelluxury.model.home.HomeModel.Companion.HOME_MODEL
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
 class HorizontalListAdapter(val type: ListType) : BaseAdapter() {
+
+    private val cityHotelList: MutableList<City> = mutableListOf()
+
+    init {
+        cityHotelList.addAll(HOME_MODEL.cityHotelList!!)
+        cityHotelList.add(City(-1, "", ""))
+    }
 
     override fun getItemViewType(position: Int): Int {
         return 0
@@ -24,10 +33,11 @@ class HorizontalListAdapter(val type: ListType) : BaseAdapter() {
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun initData(): MutableList<Any> {
         return when (type) {
             ListType.FLIGHT -> getFlightList()
-            ListType.HOTEL -> getHotelList()
+            ListType.HOTEL -> cityHotelList as MutableList<Any>
             ListType.HOTEL_PROMOS -> getHotelPromosList()
         }
     }
@@ -54,10 +64,21 @@ class HorizontalListAdapter(val type: ListType) : BaseAdapter() {
         }
     }
 
-    class HotelElementVH(itemView: View) : BaseVH<HotelData>(itemView) {
-        override fun onBind(data: HotelData) {
-            itemView.findViewById<ImageView>(R.id.ivHorizontalListSquareImage)
-                .setImageResource(data.imageSrc)
+    class HotelElementVH(itemView: View) : BaseVH<City>(itemView) {
+
+        private val ivCityImage = itemView.findViewById<ImageView>(R.id.ivHorizontalListSquareImage)
+        private val ivTick = itemView.findViewById<ImageView>(R.id.ivHorizontalListSquareTick)
+        private val tvEndOfSection =
+            itemView.findViewById<TextView>(R.id.tvHorizontalListSquareEndOfSection)
+
+        override fun onBind(data: City) {
+            if (data.id == -1) { // End of section
+                ivTick.setImageResource(R.drawable.ic_tick)
+                tvEndOfSection.text = itemView.context.resources.getText(R.string.end_of_section)
+            } else {
+
+                ivCityImage.loadUrl(data.image)
+            }
         }
     }
 

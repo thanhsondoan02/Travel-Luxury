@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="10dp"
+        app:strokeColor="#d4d4d4"
+        app:strokeWidth="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vpRoomImages"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:clipToPadding="false"
+                android:foregroundGravity="center"
+                android:overScrollMode="never" />
+
+            <TextView
+                android:id="@+id/tvRoomName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/vpRoomImages"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/room_name"
+                android:textColor="#434343"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRoomSeeDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/vpRoomImages"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/see_details"
+                android:textAllCaps="true"
+                android:textColor="#0770cd"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/rlRoomGuest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvRoomName"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/ivRoomGuest"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="3dp"
+                    android:src="@drawable/ic_users_gray" />
+
+                <TextView
+                    android:id="@+id/tvRoomGuest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/ivRoomGuest"
+                    android:text="@string/guest_information"
+                    android:textColor="#434343"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlRoomBed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlRoomGuest"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp">
+
+                <ImageView
+                    android:id="@+id/ivRoomBed"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="3dp"
+                    android:src="@drawable/ic_bed" />
+
+                <TextView
+                    android:id="@+id/tvRoomBed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/ivRoomBed"
+                    android:text="@string/bed_information"
+                    android:textColor="#434343"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlRoomBreakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlRoomBed"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp">
+
+                <ImageView
+                    android:id="@+id/ivRoomBreakfast"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="3dp"
+                    android:src="@drawable/ic_breakfast" />
+
+                <TextView
+                    android:id="@+id/tvRoomBreakfast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/ivRoomBreakfast"
+                    android:text="@string/breakfast_information"
+                    android:textColor="#434343"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlRoomRefund"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlRoomBreakfast"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp">
+
+                <ImageView
+                    android:id="@+id/ivRoomRefund"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="3dp"
+                    android:src="@drawable/ic_refund" />
+
+                <TextView
+                    android:id="@+id/tvRoomRefund"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/ivRoomRefund"
+                    android:text="@string/refund_information"
+                    android:textColor="#434343"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvRoomPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlRoomRefund"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:text="@string/price"
+                android:textAllCaps="true"
+                android:textColor="#f96d01"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvRoomPerNight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvRoomPrice"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:text="@string/room_night"
+                android:textColor="#929292"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnRoomSelect"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/tvRoomPerNight"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/room_select_shape"
+                android:text="@string/select"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

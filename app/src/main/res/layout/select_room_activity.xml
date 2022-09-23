@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".selectroom.SelectRoomActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlSelectRoomActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/main_blue_color">
+
+        <ImageView
+            android:id="@+id/ivSelectRoomBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/go_back_button"
+            android:src="@drawable/ic_arrow_left" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/ivSelectRoomBack"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvActionBarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hotel_name"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hotel_address"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@id/ivSelectRoomMenu"
+            android:src="@drawable/ic_saved" />
+
+        <ImageView
+            android:id="@+id/ivSelectRoomMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_menu" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llSelectRoomOptions"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/rlSelectRoomActionBar">
+
+        <RelativeLayout
+            android:id="@+id/rlSelectRoomDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivSelectRoomDateIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_calendar_blue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@id/ivSelectRoomDateIcon"
+                android:text="20/10/2050"
+                android:textColor="#0770cd"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:background="#d4d4d4" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlSelectRoomTime"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivSelectRoomTimeIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_moon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@id/ivSelectRoomTimeIcon"
+                android:text="4 night(s)"
+                android:textColor="#0770cd"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:background="#d4d4d4" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlSelectRoomType"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivSelectRoomTypeNumber"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_door" />
+
+            <TextView
+                android:id="@+id/tvSelectRoomTypeNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@id/ivSelectRoomTypeNumber"
+                android:text="1"
+                android:textColor="#0770cd"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/ivSelectRoomTypePeople"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/tvSelectRoomTypeNumber"
+                android:src="@drawable/ic_users" />
+
+            <TextView
+                android:id="@+id/tvSelectRoomTypePeople"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@id/ivSelectRoomTypePeople"
+                android:text="2"
+                android:textColor="#0770cd"
+                tools:ignore="HardcodedText" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivSelectRoomDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/llSelectRoomOptions"
+        android:background="#d4d4d4" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSelectRoomRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivSelectRoomDivider"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

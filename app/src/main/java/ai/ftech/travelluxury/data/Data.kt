@@ -5,6 +5,7 @@ import ai.ftech.travelluxury.main.home.HomeAdapter
 import ai.ftech.travelluxury.main.home.HorizontalListAdapter
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import java.text.DecimalFormat
 
 const val TAG = "Peswoc"
 
@@ -65,7 +66,7 @@ fun getFlightList(): MutableList<Any> {
 
     dataList.add(
         HorizontalListAdapter.FlightData(
-            R.drawable.vung_tau,
+            R.drawable.dn,
             "Ho Chi Minh City → Hanoi",
             "12/9 - 31/12/2022",
             "VND760.840"
@@ -156,67 +157,6 @@ fun getFlightList(): MutableList<Any> {
     return dataList
 }
 
-fun getHotelList(): MutableList<Any> {
-
-    val dataList = mutableListOf<Any>()
-
-    dataList.add(
-        HorizontalListAdapter.HotelData(
-            R.drawable.ha_long,
-        )
-    )
-
-    dataList.add(
-        HorizontalListAdapter.HotelData(
-            R.drawable.vung_tau,
-        )
-    )
-
-    dataList.add(
-        HorizontalListAdapter.HotelData(
-            R.drawable.da_nang
-        )
-    )
-
-    dataList.add(
-        HorizontalListAdapter.HotelData(
-            R.drawable.ha_long,
-        )
-    )
-
-    dataList.add(
-        HorizontalListAdapter.HotelData(
-            R.drawable.vung_tau,
-        )
-    )
-
-    dataList.add(
-        HorizontalListAdapter.HotelData(
-            R.drawable.da_nang
-        )
-    )
-
-    dataList.add(
-        HorizontalListAdapter.HotelData(
-            R.drawable.ha_long,
-        )
-    )
-
-    dataList.add(
-        HorizontalListAdapter.HotelData(
-            R.drawable.vung_tau,
-        )
-    )
-
-    dataList.add(
-        HorizontalListAdapter.HotelData(
-            R.drawable.da_nang
-        )
-    )
-
-    return dataList
-}
-
 fun getHotelPromosList(): MutableList<Any> {
 
     val dataList = mutableListOf<Any>()
@@ -238,4 +178,29 @@ fun getHotelPromosList(): MutableList<Any> {
 
 fun ImageView.loadUrl(url: String) {
     Glide.with(this).load(url).into(this)
+}
+
+fun getPriceString(price: Int): String {
+    val dec = DecimalFormat("#,###")
+    var tempFormat = dec.format(price)
+    for (i in tempFormat.indices) {
+        if (tempFormat[i] == ',') {
+            tempFormat = tempFormat.substring(0, i) + '.' + tempFormat.substring(i + 1)
+        }
+    }
+    return "VND $tempFormat"
+}
+
+fun getHotelRatingCount(rating: Int): String {
+    return "($rating)"
+}
+
+fun setStar(star: Float, listStarImage: List<ImageView>) {
+    for (i in 0 until star.toInt()) {
+        listStarImage[i].setImageResource(R.drawable.ic_full_star)
+    }
+
+    if (star - star.toInt() > 0) {
+        listStarImage[star.toInt()].setImageResource(R.drawable.ic_half_star)
+    }
 }
