@@ -7,15 +7,19 @@ class Hotel(
     val id: Int,
     val hotelName: String,
     val smallestPrice: Int,
+    star: Float,
+    val address: String
 ) {
-    var star: Float? = null
-        set(value) {
-            field = if (value!! < 0 || value > 5 || value * 2 - (value * 2).toInt() != 0f) {
-                Log.d(TAG, "star = $star")
-                0f
-            } else {
-                value
-            }
+    val star: Float
+
+    init {
+        val value = star
+        this.star = if (value < 0 || value > 5 || value * 2 - (value * 2).toInt() != 0f) {
+            Log.d(TAG, "star = $star")
+            0f
+        } else {
+            value
         }
-    var address: String? = null
+    }
+
 }

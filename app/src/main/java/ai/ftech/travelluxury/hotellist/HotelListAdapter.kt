@@ -58,7 +58,13 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
             setStar(hotel.star, listStarImage)
 
             mcvHotelCard.setOnClickListener {
-                HOTEL_DETAIL.setHotel(-1, hotel.name, hotel.smallestRoomPrice)
+                HOTEL_DETAIL.fromHotelList(
+                    -1,
+                    hotel.name,
+                    hotel.smallestRoomPrice,
+                    hotel.star,
+                    hotel.address
+                )
                 listener!!.onHotelClick()
             }
         }
