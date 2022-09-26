@@ -9,8 +9,12 @@ class HotelDetail {
         val HOTEL_DETAIL = HotelDetail()
     }
 
-    var imageList: List<String>? = null         // 5 images
+    // from hotel list
+    var id: Int? = null
+
+
     var hotel: Hotel? = null
+    var imageList: List<String>? = null         // 5 images
     var rating: Rating? = null
     var facilitiesList: List<String>? = null
     var policyList: List<Policies>? = null      // 3 policies
@@ -30,11 +34,6 @@ class HotelDetail {
             "https://firebasestorage.googleapis.com/v0/b/travel-luxury-4f5df.appspot.com/o/20011770-d2f82cec329fdbf93b1a2ff5e84a33b3.webp?alt=media&token=6bfb1727-f29d-437d-a8db-fb5fda0b3503"
 
         imageList = listOf(imageTop, imageBot1, imageBot2, imageBot3, imageBot4)
-
-        val hotelName = "Classy Boutique Hotel"
-        val star = 4.5f
-        val address = "123, Phan Dinh Phung, Phu Nhuan, Ho Chi Minh City"
-        hotel = Hotel(hotelName, star, address)
 
         val point = 9.2f
         val count = 580
@@ -127,4 +126,13 @@ class HotelDetail {
         return "From ${rating!!.count} reviews"
     }
 
+    fun fromHotelList(
+        id: Int,
+        hotelName: String,
+        smallestPrice: Int,
+        star: Float,
+        address: String
+    ) {
+        hotel = Hotel(id, hotelName, smallestPrice, star, address)
+    }
 }
