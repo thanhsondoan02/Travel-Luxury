@@ -30,7 +30,7 @@ class TitleVH(itemView: View) : HotelDetailVH(itemView) {
 
         tvName.text = hotel.hotelName
         tvAddress.text = hotel.address
-        setStar(hotel.star, listStarImage)
+        setStar(hotel.star!!, listStarImage)
     }
 
 

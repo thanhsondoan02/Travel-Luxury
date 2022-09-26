@@ -4,19 +4,18 @@ import ai.ftech.travelluxury.data.TAG
 import android.util.Log
 
 class Hotel(
+    val id: Int,
     val hotelName: String,
-    star: Float,
-    val address: String
+    val smallestPrice: Int,
 ) {
-
-    val star: Float
-
-    init {
-        if (star < 0 || star > 5 || star * 2 - (star * 2).toInt() != 0f) {
-            Log.d(TAG, "star = $star")
-            this.star = 0f
-        } else {
-            this.star = star
+    var star: Float? = null
+        set(value) {
+            field = if (value!! < 0 || value > 5 || value * 2 - (value * 2).toInt() != 0f) {
+                Log.d(TAG, "star = $star")
+                0f
+            } else {
+                value
+            }
         }
-    }
+    var address: String? = null
 }

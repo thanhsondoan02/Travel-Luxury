@@ -1,10 +1,15 @@
 package ai.ftech.travelluxury.model.selectroom
 
+import ai.ftech.travelluxury.model.hoteldetail.HotelDetail.Companion.HOTEL_DETAIL
+
 class SelectRoomModel {
 
     companion object {
         val SELECT_ROOM_MODEL = SelectRoomModel()
     }
+
+    var hotelName: String? = null
+    var hotelAddress: String? = null
 
     var roomList: List<Room>? = null
 
@@ -112,6 +117,11 @@ class SelectRoomModel {
 
     fun getGuessString(number: Int): String {
         return "$number guest(s)/room"
+    }
+
+    fun fromHotelDetail() {
+        this.hotelName = HOTEL_DETAIL.hotel!!.hotelName
+        this.hotelAddress = HOTEL_DETAIL.hotel!!.address
     }
 
 }

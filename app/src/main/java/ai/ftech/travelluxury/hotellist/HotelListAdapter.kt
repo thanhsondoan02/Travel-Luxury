@@ -5,6 +5,7 @@ import ai.ftech.travelluxury.data.getHotelRatingCount
 import ai.ftech.travelluxury.data.getPriceString
 import ai.ftech.travelluxury.data.loadUrl
 import ai.ftech.travelluxury.data.setStar
+import ai.ftech.travelluxury.model.hoteldetail.HotelDetail.Companion.HOTEL_DETAIL
 import ai.ftech.travelluxury.model.hotellist.Hotel
 import ai.ftech.travelluxury.model.hotellist.HotelListModel.Companion.HOTEL_LIST_MODEL
 import android.view.View
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
 
     private val hotelList: List<Hotel> = HOTEL_LIST_MODEL.hotelList!!
+    var listener: Listener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelVH {
         return HotelVH(View.inflate(parent.context, R.layout.hotel_item, null))
@@ -29,7 +31,7 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
         return hotelList.size
     }
 
-    class HotelVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HotelVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val ivHotelImage = itemView.findViewById<ImageView>(R.id.ivHotelImage)
         private val tvName = itemView.findViewById<TextView>(R.id.tvHotelName)
         private val tvAddress = itemView.findViewById<TextView>(R.id.tvHotelAddress)
@@ -41,6 +43,7 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
         private val ivStar3 = itemView.findViewById<ImageView>(R.id.ivHotelStar3)
         private val ivStar4 = itemView.findViewById<ImageView>(R.id.ivHotelStar4)
         private val ivStar5 = itemView.findViewById<ImageView>(R.id.ivHotelStar5)
+        private val mcvHotelCard = itemView.findViewById<View>(R.id.mcvHotelCard)
 
         private val listStarImage = listOf(ivStar1, ivStar2, ivStar3, ivStar4, ivStar5)
 
@@ -53,6 +56,16 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
             tvPrice.text = getPriceString(hotel.smallestRoomPrice)
 
             setStar(hotel.star, listStarImage)
+
+            mcvHotelCard.setOnClickListener {
+                HOTEL_DETAIL.setHotel(-1, hotel.name, hotel.smallestRoomPrice)
+                listener!!.onHotelClick()
+            }
         }
     }
+
+    interface Listener {
+        fun onHotelClick()
+    }
+
 }

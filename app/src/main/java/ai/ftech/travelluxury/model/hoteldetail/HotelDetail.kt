@@ -9,8 +9,9 @@ class HotelDetail {
         val HOTEL_DETAIL = HotelDetail()
     }
 
-    var imageList: List<String>? = null         // 5 images
+    var id: Int? = null
     var hotel: Hotel? = null
+    var imageList: List<String>? = null         // 5 images
     var rating: Rating? = null
     var facilitiesList: List<String>? = null
     var policyList: List<Policies>? = null      // 3 policies
@@ -31,10 +32,14 @@ class HotelDetail {
 
         imageList = listOf(imageTop, imageBot1, imageBot2, imageBot3, imageBot4)
 
-        val hotelName = "Classy Boutique Hotel"
+//        val hotelName = "Classy Boutique Hotel"
         val star = 4.5f
         val address = "123, Phan Dinh Phung, Phu Nhuan, Ho Chi Minh City"
-        hotel = Hotel(hotelName, star, address)
+//        hotel = Hotel(-1, hotelName, star, address)
+        Log.d(TAG, "mockData: $hotel")
+        hotel!!.star = star
+        hotel!!.address = address
+
 
         val point = 9.2f
         val count = 580
@@ -125,6 +130,10 @@ class HotelDetail {
         }
 
         return "From ${rating!!.count} reviews"
+    }
+
+    fun setHotel(id: Int, hotelName: String, smallestPrice: Int) {
+        hotel = Hotel(id, hotelName, smallestPrice)
     }
 
 }

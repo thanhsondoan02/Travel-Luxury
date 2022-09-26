@@ -94,4 +94,6 @@
     <string name="hotel_rating_point">8.5</string>
     <string name="hotel_rating_count">(324)</string>
     <string name="hotel_name_example">Central Park Saigon Hotel</string>
+    <string name="select_room">Select Room</string>
+    <string name="price_room_night_starts_from">Price/room/night starts from</string>
 </resources>
