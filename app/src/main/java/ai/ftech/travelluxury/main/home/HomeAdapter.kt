@@ -4,9 +4,9 @@ import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseAdapter
 import ai.ftech.travelluxury.common.BaseVH
 import ai.ftech.travelluxury.data.getCategoryData
+import ai.ftech.travelluxury.model.home.City
 import android.graphics.Color
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,19 +48,10 @@ class HomeAdapter : BaseAdapter() {
         return when (viewType) {
             0 -> BigFeaturesVH(inflateView) as BaseVH<Any>
             1 -> CategoryVH(inflateView) as BaseVH<Any>
-            21, 22, 23 -> HorizontalListVH(inflateView, viewType) as BaseVH<Any>
+            21, 23 -> HorizontalListVH(inflateView, viewType) as BaseVH<Any>
+            22 -> CityListVH(inflateView) as BaseVH<Any>
             3 -> DoubleButtonVH(inflateView) as BaseVH<Any>
             else -> throw IllegalArgumentException("Invalid view type")
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVH<Any> {
-        return if (viewType == 21 || viewType == 22 || viewType == 23) {
-
-            val inflateView = View.inflate(parent.context, getLayoutResource(viewType), null)
-            getViewHolder(inflateView, viewType)
-        } else {
-            super.onCreateViewHolder(parent, viewType)
         }
     }
 
@@ -88,9 +79,8 @@ class HomeAdapter : BaseAdapter() {
 
         private val type = when (viewType) {
             21 -> HorizontalListAdapter.ListType.FLIGHT
-            22 -> HorizontalListAdapter.ListType.HOTEL
             23 -> HorizontalListAdapter.ListType.HOTEL_PROMOS
-            else -> throw IllegalArgumentException("Invalid view type")
+            else -> throw IllegalArgumentException("Invalid view type $viewType")
         }
 
         init {
@@ -110,6 +100,23 @@ class HomeAdapter : BaseAdapter() {
             }
         }
 
+    }
+
+    inner class CityListVH(itemView: View) : BaseVH<City>(itemView) {
+
+        private val rvHorizontal = itemView.findViewById<RecyclerView>(R.id.rvHorizontalList)
+
+        init {
+            rvHorizontal.layoutManager =
+                LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            rvHorizontal.adapter = CityHotelAdapter().apply {
+                this.listener = object : CityHotelAdapter.Listener {
+                    override fun onCityClick() {
+                        this@HomeAdapter.listener?.onCityClick()
+                    }
+                }
+            }
+        }
     }
 
     class DoubleButtonVH(itemView: View) : BaseVH<DoubleButtonData>(itemView)

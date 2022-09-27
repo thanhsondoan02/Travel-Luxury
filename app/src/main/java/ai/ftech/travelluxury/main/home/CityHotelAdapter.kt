@@ -1,19 +1,28 @@
 package ai.ftech.travelluxury.main.home
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.loadUrl
 import ai.ftech.travelluxury.model.home.City
-import ai.ftech.travelluxury.model.home.HomeModel
+import ai.ftech.travelluxury.model.home.HomeContract
+import ai.ftech.travelluxury.model.home.HomeModel.Companion.HOME_MODEL
 import ai.ftech.travelluxury.model.hotellist.HotelListModel.Companion.HOTEL_LIST_MODEL
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), HomeContract.View {
 
-    private val cityHotelList = HomeModel.HOME_MODEL.cityHotelList!!
+    var cityList: List<City>? = listOf()
     var listener: Listener? = null
+    private val presenter = HomePresenter(this)
+
+    init {
+        presenter.getHotelListApi()
+    }
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -29,18 +38,29 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is CityVH) {
-            holder.bind(cityHotelList[position])
+            holder.bind(cityList?.get(position) ?: return)
         }
     }
 
     override fun getItemCount(): Int {
-        return cityHotelList.size + 1
+        return (cityList?.size ?: 0) + 1
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == cityHotelList.size) {
-            1
-        } else 0
+        return if (position == cityList?.size) 1 else 0
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onGetHotelList(state: CITY_LIST_STATE, message: String) {
+        when (state) {
+            CITY_LIST_STATE.SUCCESS -> {
+                this@CityHotelAdapter.cityList = HOME_MODEL.cityList
+                notifyDataSetChanged()
+            }
+            CITY_LIST_STATE.FAILURE -> {
+                Log.d(TAG, "onGetHotelList: $message")
+            }
+        }
     }
 
     inner class CityVH(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -6,7 +6,7 @@ class HomeModel {
         val HOME_MODEL = HomeModel()
     }
 
-    var cityHotelList: List<City>? = null
+    var cityList: List<City>? = null
 
     fun mockData() {
         val city0 = City(
@@ -40,7 +40,6 @@ class HomeModel {
             "https://firebasestorage.googleapis.com/v0/b/travel-luxury-4f5df.appspot.com/o/da_nang.png?alt=media&token=db3cac9d-e959-4970-b406-b3d4c84477cc"
         )
 
-        cityHotelList = listOf(city0, city1, city2, city3, city4, city5)
+        cityList = listOf(city0, city1, city2, city3, city4, city5)
     }
-
 }

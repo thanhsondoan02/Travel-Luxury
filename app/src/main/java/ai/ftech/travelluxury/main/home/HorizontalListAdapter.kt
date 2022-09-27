@@ -7,18 +7,21 @@ import ai.ftech.travelluxury.data.getFlightList
 import ai.ftech.travelluxury.data.getHotelPromosList
 import ai.ftech.travelluxury.data.loadUrl
 import ai.ftech.travelluxury.model.home.City
-import ai.ftech.travelluxury.model.home.HomeModel.Companion.HOME_MODEL
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
 class HorizontalListAdapter(val type: ListType) : BaseAdapter() {
 
-    private val cityHotelList: MutableList<City> = mutableListOf()
+//    private val cityHotelList: MutableList<City> = mutableListOf()
 
     init {
-        cityHotelList.addAll(HOME_MODEL.cityHotelList!!)
-        cityHotelList.add(City(-1, "", ""))
+//        if (HOME_MODEL.cityHotelList == null) {
+//            Log.d(TAG, "HorizontalListAdapter: HOME_MODEL.cityHotelList is null")
+//        } else {
+//            cityHotelList.addAll(HOME_MODEL.cityHotelList!!)
+//            cityHotelList.add(City(-1, "", ""))
+//        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -28,7 +31,6 @@ class HorizontalListAdapter(val type: ListType) : BaseAdapter() {
     override fun getLayoutResource(viewType: Int): Int {
         return when (type) {
             ListType.FLIGHT -> R.layout.horizontal_list_square_bottom_text_item
-            ListType.HOTEL -> R.layout.horizontal_list_square_item
             ListType.HOTEL_PROMOS -> R.layout.horizontal_list_rectangle_item
         }
     }
@@ -37,7 +39,6 @@ class HorizontalListAdapter(val type: ListType) : BaseAdapter() {
     override fun initData(): MutableList<Any> {
         return when (type) {
             ListType.FLIGHT -> getFlightList()
-            ListType.HOTEL -> cityHotelList as MutableList<Any>
             ListType.HOTEL_PROMOS -> getHotelPromosList()
         }
     }
@@ -46,7 +47,6 @@ class HorizontalListAdapter(val type: ListType) : BaseAdapter() {
     override fun getViewHolder(inflateView: View, viewType: Int): BaseVH<Any> {
         return when (type) {
             ListType.FLIGHT -> FlightElementVH(inflateView) as BaseVH<Any>
-            ListType.HOTEL -> HotelElementVH(inflateView) as BaseVH<Any>
             ListType.HOTEL_PROMOS -> HotelPromosElementVH(inflateView) as BaseVH<Any>
         }
     }
@@ -106,7 +106,6 @@ class HorizontalListAdapter(val type: ListType) : BaseAdapter() {
 
     enum class ListType {
         FLIGHT,
-        HOTEL,
         HOTEL_PROMOS
     }
 

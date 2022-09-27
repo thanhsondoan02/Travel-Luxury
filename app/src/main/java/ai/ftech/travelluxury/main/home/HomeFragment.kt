@@ -2,7 +2,6 @@ package ai.ftech.travelluxury.main.home
 
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.hotellist.HotelListActivity
-import ai.ftech.travelluxury.model.home.HomeModel.Companion.HOME_MODEL
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class HomeFragment : Fragment() {
 
-    private lateinit var inflateView: View
     private lateinit var recyclerView: RecyclerView
     private lateinit var homeAdapter: HomeAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -23,14 +21,15 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        HOME_MODEL.mockData()
+        return inflater.inflate(R.layout.home_fragment, container, false)
+    }
 
-        inflateView = inflater.inflate(R.layout.home_fragment, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        HOME_MODEL.getHotelListApi()
 
-        recyclerView = inflateView.findViewById(R.id.rlHomeFragment)
+        recyclerView = view.findViewById(R.id.rlHomeFragment)
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-        linearLayoutManager = LinearLayoutManager(context)
-        recyclerView.layoutManager = linearLayoutManager
         homeAdapter = HomeAdapter().apply {
             listener = object : HomeAdapter.Listener {
                 override fun onCityClick() {
@@ -39,7 +38,5 @@ class HomeFragment : Fragment() {
             }
         }
         recyclerView.adapter = homeAdapter
-
-        return inflateView
     }
 }
