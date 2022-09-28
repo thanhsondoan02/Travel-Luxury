@@ -1,6 +1,7 @@
 package ai.ftech.travelluxury.api
 
 import ai.ftech.travelluxury.model.home.Model
+import ai.ftech.travelluxury.model.hoteldetail.HotelDetailData
 import ai.ftech.travelluxury.model.hotellist.HotelListData
 import retrofit2.Call
 import retrofit2.http.GET
@@ -12,4 +13,7 @@ interface DataService {
 
     @GET("918efc7b7072794ddebc")
     fun getHotelList(): Call<HotelListData>
+
+    @GET("57389369118b59df9d1a")
+    fun getHotelDetail(): Call<HotelDetailData>
 }

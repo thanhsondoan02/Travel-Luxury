@@ -3,7 +3,7 @@ package ai.ftech.travelluxury.hoteldetail
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.HotelFacilitiesHandler
 import ai.ftech.travelluxury.data.TAG
-import ai.ftech.travelluxury.model.hoteldetail.HotelDetail.Companion.HOTEL_DETAIL
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +11,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FacilitiesAdapter : RecyclerView.Adapter<FacilitiesAdapter.FacilityVH>() {
+class FacilitiesAdapter() : RecyclerView.Adapter<FacilitiesAdapter.FacilityVH>() {
 
-    private val dataList = HOTEL_DETAIL.facilitiesList
+    private var dataList: List<String> = listOf()
+
     private val handler = HotelFacilitiesHandler()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FacilityVH {
@@ -22,10 +23,7 @@ class FacilitiesAdapter : RecyclerView.Adapter<FacilitiesAdapter.FacilityVH>() {
     }
 
     override fun onBindViewHolder(holder: FacilityVH, position: Int) {
-        if (dataList == null) {
-            Log.d(TAG, "onBindViewHolder: dataList is null")
-            return
-        }
+        Log.d(TAG, "onBindViewHolder: ${dataList.size}")
 
         if (!handler.isValidType(dataList[position])) {
             Log.d(TAG, "onBindViewHolder: invalid facility type ${dataList[position]}")
@@ -38,8 +36,13 @@ class FacilitiesAdapter : RecyclerView.Adapter<FacilitiesAdapter.FacilityVH>() {
     }
 
     override fun getItemCount(): Int {
-        if (dataList == null) return 0
         return dataList.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun onNewData(data: List<String>) {
+        dataList = data
+        notifyDataSetChanged()
     }
 
     class FacilityVH(itemView: View) : RecyclerView.ViewHolder(itemView) {

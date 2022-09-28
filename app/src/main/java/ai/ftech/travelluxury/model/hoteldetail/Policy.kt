@@ -1,6 +1,6 @@
 package ai.ftech.travelluxury.model.hoteldetail
 
-class Policies(
+class Policy(
     val type: String,
     val description: String
 )

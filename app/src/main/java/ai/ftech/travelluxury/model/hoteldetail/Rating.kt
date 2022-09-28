@@ -2,17 +2,27 @@ package ai.ftech.travelluxury.model.hoteldetail
 
 import ai.ftech.travelluxury.data.TAG
 import android.util.Log
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 
-class Rating(point: Float, val count: Int) {
+class Rating {
 
-    val point: Float
+    @SerializedName("point")
+    @Expose
+    val point: Float? = null
 
-    init {
-        if (point < 0 || point > 10) {
-            Log.d(TAG, "hotel point = $point")
-            this.point = 0f
-        } else {
-            this.point = point
+    @SerializedName("count")
+    @Expose
+    val count: Int? = null
+        get() {
+            return if (field == null) {
+                Log.d(TAG, "hotel count is null")
+                -1
+            } else if (field < 0) {
+                Log.d(TAG, "invalid hotel count = $field")
+                -1
+            } else {
+                field
+            }
         }
-    }
 }

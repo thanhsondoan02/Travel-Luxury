@@ -2,7 +2,7 @@ package ai.ftech.travelluxury.hotellist
 
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.*
-import ai.ftech.travelluxury.model.hoteldetail.HotelDetail.Companion.HOTEL_DETAIL
+import ai.ftech.travelluxury.model.hoteldetail.HotelDetailModel.Companion.HOTEL_DETAIL_MODEL
 import ai.ftech.travelluxury.model.hoteldetail.HotelInfo
 import ai.ftech.travelluxury.model.hotellist.Hotel
 import ai.ftech.travelluxury.model.hotellist.HotelListModel.Companion.HOTEL_LIST_MODEL
@@ -83,7 +83,7 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>(), Hotel
             setStar(hotel.star!!, listStarImage)
 
             mcvHotelCard.setOnClickListener {
-                HOTEL_DETAIL.hotel = HotelInfo().apply {
+                HOTEL_DETAIL_MODEL.hotelInfo = HotelInfo().apply {
                     id = hotel.id
                     smallestPrice = hotel.smallestRoomPrice
                 }
