@@ -50,13 +50,13 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), HomeCo
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun onGetHotelList(state: CITY_LIST_STATE, message: String) {
+    override fun onGetHotelList(state: CITY_HOTEL_STATE, message: String) {
         when (state) {
-            CITY_LIST_STATE.SUCCESS -> {
+            CITY_HOTEL_STATE.SUCCESS -> {
                 this@CityHotelAdapter.cityList = HOME_MODEL.cityList
                 notifyDataSetChanged()
             }
-            CITY_LIST_STATE.FAILURE -> {
+            CITY_HOTEL_STATE.FAILURE -> {
                 Log.d(TAG, "onGetHotelList: $message")
             }
         }
