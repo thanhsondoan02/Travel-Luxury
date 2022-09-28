@@ -2,7 +2,6 @@ package ai.ftech.travelluxury.main.home
 
 import ai.ftech.travelluxury.api.APIService
 import ai.ftech.travelluxury.data.TAG
-import ai.ftech.travelluxury.model.home.HomeContract
 import ai.ftech.travelluxury.model.home.HomeModel.Companion.HOME_MODEL
 import ai.ftech.travelluxury.model.home.Model
 import android.util.Log

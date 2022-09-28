@@ -1,6 +1,4 @@
-package ai.ftech.travelluxury.model.home
-
-import ai.ftech.travelluxury.main.home.CITY_LIST_STATE
+package ai.ftech.travelluxury.main.home
 
 interface HomeContract {
     interface View {

@@ -4,7 +4,6 @@ import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.loadUrl
 import ai.ftech.travelluxury.model.home.City
-import ai.ftech.travelluxury.model.home.HomeContract
 import ai.ftech.travelluxury.model.home.HomeModel.Companion.HOME_MODEL
 import ai.ftech.travelluxury.model.hotellist.HotelListModel.Companion.HOTEL_LIST_MODEL
 import android.annotation.SuppressLint
