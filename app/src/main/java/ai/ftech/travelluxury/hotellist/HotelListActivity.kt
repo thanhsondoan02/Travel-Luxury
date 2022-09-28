@@ -19,10 +19,7 @@ class HotelListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.hotel_list_activity)
 
-        HOTEL_LIST_MODEL.mockData()
-
         initViews()
-
     }
 
     private fun initViews() {

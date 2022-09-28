@@ -13,7 +13,7 @@ class HotelDetail {
     var id: Int? = null
 
 
-    var hotel: Hotel? = null
+    var hotel: HotelInfo? = null
     var imageList: List<String>? = null         // 5 images
     var rating: Rating? = null
     var facilitiesList: List<String>? = null
@@ -124,15 +124,5 @@ class HotelDetail {
         }
 
         return "From ${rating!!.count} reviews"
-    }
-
-    fun fromHotelList(
-        id: Int,
-        hotelName: String,
-        smallestPrice: Int,
-        star: Float,
-        address: String
-    ) {
-        hotel = Hotel(id, hotelName, smallestPrice, star, address)
     }
 }

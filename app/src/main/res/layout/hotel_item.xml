@@ -32,7 +32,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@id/ivHotelImage"
-                android:text="@string/hotel_name_example"
                 android:textColor="#434343"
                 android:textStyle="bold" />
 
@@ -89,6 +88,7 @@
                     android:id="@+id/ivHotelAddressIcon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:padding="2.5dp"
                     android:src="@drawable/ic_location" />
 
                 <TextView
@@ -98,7 +98,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="5dp"
                     android:layout_toEndOf="@id/ivHotelAddressIcon"
-                    android:text="@string/hotel_address"
                     android:textColor="#8f8f8f"
                     android:textSize="12sp" />
 
@@ -115,7 +114,8 @@
                 <ImageView
                     android:id="@+id/ivHotelAppIcon"
                     android:layout_width="20dp"
-                    android:layout_height="20dp" />
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_app_white_background" />
 
                 <TextView
                     android:id="@+id/tvHotelRatingPoint"
@@ -124,9 +124,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="5dp"
                     android:layout_toEndOf="@id/ivHotelAppIcon"
-                    android:text="@string/hotel_rating_point"
-                    android:textSize="13sp"
                     android:textColor="#1ba0e2"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -136,7 +135,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="5dp"
                     android:layout_toEndOf="@id/tvHotelRatingPoint"
-                    android:text="@string/hotel_rating_count"
                     android:textColor="#8f8f8f"
                     android:textSize="12sp" />
 
@@ -153,7 +151,6 @@
                     android:id="@+id/tvHotelPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/price"
                     android:textAllCaps="true"
                     android:textColor="#f96d01"
                     android:textSize="16sp"

@@ -20,7 +20,7 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), HomeCo
     private val presenter = HomePresenter(this)
 
     init {
-        presenter.getHotelListApi()
+        presenter.getHotelCityListApi()
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -50,7 +50,7 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), HomeCo
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun onGetHotelList(state: CITY_HOTEL_STATE, message: String) {
+    override fun onGetHotelCityList(state: CITY_HOTEL_STATE, message: String) {
         when (state) {
             CITY_HOTEL_STATE.SUCCESS -> {
                 this@CityHotelAdapter.cityList = HOME_MODEL.cityList

@@ -180,7 +180,9 @@ fun ImageView.loadUrl(url: String) {
     Glide.with(this).load(url).into(this)
 }
 
-fun getPriceString(price: Int): String {
+fun getPriceString(price: Int?): String {
+    if (price == null) return ""
+
     val dec = DecimalFormat("#,###")
     var tempFormat = dec.format(price)
     for (i in tempFormat.indices) {

@@ -1,23 +1,33 @@
 package ai.ftech.travelluxury.hotellist
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.data.getHotelRatingCount
-import ai.ftech.travelluxury.data.getPriceString
-import ai.ftech.travelluxury.data.loadUrl
-import ai.ftech.travelluxury.data.setStar
+import ai.ftech.travelluxury.data.*
 import ai.ftech.travelluxury.model.hoteldetail.HotelDetail.Companion.HOTEL_DETAIL
+import ai.ftech.travelluxury.model.hoteldetail.HotelInfo
 import ai.ftech.travelluxury.model.hotellist.Hotel
 import ai.ftech.travelluxury.model.hotellist.HotelListModel.Companion.HOTEL_LIST_MODEL
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
+class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>(), HotelListContract.View {
 
-    private val hotelList: List<Hotel> = HOTEL_LIST_MODEL.hotelList!!
+    interface Listener {
+        fun onHotelClick()
+    }
+
+    //    private val hotelList: List<Hotel> = HOTEL_LIST_MODEL.hotelList!!
     var listener: Listener? = null
+    private var hotelList: List<Hotel> = mutableListOf()
+    private val presenter = HotelListPresenter(this)
+
+    init {
+        presenter.getHotelListApi()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelVH {
         return HotelVH(View.inflate(parent.context, R.layout.hotel_item, null))
@@ -29,6 +39,20 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
 
     override fun getItemCount(): Int {
         return hotelList.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onGetHotelList(state: HOTEL_LIST_STATE, message: String) {
+        when (state) {
+            HOTEL_LIST_STATE.SUCCESS -> {
+                hotelList = HOTEL_LIST_MODEL.hotelList!!
+                Log.d(TAG, "onGetHotelList: $message")
+                notifyDataSetChanged()
+            }
+            HOTEL_LIST_STATE.NULL_CITY_ID, HOTEL_LIST_STATE.API_ON_RESPONSE_FAILURE, HOTEL_LIST_STATE.API_ON_FAILURE -> {
+                Log.d(TAG, "onGetHotelList: $message")
+            }
+        }
     }
 
     inner class HotelVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -48,30 +72,25 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
         private val listStarImage = listOf(ivStar1, ivStar2, ivStar3, ivStar4, ivStar5)
 
         fun bind(hotel: Hotel) {
-            ivHotelImage.loadUrl(hotel.image)
+
+            ivHotelImage.loadUrl(hotel.image ?: "")
             tvName.text = hotel.name
             tvAddress.text = hotel.address
             tvRatingPoint.text = hotel.ratingPoint.toString()
-            tvRatingCount.text = getHotelRatingCount(hotel.ratingCount)
+            tvRatingCount.text = getHotelRatingCount(hotel.ratingCount ?: 0)
             tvPrice.text = getPriceString(hotel.smallestRoomPrice)
 
-            setStar(hotel.star, listStarImage)
+            setStar(hotel.star!!, listStarImage)
 
             mcvHotelCard.setOnClickListener {
-                HOTEL_DETAIL.fromHotelList(
-                    -1,
-                    hotel.name,
-                    hotel.smallestRoomPrice,
-                    hotel.star,
-                    hotel.address
-                )
+                HOTEL_DETAIL.hotel = HotelInfo().apply {
+                    id = hotel.id
+                    smallestPrice = hotel.smallestRoomPrice
+                }
                 listener!!.onHotelClick()
             }
         }
     }
 
-    interface Listener {
-        fun onHotelClick()
-    }
 
 }
