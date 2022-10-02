@@ -1,8 +1,8 @@
 package ai.ftech.travelluxury.data
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.main.home.HomeAdapter
-import ai.ftech.travelluxury.main.home.HorizontalListAdapter
+import ai.ftech.travelluxury.ui.main.home.HomeAdapter
+import ai.ftech.travelluxury.ui.main.home.HorizontalListAdapter
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import java.text.DecimalFormat

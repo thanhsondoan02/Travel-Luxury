@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,40 +17,40 @@
         android:theme="@style/Theme.TravelLuxury"
         tools:targetApi="31">
         <activity
-            android:name=".hotellist.HotelListActivity"
+            android:name=".ui.hotellist.HotelListActivity"
             android:exported="false" />
         <activity
-            android:name=".selectroom.SelectRoomActivity"
+            android:name=".ui.selectroom.SelectRoomActivity"
             android:exported="true" />
         <activity
-            android:name=".hoteldetail.reviews.SeeReviewsActivity"
+            android:name=".ui.hoteldetail.reviews.SeeReviewsActivity"
             android:exported="false" />
         <activity
-            android:name=".hoteldetail.facilities.SeeFacilitiesActivity"
+            android:name=".ui.hoteldetail.facilities.SeeFacilitiesActivity"
             android:exported="false" />
         <activity
-            android:name=".hoteldetail.policies.SeePoliciesActivity"
+            android:name=".ui.hoteldetail.policies.SeePoliciesActivity"
             android:exported="false" />
         <activity
-            android:name=".hoteldetail.description.SeeDescriptionActivity"
+            android:name=".ui.hoteldetail.description.SeeDescriptionActivity"
             android:exported="false" />
         <activity
-            android:name=".hoteldetail.HotelDetailActivity"
+            android:name=".ui.hoteldetail.HotelDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".search.SearchActivity"
+            android:name=".ui.search.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".notification.NotificationActivity"
+            android:name=".ui.notification.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".message.MessageActivity"
+            android:name=".ui.message.MessageActivity"
             android:exported="false" />
         <activity
-            android:name=".register.RegisterActivity"
+            android:name=".ui.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,7 +59,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true" />
     </application>
 

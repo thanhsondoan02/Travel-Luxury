@@ -1,7 +1,7 @@
 package ai.ftech.travelluxury.data
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.hoteldetail.type.FACILITY_TYPE
+import ai.ftech.travelluxury.ui.hoteldetail.type.FACILITY_TYPE
 
 class HotelFacilitiesHandler : HotelHandler<FACILITY_TYPE> {
     override val map: Map<String, FACILITY_TYPE>
