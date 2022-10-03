@@ -3,7 +3,7 @@ package ai.ftech.travelluxury.data.model.home
 class HomeModel {
 
     companion object {
-        val HOME_MODEL = HomeModel()
+        val INSTANCE = HomeModel()
     }
 
     var cityList: List<City>? = null

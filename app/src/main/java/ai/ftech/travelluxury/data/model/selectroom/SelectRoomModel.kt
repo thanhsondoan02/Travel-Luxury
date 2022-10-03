@@ -1,6 +1,6 @@
 package ai.ftech.travelluxury.data.model.selectroom
 
-import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel.Companion.HOTEL_DETAIL_MODEL
+import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel.Companion.INSTANCE
 
 class SelectRoomModel {
 
@@ -120,8 +120,8 @@ class SelectRoomModel {
     }
 
     fun fromHotelDetail() {
-        this.hotelName = HOTEL_DETAIL_MODEL.hotelInfo!!.hotelName
-        this.hotelAddress = HOTEL_DETAIL_MODEL.hotelInfo!!.address
+        this.hotelName = INSTANCE.hotelInfo!!.hotelName
+        this.hotelAddress = INSTANCE.hotelInfo!!.address
     }
 
 }

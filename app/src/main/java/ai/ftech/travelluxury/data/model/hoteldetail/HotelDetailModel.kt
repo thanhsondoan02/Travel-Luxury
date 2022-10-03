@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 class HotelDetailModel {
 
     companion object {
-        val HOTEL_DETAIL_MODEL = HotelDetailModel()
+        val INSTANCE = HotelDetailModel()
     }
 
     @SerializedName("list_image")
@@ -143,4 +143,5 @@ class HotelDetailModel {
             rating!!.point!!.toString()
         }
     }
+
 }

@@ -1,33 +1,27 @@
 package ai.ftech.travelluxury.ui.hotellist
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.data.*
-import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel.Companion.HOTEL_DETAIL_MODEL
+import ai.ftech.travelluxury.data.getHotelRatingCount
+import ai.ftech.travelluxury.data.getPriceString
+import ai.ftech.travelluxury.data.loadUrl
+import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel.Companion.INSTANCE
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelInfo
 import ai.ftech.travelluxury.data.model.hotellist.Hotel
-import ai.ftech.travelluxury.data.model.hotellist.HotelListModel.Companion.INSTANCE
-import android.annotation.SuppressLint
-import android.util.Log
+import ai.ftech.travelluxury.data.setStar
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>(), HotelListContract.View {
+class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
 
     interface Listener {
         fun onHotelClick()
     }
 
-    //    private val hotelList: List<Hotel> = HOTEL_LIST_MODEL.hotelList!!
     var listener: Listener? = null
-    private var hotelList: List<Hotel> = mutableListOf()
-    private val presenter = HotelListPresenter(this)
-
-    init {
-        presenter.getHotelListApi()
-    }
+    var hotelList: List<Hotel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelVH {
         return HotelVH(View.inflate(parent.context, R.layout.hotel_item, null))
@@ -39,16 +33,6 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>(), Hotel
 
     override fun getItemCount(): Int {
         return hotelList.size
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onGetHotelListSuccess() {
-        hotelList = INSTANCE.hotelList!!
-        notifyDataSetChanged()
-    }
-
-    override fun onGetHotelListFail(message: String?) {
-                Log.d(TAG, "onGetHotelList: $message")
     }
 
     inner class HotelVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -79,7 +63,7 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>(), Hotel
             setStar(hotel.star!!, listStarImage)
 
             mcvHotelCard.setOnClickListener {
-                HOTEL_DETAIL_MODEL.hotelInfo = HotelInfo().apply {
+                INSTANCE.hotelInfo = HotelInfo().apply {
                     id = hotel.id
                     smallestPrice = hotel.smallestRoomPrice
                 }

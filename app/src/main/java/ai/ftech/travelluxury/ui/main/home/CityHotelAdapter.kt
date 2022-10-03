@@ -1,27 +1,18 @@
 package ai.ftech.travelluxury.ui.main.home
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.loadUrl
 import ai.ftech.travelluxury.data.model.home.City
-import ai.ftech.travelluxury.data.model.home.HomeModel.Companion.HOME_MODEL
-import ai.ftech.travelluxury.data.model.hotellist.HotelListModel.Companion.INSTANCE
-import android.annotation.SuppressLint
-import android.util.Log
+import ai.ftech.travelluxury.data.model.hotellist.HotelListModel
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), HomeContract.View {
+class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var cityList: List<City>? = listOf()
     var listener: Listener? = null
-    private val presenter = HomePresenter(this)
-
-    init {
-        presenter.getHotelCityListApi()
-    }
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -49,19 +40,6 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), HomeCo
         return if (position == cityList?.size) 1 else 0
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onGetHotelCityList(state: CITY_HOTEL_STATE, message: String) {
-        when (state) {
-            CITY_HOTEL_STATE.SUCCESS -> {
-                this@CityHotelAdapter.cityList = HOME_MODEL.cityList
-                notifyDataSetChanged()
-            }
-            CITY_HOTEL_STATE.FAILURE -> {
-                Log.d(TAG, "onGetHotelList: $message")
-            }
-        }
-    }
-
     inner class CityVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val ivCityImage = itemView.findViewById<ImageView>(R.id.ivHorizontalListSquareImage)
 
@@ -70,8 +48,8 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), HomeCo
             ivCityImage.setOnClickListener {
                 listener?.onCityClick()
 
-                INSTANCE.cityId = city.id
-                INSTANCE.cityName = city.name
+                HotelListModel.INSTANCE.cityId = city.id
+                HotelListModel.INSTANCE.cityName = city.name
             }
         }
     }

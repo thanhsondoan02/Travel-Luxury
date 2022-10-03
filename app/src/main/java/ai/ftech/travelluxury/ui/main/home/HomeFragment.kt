@@ -1,9 +1,12 @@
 package ai.ftech.travelluxury.ui.main.home
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.ui.hotellist.HotelListActivity
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +14,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeContract.View {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var homeAdapter: HomeAdapter
-    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var rvHome: RecyclerView
+
+    lateinit var homeAdapter: HomeAdapter
+
+    private val presenter: HomePresenter by lazy {
+        HomePresenter().apply {
+            view = this@HomeFragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,10 +34,10 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        HOME_MODEL.getHotelListApi()
+        presenter.getHotelCityListApi()
 
-        recyclerView = view.findViewById(R.id.rlHomeFragment)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        rvHome = view.findViewById(R.id.rlHomeFragment)
+        rvHome.layoutManager = LinearLayoutManager(context)
 
         homeAdapter = HomeAdapter().apply {
             listener = object : HomeAdapter.Listener {
@@ -37,6 +46,16 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        recyclerView.adapter = homeAdapter
+        rvHome.adapter = homeAdapter
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onGetHotelCityListSuccess() {
+        homeAdapter.cityListVH?.adapter?.notifyDataSetChanged()
+        homeAdapter.notifyDataSetChanged()
+    }
+
+    override fun onGetHotelCityListFail(message: String) {
+        Log.d(TAG, "onGetHotelCityListFail: $message")
     }
 }

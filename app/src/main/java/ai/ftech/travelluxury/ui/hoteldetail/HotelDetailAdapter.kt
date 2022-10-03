@@ -1,15 +1,15 @@
 package ai.ftech.travelluxury.ui.hoteldetail
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.common.OnClickListener
+import ai.ftech.travelluxury.common.IOnClickListener
 import ai.ftech.travelluxury.data.HotelPoliciesHandler
 import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.loadUrl
-import ai.ftech.travelluxury.data.setStar
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelInfo
 import ai.ftech.travelluxury.data.model.hoteldetail.Policy
 import ai.ftech.travelluxury.data.model.hoteldetail.Rating
+import ai.ftech.travelluxury.data.setStar
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
@@ -20,13 +20,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.min
 
-class HotelDetailAdapter(private val listener: OnClickListener) : RecyclerView.Adapter<BaseVH>() {
+class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.Adapter<BaseVH>() {
 
     var imageUrlList: List<String> = listOf()
     var hotelInfo: HotelInfo = HotelInfo()
     var rating = Rating()
     var policyList: List<Policy> = listOf()
-    var facilitiesList: List<String> = listOf()
 
     lateinit var facilitiesAdapter: FacilitiesAdapter
 
@@ -107,7 +106,7 @@ class HotelDetailAdapter(private val listener: OnClickListener) : RecyclerView.A
         }
     }
 
-    inner class RatingVH(itemView: View, listener: OnClickListener) : BaseVH(itemView) {
+    inner class RatingVH(itemView: View, listener: IOnClickListener) : BaseVH(itemView) {
 
         private val tvPoint = itemView.findViewById<TextView>(R.id.tvHotelDetailRatingPoint)
         private val tvType = itemView.findViewById<TextView>(R.id.tvHotelDetailRatingType)
@@ -122,13 +121,13 @@ class HotelDetailAdapter(private val listener: OnClickListener) : RecyclerView.A
         }
 
         override fun bindData() {
-            tvPoint.text = HotelDetailModel.HOTEL_DETAIL_MODEL.getPointString()
-            tvType.text = HotelDetailModel.HOTEL_DETAIL_MODEL.getTypeRating()
-            tvCount.text = HotelDetailModel.HOTEL_DETAIL_MODEL.getCountText()
+            tvPoint.text = HotelDetailModel.INSTANCE.getPointString()
+            tvType.text = HotelDetailModel.INSTANCE.getTypeRating()
+            tvCount.text = HotelDetailModel.INSTANCE.getCountText()
         }
     }
 
-    inner class FacilitiesVH(itemView: View, listener: OnClickListener) : BaseVH(itemView) {
+    inner class FacilitiesVH(itemView: View, listener: IOnClickListener) : BaseVH(itemView) {
 
         private val recyclerView =
             itemView.findViewById<RecyclerView>(R.id.rvHotelDetailFacilitiesRecyclerView)
@@ -147,7 +146,7 @@ class HotelDetailAdapter(private val listener: OnClickListener) : RecyclerView.A
         }
     }
 
-    inner class PoliciesVH(itemView: View, listener: OnClickListener) : BaseVH(itemView) {
+    inner class PoliciesVH(itemView: View, listener: IOnClickListener) : BaseVH(itemView) {
 
         private val tvTitle1 = itemView.findViewById<TextView>(R.id.tvHotelDetailPoliciesTitle1)
         private val tvTitle2 = itemView.findViewById<TextView>(R.id.tvHotelDetailPoliciesTitle2)
@@ -190,7 +189,7 @@ class HotelDetailAdapter(private val listener: OnClickListener) : RecyclerView.A
         }
     }
 
-    inner class DescriptionVH(itemView: View, listener: OnClickListener) : BaseVH(itemView) {
+    inner class DescriptionVH(itemView: View, listener: IOnClickListener) : BaseVH(itemView) {
 
         private val tvDescriptionShort =
             itemView.findViewById<TextView>(R.id.tvHotelDetailDescription)
@@ -205,13 +204,13 @@ class HotelDetailAdapter(private val listener: OnClickListener) : RecyclerView.A
 
         @SuppressLint("SetTextI18n")
         override fun bindData() {
-            if (HotelDetailModel.HOTEL_DETAIL_MODEL.descriptionList == null) return
-            if (HotelDetailModel.HOTEL_DETAIL_MODEL.descriptionList!!.size != 3) {
+            if (HotelDetailModel.INSTANCE.descriptionList == null) return
+            if (HotelDetailModel.INSTANCE.descriptionList!!.size != 3) {
                 Log.d(TAG, "Description list size is not 3")
                 return
             }
 
-            tvDescriptionShort.text = HotelDetailModel.HOTEL_DETAIL_MODEL.getDescriptionShort()
+            tvDescriptionShort.text = HotelDetailModel.INSTANCE.getDescriptionShort()
         }
     }
 

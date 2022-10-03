@@ -3,7 +3,6 @@ package ai.ftech.travelluxury.ui.hoteldetail
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.HotelFacilitiesHandler
 import ai.ftech.travelluxury.data.TAG
-import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class FacilitiesAdapter() : RecyclerView.Adapter<FacilitiesAdapter.FacilityVH>() {
 
-    private var dataList: List<String> = listOf()
+    var dataList: List<String> = listOf()
 
     private val handler = HotelFacilitiesHandler()
 
@@ -37,12 +36,6 @@ class FacilitiesAdapter() : RecyclerView.Adapter<FacilitiesAdapter.FacilityVH>()
 
     override fun getItemCount(): Int {
         return dataList.size
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun onNewData(data: List<String>) {
-        dataList = data
-        notifyDataSetChanged()
     }
 
     class FacilityVH(itemView: View) : RecyclerView.ViewHolder(itemView) {

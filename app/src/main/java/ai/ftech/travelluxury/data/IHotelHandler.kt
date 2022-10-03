@@ -1,6 +1,6 @@
 package ai.ftech.travelluxury.data
 
-interface HotelHandler<TYPE> {
+interface IHotelHandler<TYPE> {
     val map: Map<String, TYPE>
 
     fun isValidType(type: String): Boolean {

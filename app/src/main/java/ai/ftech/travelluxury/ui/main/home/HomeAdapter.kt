@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 class HomeAdapter : BaseAdapter() {
 
     var listener: Listener? = null
+    var cityListVH: CityListVH? = null
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
@@ -49,7 +50,10 @@ class HomeAdapter : BaseAdapter() {
             0 -> BigFeaturesVH(inflateView) as BaseVH<Any>
             1 -> CategoryVH(inflateView) as BaseVH<Any>
             21, 23 -> HorizontalListVH(inflateView, viewType) as BaseVH<Any>
-            22 -> CityListVH(inflateView) as BaseVH<Any>
+            22 -> {
+                cityListVH = CityListVH(inflateView)
+                return cityListVH as BaseVH<Any>
+            }
             3 -> DoubleButtonVH(inflateView) as BaseVH<Any>
             else -> throw IllegalArgumentException("Invalid view type")
         }
@@ -105,17 +109,19 @@ class HomeAdapter : BaseAdapter() {
     inner class CityListVH(itemView: View) : BaseVH<City>(itemView) {
 
         private val rvHorizontal = itemView.findViewById<RecyclerView>(R.id.rvHorizontalList)
+        var adapter: CityHotelAdapter
 
         init {
             rvHorizontal.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            rvHorizontal.adapter = CityHotelAdapter().apply {
+            adapter = CityHotelAdapter().apply {
                 this.listener = object : CityHotelAdapter.Listener {
                     override fun onCityClick() {
                         this@HomeAdapter.listener?.onCityClick()
                     }
                 }
             }
+            rvHorizontal.adapter = adapter
         }
     }
 
