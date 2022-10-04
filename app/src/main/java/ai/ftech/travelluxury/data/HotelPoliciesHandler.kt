@@ -1,9 +1,9 @@
 package ai.ftech.travelluxury.data
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.hoteldetail.type.POLICY_TYPE
+import ai.ftech.travelluxury.ui.hoteldetail.type.POLICY_TYPE
 
-class HotelPoliciesHandler : HotelHandler<POLICY_TYPE> {
+class HotelPoliciesHandler : IHotelHandler<POLICY_TYPE> {
     override val map: Map<String, POLICY_TYPE>
         get() = mapOf(
             "check_in_out" to POLICY_TYPE.CHECK_IN_OUT,

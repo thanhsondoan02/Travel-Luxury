@@ -46,7 +46,6 @@
             android:id="@+id/tvHotelDetailRatingPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8.5"
             android:textColor="#1ba0e2"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
@@ -57,7 +56,6 @@
             android:layout_toEndOf="@+id/tvHotelDetailRatingPoint"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="Superb"
             android:textColor="#24a4e3"
             android:layout_marginStart="5dp"
             android:textSize="12sp"
@@ -70,7 +68,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/llHotelDetailRatingPointNType"
-        android:text="From 580 reviews"
         android:textSize="12sp"
         tools:ignore="HardcodedText" />
 

@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".login.LoginActivity">
+    tools:context=".ui.login.LoginActivity">
 
-    <ai.ftech.travelluxury.view.ActionBarView
+    <ai.ftech.travelluxury.ui.customview.ActionBarView
         android:id="@+id/abvLoginActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +20,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="35dp"
         android:hint="@string/email"
+        android:text="admin@gmail.com"
         android:inputType="textEmailAddress"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/abvLoginActionBar" />
@@ -39,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        android:text="12345678"
         android:layout_marginTop="10dp"
         android:hint="@string/password"
         android:inputType="textPassword"
@@ -111,7 +113,7 @@
 
     </RelativeLayout>
 
-    <ai.ftech.travelluxury.view.SocialNetworkView
+    <ai.ftech.travelluxury.ui.customview.SocialNetworkView
         android:id="@+id/snvLoginSocialNetwork"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -119,7 +121,7 @@
         android:paddingHorizontal="16dp"
         app:layout_constraintTop_toBottomOf="@id/rlLoginCenterLine" />
 
-    <ai.ftech.travelluxury.view.FooterView
+    <ai.ftech.travelluxury.ui.customview.FooterView
         android:id="@+id/fvLoginFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

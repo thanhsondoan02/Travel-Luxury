@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".notification.NotificationActivity">
+    tools:context=".ui.notification.NotificationActivity">
 
-    <ai.ftech.travelluxury.view.ActionBarView
+    <ai.ftech.travelluxury.ui.customview.ActionBarView
         android:id="@+id/abvNotificationActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
