@@ -9,18 +9,22 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-abstract class HotelRepositoryImpl : IHotelRepository {
+interface IRepoResult {
+    fun onRepoSuccess(data: Any)
+    fun onRepoFail(message: String)
+}
 
-    abstract fun onRepoSuccess(data: Any)
-    abstract fun onRepoFail(message: String)
+class HotelRepositoryImpl : IHotelRepository {
+
+    var callback: IRepoResult? = null
 
     override fun getHotelList() {
         APIService.base().getHotelList().enqueue(object : MyCallBack<HotelListData>() {
             override fun checkResponseBody(responseBody: HotelListData) {
                 if (responseBody.data == null) {
-                    onRepoFail("response body data is null")
+                    callback?.onRepoFail("response body data is null")
                 } else {
-                    onRepoSuccess(responseBody.data)
+                    callback?.onRepoSuccess(responseBody.data)
                 }
             }
         })
@@ -30,12 +34,12 @@ abstract class HotelRepositoryImpl : IHotelRepository {
         APIService.base().getHotelCityList().enqueue(object : MyCallBack<CityHotelData>() {
             override fun checkResponseBody(responseBody: CityHotelData) {
                 if (responseBody.data == null) {
-                    onRepoFail("response body data is null")
+                    callback?.onRepoFail("response body data is null")
                 } else {
                     if (responseBody.data.listCity == null) {
-                        onRepoFail("response body data list city is null")
+                        callback?.onRepoFail("response body data list city is null")
                     } else {
-                        onRepoSuccess(responseBody.data.listCity)
+                        callback?.onRepoSuccess(responseBody.data.listCity)
                     }
                 }
             }
@@ -46,9 +50,9 @@ abstract class HotelRepositoryImpl : IHotelRepository {
         APIService.base().getHotelDetail().enqueue(object : MyCallBack<HotelDetailData>() {
             override fun checkResponseBody(responseBody: HotelDetailData) {
                 if (responseBody.data == null) {
-                    onRepoFail("response body data is null")
+                    callback?.onRepoFail("response body data is null")
                 } else {
-                    onRepoSuccess(responseBody.data as Any)
+                    callback?.onRepoSuccess(responseBody.data as Any)
                 }
             }
         })
@@ -58,14 +62,14 @@ abstract class HotelRepositoryImpl : IHotelRepository {
 
         override fun onResponse(call: Call<Data>, response: Response<Data>) {
             if (response.body() == null) {
-                onRepoFail("response body is null")
+                callback?.onRepoFail("response body is null")
             } else {
                 checkResponseBody(response.body()!!)
             }
         }
 
         override fun onFailure(call: Call<Data>, t: Throwable) {
-            onRepoFail("Get hotel list failure ${t.message}")
+            callback?.onRepoFail("Get hotel list failure ${t.message}")
         }
 
         abstract fun checkResponseBody(responseBody: Data)
