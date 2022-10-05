@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".ui.hoteldetail.allphotos.AllPhotosActivity">
+
+    <LinearLayout
+        android:id="@+id/llAllPhotosActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivAllPhotosBack"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:text="@string/all_photos"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAllPhotos"
+        android:layout_width="match_parent"
+        android:layout_below="@id/llAllPhotosActionBar"
+        android:layout_above="@id/llAllPhotosBottomBar"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:id="@+id/llAllPhotosBottomBar"
+        android:paddingVertical="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:text="@string/view_photos_in" />
+
+        <ImageView
+            android:id="@+id/ivAllPhotosList"
+            android:layout_width="24dp"
+            android:layout_toStartOf="@id/ivAllPhotosGrid"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="26dp"
+            android:src="@drawable/ic_menu_white" />
+
+        <ImageView
+            android:id="@+id/ivAllPhotosGrid"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="26dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_grid_blue" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

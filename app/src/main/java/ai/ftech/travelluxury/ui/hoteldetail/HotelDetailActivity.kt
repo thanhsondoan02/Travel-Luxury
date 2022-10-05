@@ -1,11 +1,11 @@
 package ai.ftech.travelluxury.ui.hoteldetail
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.common.IOnClickListener
 import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.getPriceString
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel.Companion.INSTANCE
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.SELECT_ROOM_MODEL
+import ai.ftech.travelluxury.ui.hoteldetail.allphotos.AllPhotosActivity
 import ai.ftech.travelluxury.ui.hoteldetail.description.SeeDescriptionActivity
 import ai.ftech.travelluxury.ui.hoteldetail.facilities.SeeFacilitiesActivity
 import ai.ftech.travelluxury.ui.hoteldetail.policies.SeePoliciesActivity
@@ -21,48 +21,35 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class HotelDetailActivity : AppCompatActivity(), IOnClickListener, HotelDetailContract.View {
+class HotelDetailActivity : AppCompatActivity(), HotelDetailContract.View {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: HotelDetailAdapter
-    private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var btnSelectRoom: Button
     private lateinit var tvPrice: TextView
 
-    private val presenter: HotelDetailPresenter by lazy {
-        HotelDetailPresenter().apply {
-            view = this@HotelDetailActivity
-            adapter = this@HotelDetailActivity.adapter
-        }
-    }
+    private lateinit var listener: IListener
+    private lateinit var adapter: HotelDetailAdapter
+    private lateinit var presenter: HotelDetailPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.hotel_detail_activity)
 
         initView()
+        initListener()
+        initRecyclerView()
+        initPresenter()
+
+        // set hotel smallest price
+        tvPrice.text = getPriceString(INSTANCE.hotelInfo!!.smallestPrice)
+
+        // on select room clicked
+        btnSelectRoom.setOnClickListener {
+            SELECT_ROOM_MODEL.fromHotelDetail()
+            listener.onSelectRoom()
+        }
 
         presenter.getHotelDetailApi()
-    }
-
-    override fun onClick(nextActivity: NEXT_ACTIVITY) {
-        when (nextActivity) {
-            NEXT_ACTIVITY.SEE_REVIEWS -> {
-                startActivity(Intent(this, SeeReviewsActivity::class.java))
-            }
-            NEXT_ACTIVITY.SEE_FACILITIES -> {
-                startActivity(Intent(this, SeeFacilitiesActivity::class.java))
-            }
-            NEXT_ACTIVITY.SEE_POLICIES -> {
-                startActivity(Intent(this, SeePoliciesActivity::class.java))
-            }
-            NEXT_ACTIVITY.SEE_DESCRIPTION -> {
-                startActivity(Intent(this, SeeDescriptionActivity::class.java))
-            }
-            NEXT_ACTIVITY.SELECT_ROOM -> {
-                startActivity(Intent(this, SelectRoomActivity::class.java))
-            }
-        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -77,25 +64,51 @@ class HotelDetailActivity : AppCompatActivity(), IOnClickListener, HotelDetailCo
 
     private fun initView() {
         recyclerView = findViewById(R.id.rvHotelDetailRecyclerView)
-
-        adapter = HotelDetailAdapter(this)
-        recyclerView.adapter = adapter
-
-        linearLayoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = linearLayoutManager
-
         tvPrice = findViewById(R.id.tvHotelDetailPrice)
-        tvPrice.text = getPriceString(INSTANCE.hotelInfo!!.smallestPrice)
-
         btnSelectRoom = findViewById(R.id.btnHotelDetailSelectRoom)
-        btnSelectRoom.setOnClickListener {
-            SELECT_ROOM_MODEL.fromHotelDetail()
-            onClick(NEXT_ACTIVITY.SELECT_ROOM)
+    }
+
+    private fun initListener() {
+        listener = object : IListener {
+            override fun onSeeAllPhotos() {
+                startActivity(Intent(this@HotelDetailActivity, AllPhotosActivity::class.java))
+            }
+
+            override fun onSeeAllReviews() {
+                startActivity(Intent(this@HotelDetailActivity, SeeReviewsActivity::class.java))
+            }
+
+            override fun onSeeAllFacilities() {
+                startActivity(Intent(this@HotelDetailActivity, SeeFacilitiesActivity::class.java))
+            }
+
+            override fun onSeeAllPolicies() {
+                startActivity(Intent(this@HotelDetailActivity, SeePoliciesActivity::class.java))
+            }
+
+            override fun onSeeAllDescription() {
+                startActivity(Intent(this@HotelDetailActivity, SeeDescriptionActivity::class.java))
+            }
+
+            override fun onSelectRoom() {
+                startActivity(Intent(this@HotelDetailActivity, SelectRoomActivity::class.java))
+            }
         }
     }
 
-    enum class NEXT_ACTIVITY {
-        SEE_REVIEWS, SEE_FACILITIES, SEE_POLICIES, SEE_DESCRIPTION, SELECT_ROOM
+    private fun initRecyclerView() {
+        adapter = HotelDetailAdapter().apply {
+            listener = this@HotelDetailActivity.listener
+        }
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun initPresenter() {
+        presenter = HotelDetailPresenter().apply {
+            view = this@HotelDetailActivity
+            adapter = this@HotelDetailActivity.adapter
+        }
     }
 
 }

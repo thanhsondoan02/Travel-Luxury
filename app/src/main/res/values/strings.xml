@@ -130,4 +130,6 @@
     <string name="momo_e_wallet">Momo E-Wallet</string>
     <string name="techcombank">Techcombank</string>
     <string name="pay_now">Pay now</string>
+    <string name="all_photos">All Photos</string>
+    <string name="view_photos_in">View photos in</string>
 </resources>

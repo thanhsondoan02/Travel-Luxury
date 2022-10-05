@@ -42,7 +42,7 @@ class PaymentMethodActivity : AppCompatActivity() {
             onResultClick(PAYMENT_METHOD.MOMO)
         }
         ivClose.setOnClickListener {
-            onBackPressed()
+            finish()
         }
     }
 
@@ -50,6 +50,6 @@ class PaymentMethodActivity : AppCompatActivity() {
         val intent = Intent()
         intent.putExtra("paymentMethod", paymentMethod)
         setResult(Activity.RESULT_OK, intent)
-        onBackPressed()
+        finish()
     }
 }

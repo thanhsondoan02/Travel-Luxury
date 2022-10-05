@@ -26,6 +26,7 @@ class PaymentActivity : AppCompatActivity() {
     private lateinit var tvPaymentNoSelected: TextView
     private lateinit var ivPaymentMethod: ImageView
     private lateinit var tvPaymentMethod: TextView
+    private lateinit var ivPaymentBack: ImageView
 
 
     private val getContent: ActivityResultLauncher<Intent> =
@@ -53,6 +54,7 @@ class PaymentActivity : AppCompatActivity() {
         tvPaymentNoSelected = findViewById(R.id.tvPaymentNoSelected)
         ivPaymentMethod = findViewById(R.id.ivPaymentMethod)
         tvPaymentMethod = findViewById(R.id.tvPaymentMethod)
+        ivPaymentBack = findViewById(R.id.ivPaymentBack)
     }
 
     private fun initListener() {
@@ -61,6 +63,9 @@ class PaymentActivity : AppCompatActivity() {
         }
         btnPayNow.setOnClickListener {
             onPayNowClick()
+        }
+        ivPaymentBack.setOnClickListener {
+            onBackPressed()
         }
     }
 
