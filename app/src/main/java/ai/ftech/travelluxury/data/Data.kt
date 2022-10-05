@@ -28,7 +28,7 @@ fun getCategoryData(): MutableList<Any> {
 
     dataList.add(
         HomeAdapter.CategoryData(
-            R.drawable.hotel_icon_white,
+            R.drawable.ic_hotel_white,
             "#225c9f",
             "Plenty of hotel selection",
             "Comfortable stay from neighborhood to cross-border"

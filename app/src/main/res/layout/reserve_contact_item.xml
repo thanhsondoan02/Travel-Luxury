@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#e6eaed"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="1dp"
+        app:cardCornerRadius="5dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:id="@+id/rlReserveContactTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvReserveContactName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact Name"
+                    android:textSize="15sp"
+                    android:textColor="#434343" />
+
+                <TextView
+                    android:id="@+id/tvReserveContactMailPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginTop="6dp"
+                    android:layout_below="@id/tvReserveContactName"
+                    android:text="contact@mail.com • +84857951054"
+                    android:textColor="#8f8f8f" />
+
+            </RelativeLayout>
+
+
+            <RadioGroup
+                android:id="@+id/rdGrpReserveContactBookType"
+                android:layout_below="@id/rlReserveContactTitle"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rdBtnReserveContactBookMyself"
+                    android:layout_width="wrap_content"
+                    android:textColor="#03121a"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@string/i_m_booking_for_myself" />
+
+                <RadioButton
+                    android:id="@+id/rdBtnReserveContactBookAnother"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#03121a"
+                    android:text="@string/i_m_booking_for_another_person" />
+            </RadioGroup>
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</RelativeLayout>

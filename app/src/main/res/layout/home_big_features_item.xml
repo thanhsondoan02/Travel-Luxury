@@ -88,7 +88,7 @@
                     android:scaleType="center"
                     android:scaleX="1.5"
                     android:scaleY="1.5"
-                    android:src="@drawable/hotel_icon_white" />
+                    android:src="@drawable/ic_hotel_white" />
             </androidx.cardview.widget.CardView>
 
             <TextView
