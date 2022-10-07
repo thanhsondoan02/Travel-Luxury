@@ -1,19 +1,19 @@
 package ai.ftech.travelluxury.ui.login
 
-import ai.ftech.travelluxury.ui.customview.ActionBarView
-import ai.ftech.travelluxury.ui.main.MainActivity
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.ui.customview.ActionBarView
+import ai.ftech.travelluxury.ui.customview.FooterView
+import ai.ftech.travelluxury.ui.main.MainActivity
 import ai.ftech.travelluxury.ui.register.RegisterActivity
 import ai.ftech.travelluxury.ui.register.RegisterActivity.Companion.resetErrorTextOnInputTextChange
-import ai.ftech.travelluxury.ui.customview.FooterView
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.View {
 
@@ -48,6 +48,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
         )
     }
 
+    override fun onBackPressed() {
+        val startMain = Intent(Intent.ACTION_MAIN)
+        startMain.addCategory(Intent.CATEGORY_HOME)
+        startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(startMain)
+    }
+
     override fun onLoginResult(state: LOGIN_STATE, message: String) {
         when (state) {
             LOGIN_STATE.EMPTY_EMAIL_FIELD -> {
@@ -68,6 +75,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
             LOGIN_STATE.SUCCESS -> {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
         }
     }

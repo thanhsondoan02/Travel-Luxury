@@ -3,12 +3,17 @@ package ai.ftech.travelluxury.ui.main.home
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseAdapter
 import ai.ftech.travelluxury.common.BaseVH
+import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.getCategoryData
 import ai.ftech.travelluxury.data.model.home.City
+import android.annotation.SuppressLint
 import android.graphics.Color
+import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -59,13 +64,21 @@ class HomeAdapter : BaseAdapter() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun onGetHotelCityListSuccess() {
+        cityListVH?.adapter?.isSuccess = true
+        cityListVH?.hideLoading()
+        cityListVH?.adapter?.notifyDataSetChanged()
+    }
+
     class BigFeaturesVH(itemView: View) : BaseVH<BigFeaturesData>(itemView)
 
     class CategoryVH(itemView: View) : BaseVH<CategoryData>(itemView) {
 
         override fun onBind(data: CategoryData) {
             // set image background color
-            itemView.findViewById<ImageView>(R.id.ivHomeCategoryImage).setBackgroundColor(Color.parseColor(data.imageBackgroundColor))
+            itemView.findViewById<ImageView>(R.id.ivHomeCategoryImage)
+                .setBackgroundColor(Color.parseColor(data.imageBackgroundColor))
             // set image source
             itemView.findViewById<ImageView>(R.id.ivHomeCategoryImage)
                 .setImageResource(data.imageSource)
@@ -109,6 +122,7 @@ class HomeAdapter : BaseAdapter() {
     inner class CityListVH(itemView: View) : BaseVH<City>(itemView) {
 
         private val rvHorizontal = itemView.findViewById<RecyclerView>(R.id.rvHorizontalList)
+        private val llLoading = itemView.findViewById<View>(R.id.llHorizontalListLoading)
         var adapter: CityHotelAdapter
 
         init {
@@ -122,10 +136,65 @@ class HomeAdapter : BaseAdapter() {
                 }
             }
             rvHorizontal.adapter = adapter
+            showLoading()
+        }
+
+        fun showLoading() {
+            llLoading.visibility = View.VISIBLE
+            rvHorizontal.visibility = View.GONE
+        }
+
+        fun hideLoading() {
+            llLoading.visibility = View.GONE
+            rvHorizontal.visibility = View.VISIBLE
         }
     }
 
-    class DoubleButtonVH(itemView: View) : BaseVH<DoubleButtonData>(itemView)
+    class DoubleButtonVH(itemView: View) : BaseVH<DoubleButtonData>(itemView) {
+
+        private val btnDomestic: Button = itemView.findViewById(R.id.btnHomeDoubleButtonDomestic)
+        private val btnInternational: Button =
+            itemView.findViewById(R.id.btnHomeDoubleButtonInternational)
+
+        private var isDomestic = true
+
+        init {
+            updateDoubleButton()
+
+            btnDomestic.setOnClickListener {
+                if (!isDomestic) {
+                    isDomestic = !isDomestic
+                    updateDoubleButton()
+                }
+            }
+            btnInternational.setOnClickListener {
+                if (isDomestic) {
+                    isDomestic = !isDomestic
+                    updateDoubleButton()
+                }
+            }
+        }
+
+        private fun updateDoubleButton() {
+            Log.d(TAG, "updateDoubleButton: ")
+
+            val white = ContextCompat.getColor(itemView.context, R.color.white)
+            val blue = ContextCompat.getColor(itemView.context, R.color.main_blue_color)
+
+            if (isDomestic) {
+                btnDomestic.setTextColor(white)
+                btnDomestic.setBackgroundColor(blue)
+                btnInternational.setTextColor(blue)
+                btnInternational.setBackgroundColor(white)
+            } else {
+                btnDomestic.setTextColor(blue)
+                btnDomestic.setBackgroundColor(white)
+                btnInternational.setTextColor(white)
+                btnInternational.setBackgroundColor(blue)
+            }
+        }
+
+    }
 
     class BigFeaturesData
 

@@ -8,11 +8,9 @@
         android:id="@+id/mcvHotelCard"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="6dp"
-        app:cardCornerRadius="6dp"
-        app:strokeColor="#d4d4d4"
-        app:strokeWidth="1dp">
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        app:cardCornerRadius="6dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -165,5 +163,6 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </RelativeLayout>
+
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

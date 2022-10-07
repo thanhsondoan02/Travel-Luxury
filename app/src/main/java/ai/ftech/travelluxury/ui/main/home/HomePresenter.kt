@@ -15,9 +15,9 @@ class HomePresenter : HomeContract.IPresenter {
                 // update Home Model city list
                 HomeModel.INSTANCE.cityList = data as List<City>
 
-                // update view hotel city list
-                view?.homeAdapter?.cityListVH?.adapter?.cityList =
-                    HomeModel.INSTANCE.cityList ?: listOf()
+                // update city list in adapter
+                val adapter = view?.homeAdapter?.cityListVH?.adapter
+                adapter?.cityList = HomeModel.INSTANCE.cityList ?: listOf()
 
                 view?.onGetHotelCityListSuccess()
             }

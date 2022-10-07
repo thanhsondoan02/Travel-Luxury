@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val savedFragment: SavedFragment by lazy { SavedFragment() }
     private val myAccountFragment: MyAccountFragment by lazy { MyAccountFragment() }
 
+    private var isHomeFragment = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
@@ -42,6 +44,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         loadFragment(homeFragment)
 
         setNavigatorListener()
+    }
+
+    override fun onBackPressed() {
+
+        if (isHomeFragment) {
+            // go to home screen
+            val startMain = Intent(Intent.ACTION_MAIN)
+            startMain.addCategory(Intent.CATEGORY_HOME)
+            startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(startMain)
+        } else {
+            // go to home fragment
+            bnvNavigator.selectedItemId = R.id.itmBottomNavigationHome
+        }
     }
 
     override fun onClick(p0: View?) {
@@ -67,6 +83,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun loadFragment(fragment: Fragment) {
+        isHomeFragment = fragment is HomeFragment
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.flMainContent, fragment)
             .commit()

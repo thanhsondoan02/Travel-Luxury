@@ -1,11 +1,10 @@
 package ai.ftech.travelluxury.ui.register
 
-import ai.ftech.travelluxury.ui.customview.ActionBarView
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.ui.login.LoginActivity
+import ai.ftech.travelluxury.ui.customview.ActionBarView
 import ai.ftech.travelluxury.ui.customview.FooterView
+import ai.ftech.travelluxury.ui.login.LoginActivity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,6 +13,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClickListener {
 
@@ -58,6 +58,13 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
             edtEmail,
             tvEmailError
         )
+    }
+
+    override fun onBackPressed() {
+        val startMain = Intent(Intent.ACTION_MAIN)
+        startMain.addCategory(Intent.CATEGORY_HOME)
+        startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(startMain)
     }
 
     override fun onRegisterResult(state: REGISTER_STATE, message: String) {

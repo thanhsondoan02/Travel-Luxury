@@ -51,8 +51,8 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onGetHotelCityListSuccess() {
-        homeAdapter.cityListVH?.adapter?.notifyDataSetChanged()
-        homeAdapter.notifyDataSetChanged()
+        homeAdapter.onGetHotelCityListSuccess()
+//        homeAdapter.notifyDataSetChanged()
     }
 
     override fun onGetHotelCityListFail(message: String) {

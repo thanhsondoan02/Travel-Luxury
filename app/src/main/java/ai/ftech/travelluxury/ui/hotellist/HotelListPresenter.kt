@@ -16,16 +16,21 @@ class HotelListPresenter : IHotelListContract.Presenter {
             override fun onRepoSuccess(data: Any) {
                 HotelListModel.INSTANCE.hotelList = data as List<Hotel>
                 adapter?.hotelList = HotelListModel.INSTANCE.hotelList!!
+
+                view?.hideLoading()
                 view?.onGetHotelListSuccess()
             }
 
             override fun onRepoFail(message: String) {
+                view?.hideLoading()
                 view?.onGetHotelListFail(message)
             }
         }
     }
 
     override fun getHotelListApi() {
+        view?.showLoading()
+
         val cityId = HotelListModel.INSTANCE.cityId
 
         if (cityId == null) {

@@ -132,4 +132,6 @@
     <string name="pay_now">Pay now</string>
     <string name="all_photos">All Photos</string>
     <string name="view_photos_in">View photos in</string>
+    <string name="searching_for_hotels">Searching for hotels</string>
+    <string name="please_wait_a_moment">Please wait a moment</string>
 </resources>
