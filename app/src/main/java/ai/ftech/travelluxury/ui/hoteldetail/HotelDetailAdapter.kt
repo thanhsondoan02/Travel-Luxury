@@ -79,9 +79,11 @@ class HotelDetailAdapter() : RecyclerView.Adapter<BaseVH>() {
         private val ivBot4 = itemView.findViewById<ImageView>(R.id.ivHotelDetailPreviewBotPicture4)
 
         init {
-            ivBot4.setOnClickListener {
-                listener?.onSeeAllPhotos()
-            }
+            ivTop.setOnClickListener { listener?.onViewPhoto(0) }
+            ivBot1.setOnClickListener { listener?.onViewPhoto(1) }
+            ivBot2.setOnClickListener { listener?.onViewPhoto(2) }
+            ivBot3.setOnClickListener { listener?.onViewPhoto(3) }
+            ivBot4.setOnClickListener { listener?.onSeeAllPhotos() }
         }
 
         override fun bindData() {

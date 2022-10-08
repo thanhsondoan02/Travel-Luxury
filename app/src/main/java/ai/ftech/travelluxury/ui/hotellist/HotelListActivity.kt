@@ -19,7 +19,6 @@ class HotelListActivity : BaseActivity(), IHotelListContract.View {
     private lateinit var tvCityName: TextView
     private lateinit var rvHotelList: RecyclerView
     private lateinit var ivGoBack: ImageView
-//    private lateinit var llLoading: LinearLayout
 
     private lateinit var adapter: HotelListAdapter
     private val presenter by lazy {
@@ -38,12 +37,12 @@ class HotelListActivity : BaseActivity(), IHotelListContract.View {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onGetHotelListSuccess() {
-//        llLoading.visibility = View.GONE
         hideLoading()
         adapter.notifyDataSetChanged()
     }
 
     override fun onGetHotelListFail(message: String?) {
+        hideLoading()
         Log.d(TAG, "onGetHotelListFail: $message")
     }
 

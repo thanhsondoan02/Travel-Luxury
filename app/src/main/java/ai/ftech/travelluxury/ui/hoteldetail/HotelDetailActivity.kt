@@ -1,11 +1,13 @@
 package ai.ftech.travelluxury.ui.hoteldetail
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.common.BaseActivity
 import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.getPriceString
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel.Companion.INSTANCE
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.SELECT_ROOM_MODEL
 import ai.ftech.travelluxury.ui.hoteldetail.allphotos.AllPhotosActivity
+import ai.ftech.travelluxury.ui.hoteldetail.allphotos.photo.ViewPhotoActivity
 import ai.ftech.travelluxury.ui.hoteldetail.description.SeeDescriptionActivity
 import ai.ftech.travelluxury.ui.hoteldetail.facilities.SeeFacilitiesActivity
 import ai.ftech.travelluxury.ui.hoteldetail.policies.SeePoliciesActivity
@@ -15,17 +17,19 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class HotelDetailActivity : AppCompatActivity(), HotelDetailContract.View {
+class HotelDetailActivity : BaseActivity(), HotelDetailContract.View {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var btnSelectRoom: Button
     private lateinit var tvPrice: TextView
+    private lateinit var rlLoading: LinearLayout
 
     private lateinit var listener: IListener
     private lateinit var adapter: HotelDetailAdapter
@@ -33,7 +37,6 @@ class HotelDetailActivity : AppCompatActivity(), HotelDetailContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.hotel_detail_activity)
 
         initView()
         initListener()
@@ -49,16 +52,28 @@ class HotelDetailActivity : AppCompatActivity(), HotelDetailContract.View {
             listener.onSelectRoom()
         }
 
+        showLoading("", "")
         presenter.getHotelDetailApi()
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.hotel_detail_activity
+    }
+
+    override fun hideLoading() {
+        super.hideLoading()
+        rlLoading.visibility = View.GONE
     }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onGetHotelDetailSuccess() {
+        hideLoading()
         adapter.notifyDataSetChanged()
         adapter.facilitiesAdapter.notifyDataSetChanged()
     }
 
     override fun onGetHotelDetailFail(message: String) {
+        hideLoading()
         Log.d(TAG, "onGetHotelDetail: $message")
     }
 
@@ -66,6 +81,7 @@ class HotelDetailActivity : AppCompatActivity(), HotelDetailContract.View {
         recyclerView = findViewById(R.id.rvHotelDetailRecyclerView)
         tvPrice = findViewById(R.id.tvHotelDetailPrice)
         btnSelectRoom = findViewById(R.id.btnHotelDetailSelectRoom)
+        rlLoading = findViewById(R.id.rlHotelDetailLoading)
     }
 
     private fun initListener() {
@@ -93,6 +109,13 @@ class HotelDetailActivity : AppCompatActivity(), HotelDetailContract.View {
             override fun onSelectRoom() {
                 startActivity(Intent(this@HotelDetailActivity, SelectRoomActivity::class.java))
             }
+
+            override fun onViewPhoto(index: Int) {
+                val intent = Intent(this@HotelDetailActivity, ViewPhotoActivity::class.java)
+                intent.putExtra("index", index)
+                startActivity(intent)
+            }
+
         }
     }
 

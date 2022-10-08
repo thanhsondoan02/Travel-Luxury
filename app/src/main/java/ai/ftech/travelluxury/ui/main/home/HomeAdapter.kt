@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -93,6 +94,7 @@ class HomeAdapter : BaseAdapter() {
     inner class HorizontalListVH(itemView: View, viewType: Int) : BaseVH<FlightListData>(itemView) {
 
         private val rvHorizontal = itemView.findViewById<RecyclerView>(R.id.rvHorizontalList)
+        private val llLoading: LinearLayout = itemView.findViewById(R.id.llHorizontalListLoading)
 
         private val type = when (viewType) {
             21 -> HorizontalListAdapter.ListType.FLIGHT
@@ -101,29 +103,31 @@ class HomeAdapter : BaseAdapter() {
         }
 
         init {
+            llLoading.visibility = View.GONE
             rvHorizontal.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
 
-            if (viewType == 22) {
-                rvHorizontal.adapter = CityHotelAdapter().apply {
-                    this.listener = object : CityHotelAdapter.Listener {
-                        override fun onCityClick() {
-                            this@HomeAdapter.listener?.onCityClick()
-                        }
-                    }
-                }
-            } else {
-                rvHorizontal.adapter = HorizontalListAdapter(type)
-            }
+//            if (viewType == 22) {
+//                rvHorizontal.adapter = CityHotelAdapter().apply {
+//                    this.listener = object : CityHotelAdapter.Listener {
+//                        override fun onCityClick() {
+//                            this@HomeAdapter.listener?.onCityClick()
+//                        }
+//                    }
+//                }
+//            } else {
+            rvHorizontal.adapter = HorizontalListAdapter(type)
+//            }
         }
 
     }
 
     inner class CityListVH(itemView: View) : BaseVH<City>(itemView) {
 
+        var adapter: CityHotelAdapter
+
         private val rvHorizontal = itemView.findViewById<RecyclerView>(R.id.rvHorizontalList)
         private val llLoading = itemView.findViewById<View>(R.id.llHorizontalListLoading)
-        var adapter: CityHotelAdapter
 
         init {
             rvHorizontal.layoutManager =

@@ -1,31 +1,46 @@
 package ai.ftech.travelluxury.common
 
 import ai.ftech.travelluxury.R
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+
 
 abstract class BaseActivity : AppCompatActivity(), IBaseView {
 
-    private var dialog: Dialog? = null
+    private var layoutView: View? = null
+    private var loadingView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
+        layoutView = layoutInflater.inflate(getLayoutId(), null)
+        setContentView(layoutView)
     }
 
-    abstract fun getLayoutId(): Int
+    @SuppressLint("InflateParams")
+    override fun showLoading(bigMessage: String, smallMessage: String) {
+        loadingView = layoutInflater.inflate(R.layout.loading_layout, null).apply {
+            findViewById<TextView>(R.id.tvLoadingBig).text = bigMessage
+            findViewById<TextView>(R.id.tvLoadingSmall).text = smallMessage
+        }
 
-    override fun showLoading(message: String) {
-        dialog = Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
-        dialog?.setContentView(R.layout.dialog_loading_layout)
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.show()
+        val params = RelativeLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        ).apply {
+            addRule(RelativeLayout.CENTER_IN_PARENT)
+        }
+
+        (layoutView as ViewGroup).addView(loadingView, params)
     }
 
     override fun hideLoading() {
-        dialog?.hide()
+        loadingView?.visibility = View.GONE
     }
+
+    abstract fun getLayoutId(): Int
 }

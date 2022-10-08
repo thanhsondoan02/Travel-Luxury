@@ -134,4 +134,6 @@
     <string name="view_photos_in">View photos in</string>
     <string name="searching_for_hotels">Searching for hotels</string>
     <string name="please_wait_a_moment">Please wait a moment</string>
+    <string name="close">Close</string>
+    <string name="see_all_photos">See all photos</string>
 </resources>

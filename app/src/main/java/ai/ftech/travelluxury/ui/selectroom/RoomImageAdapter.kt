@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 
-class RoomImageAdapter(private val imageList: List<String>) : PagerAdapter() {
+class RoomImageAdapter : PagerAdapter() {
+
+    var imageList: List<String> = listOf()
 
     override fun getCount(): Int {
         return imageList.size

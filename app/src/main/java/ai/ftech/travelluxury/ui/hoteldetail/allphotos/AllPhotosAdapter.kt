@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class AllPhotosAdapter : RecyclerView.Adapter<AllPhotosAdapter.PhotoVH>() {
 
+    var listener: AllPhotosActivity.IListener? = null
+
     private val imageList = HotelDetailModel.INSTANCE.imageList ?: listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoVH {
@@ -19,7 +21,7 @@ class AllPhotosAdapter : RecyclerView.Adapter<AllPhotosAdapter.PhotoVH>() {
     }
 
     override fun onBindViewHolder(holder: PhotoVH, position: Int) {
-        holder.bind(imageList[position])
+        holder.bind(position)
     }
 
     override fun getItemCount(): Int {
@@ -30,8 +32,19 @@ class AllPhotosAdapter : RecyclerView.Adapter<AllPhotosAdapter.PhotoVH>() {
 
         private val ivPhoto = itemView.findViewById<ImageView>(R.id.ivPhoto)
 
-        fun bind(imageUrl: String) {
+        private var index = 0
+
+        init {
+            ivPhoto.setOnClickListener {
+                listener?.onPhotoClick(index)
+            }
+        }
+
+        fun bind(position: Int) {
+            val imageUrl = imageList[position]
             ivPhoto.loadUrl(imageUrl)
+
+            index = position
         }
     }
 }

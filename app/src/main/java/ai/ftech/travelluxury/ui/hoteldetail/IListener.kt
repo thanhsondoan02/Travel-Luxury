@@ -7,4 +7,5 @@ interface IListener {
     fun onSeeAllPolicies()
     fun onSeeAllDescription()
     fun onSelectRoom()
+    fun onViewPhoto(index: Int)
 }
