@@ -7,7 +7,7 @@ import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.SEL
 import ai.ftech.travelluxury.ui.reserve.ReserveActivity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +17,7 @@ class SelectRoomActivity : BaseActivity() {
     private lateinit var rvRoomList: RecyclerView
     private lateinit var tvHotelName: TextView
     private lateinit var tvHotelAddress: TextView
-    private lateinit var ivGoBack: ImageView
+    private lateinit var btnGoBack: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class SelectRoomActivity : BaseActivity() {
         tvHotelAddress.text = SELECT_ROOM_MODEL.hotelAddress
 
         // on go back click
-        ivGoBack.setOnClickListener { onBackPressed() }
+        btnGoBack.setOnClickListener { onBackPressed() }
 
         // init recycle view
         rvRoomList.layoutManager = LinearLayoutManager(this)
@@ -49,6 +49,6 @@ class SelectRoomActivity : BaseActivity() {
         rvRoomList = findViewById(R.id.rvSelectRoomRecycler)
         tvHotelName = findViewById(R.id.tvSelectRoomHotelName)
         tvHotelAddress = findViewById(R.id.tvSelectRoomHotelAddress)
-        ivGoBack = findViewById(R.id.ivSelectRoomBack)
+        btnGoBack = findViewById(R.id.ivSelectRoomBack)
     }
 }

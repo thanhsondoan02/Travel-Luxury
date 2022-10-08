@@ -3,12 +3,10 @@ package ai.ftech.travelluxury.ui.main.home
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseAdapter
 import ai.ftech.travelluxury.common.BaseVH
-import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.getCategoryData
 import ai.ftech.travelluxury.data.model.home.City
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -180,8 +178,6 @@ class HomeAdapter : BaseAdapter() {
         }
 
         private fun updateDoubleButton() {
-            Log.d(TAG, "updateDoubleButton: ")
-
             val white = ContextCompat.getColor(itemView.context, R.color.white)
             val blue = ContextCompat.getColor(itemView.context, R.color.main_blue_color)
 

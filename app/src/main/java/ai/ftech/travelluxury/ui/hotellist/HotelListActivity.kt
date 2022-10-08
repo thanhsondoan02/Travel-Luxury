@@ -9,7 +9,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +18,7 @@ class HotelListActivity : BaseActivity(), IHotelListContract.View {
 
     private lateinit var tvCityName: TextView
     private lateinit var rvHotelList: RecyclerView
-    private lateinit var ivGoBack: ImageView
+    private lateinit var btnGoBack: ImageButton
 
     private lateinit var adapter: HotelListAdapter
     private val presenter by lazy {
@@ -51,13 +51,13 @@ class HotelListActivity : BaseActivity(), IHotelListContract.View {
     private fun initViews() {
         tvCityName = findViewById(R.id.tvHotelListCityName)
         rvHotelList = findViewById(R.id.rvHotelList)
-        ivGoBack = findViewById(R.id.ivHotelListBack)
+        btnGoBack = findViewById(R.id.ivHotelListBack)
 //        llLoading = findViewById(R.id.llHotelListLoading)
 
         // init action bar
         tvCityName.text = HotelListModel.INSTANCE.cityName
 
-        ivGoBack.setOnClickListener {
+        btnGoBack.setOnClickListener {
             onBackPressed()
         }
 
