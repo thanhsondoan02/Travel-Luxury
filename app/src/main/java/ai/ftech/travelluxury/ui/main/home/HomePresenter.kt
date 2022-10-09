@@ -3,29 +3,35 @@ package ai.ftech.travelluxury.ui.main.home
 import ai.ftech.travelluxury.data.model.home.City
 import ai.ftech.travelluxury.data.model.home.HomeModel
 import ai.ftech.travelluxury.data.repo.hotel.HotelRepositoryImpl
+import ai.ftech.travelluxury.data.repo.hotel.IResult
 
 class HomePresenter : HomeContract.IPresenter {
 
     var view: HomeFragment? = null
 
     private val hotelRepo by lazy {
-        object : HotelRepositoryImpl() {
-            @Suppress("UNCHECKED_CAST")
-            override fun onRepoSuccess(data: Any) {
-                // update Home Model city list
-                HomeModel.INSTANCE.cityList = data as List<City>
+        HotelRepositoryImpl().apply {
+            result = object : IResult {
 
-                // update city list in adapter
-                val adapter = view?.homeAdapter?.cityListVH?.adapter
-                adapter?.cityList = HomeModel.INSTANCE.cityList ?: listOf()
+                @Suppress("UNCHECKED_CAST")
+                override fun onRepoSuccess(data: Any) {
+                    // update Home Model city list
+                    HomeModel.INSTANCE.cityList = data as List<City>
 
-                view?.onGetHotelCityListSuccess()
-            }
+                    // update city list in adapter
+                    val adapter = view?.homeAdapter?.cityListVH?.adapter
+                    adapter?.cityList = HomeModel.INSTANCE.cityList ?: listOf()
 
-            override fun onRepoFail(message: String) {
-                view?.onGetHotelCityListFail(message)
+                    view?.onGetHotelCityListSuccess()
+                }
+
+                override fun onRepoFail(message: String) {
+                    view?.onGetHotelCityListFail(message)
+                }
+
             }
         }
+
     }
 
     override fun getHotelCityListApi() {

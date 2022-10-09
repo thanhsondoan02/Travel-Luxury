@@ -3,7 +3,7 @@ package ai.ftech.travelluxury.ui.selectroom
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.model.selectroom.Room
-import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.SELECT_ROOM_MODEL
+import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.INSTANCE
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +18,7 @@ class SelectRoomAdapter : RecyclerView.Adapter<RoomVH>() {
 
     var listener: IListener? = null
 
-    private val roomList = SELECT_ROOM_MODEL.roomList
+    private val roomList = INSTANCE.roomList
     private var isFirstItem = true
     private var marginHor: Int = 0
     private var marginVer: Int = 0

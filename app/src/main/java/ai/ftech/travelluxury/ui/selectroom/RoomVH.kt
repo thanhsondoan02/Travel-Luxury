@@ -3,7 +3,7 @@ package ai.ftech.travelluxury.ui.selectroom
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.getPriceString
 import ai.ftech.travelluxury.data.model.selectroom.Room
-import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.SELECT_ROOM_MODEL
+import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.INSTANCE
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +30,7 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val diDotsIndicator = itemView.findViewById<DotsIndicator>(R.id.diRoomDotsIndicator)
 
     private var roomSelected: Room? = null
-    private val roomList = SELECT_ROOM_MODEL.roomList
+    private val roomList = INSTANCE.roomList
 
     init {
         vpImages.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -61,7 +61,7 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             roomSelected = room
 
             tvName.text = room.name
-            tvGuest.text = SELECT_ROOM_MODEL.getGuessString(room.guessNumber)
+            tvGuest.text = INSTANCE.getGuessString(room.guessNumber)
             tvBed.text = room.bedType
             tvBreakfast.text = room.breakfast
             tvRefund.text = room.refund

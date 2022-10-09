@@ -16,4 +16,7 @@ interface DataService {
 
     @GET("57389369118b59df9d1a")
     fun getHotelDetail(): Call<HotelDetailData>
+
+    @GET()
+    fun getRoomList(hotelId: Int): Call<HotelDetailData>
 }

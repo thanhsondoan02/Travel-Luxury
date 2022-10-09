@@ -4,8 +4,8 @@ import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseActivity
 import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.getPriceString
-import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel.Companion.INSTANCE
-import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.SELECT_ROOM_MODEL
+import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel
+import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel
 import ai.ftech.travelluxury.ui.hoteldetail.allphotos.AllPhotosActivity
 import ai.ftech.travelluxury.ui.hoteldetail.allphotos.photo.ViewPhotoActivity
 import ai.ftech.travelluxury.ui.hoteldetail.description.SeeDescriptionActivity
@@ -46,11 +46,11 @@ class HotelDetailActivity : BaseActivity(), HotelDetailContract.View {
         initPresenter()
 
         // set hotel smallest price
-        tvPrice.text = getPriceString(INSTANCE.hotelInfo!!.smallestPrice)
+        tvPrice.text = getPriceString(HotelDetailModel.INSTANCE.hotelInfo!!.smallestPrice)
 
         // on select room clicked
         btnSelectRoom.setOnClickListener {
-            SELECT_ROOM_MODEL.fromHotelDetail()
+            SelectRoomModel.INSTANCE.fromHotelDetail()
             listener.onSelectRoom()
         }
 

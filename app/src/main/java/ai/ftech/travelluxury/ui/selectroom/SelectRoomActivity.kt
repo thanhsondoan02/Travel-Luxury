@@ -3,7 +3,8 @@ package ai.ftech.travelluxury.ui.selectroom
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseActivity
 import ai.ftech.travelluxury.data.model.selectroom.Room
-import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.SELECT_ROOM_MODEL
+import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel
+import ai.ftech.travelluxury.data.model.selectroom.mockData
 import ai.ftech.travelluxury.ui.reserve.ReserveActivity
 import android.content.Intent
 import android.os.Bundle
@@ -22,12 +23,12 @@ class SelectRoomActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SELECT_ROOM_MODEL.mockData()
+        mockData()
         initView()
 
         // set text for hotel name and address
-        tvHotelName.text = SELECT_ROOM_MODEL.hotelName
-        tvHotelAddress.text = SELECT_ROOM_MODEL.hotelAddress
+        tvHotelName.text = SelectRoomModel.INSTANCE.hotelName
+        tvHotelAddress.text = SelectRoomModel.INSTANCE.hotelAddress
 
         // on go back click
         btnGoBack.setOnClickListener { onBackPressed() }

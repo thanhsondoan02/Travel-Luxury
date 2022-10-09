@@ -4,6 +4,7 @@ import ai.ftech.travelluxury.data.model.hotellist.Hotel
 import ai.ftech.travelluxury.data.model.hotellist.HotelListModel
 import ai.ftech.travelluxury.data.repo.hotel.HotelRepositoryImpl
 import ai.ftech.travelluxury.data.repo.hotel.IHotelRepository
+import ai.ftech.travelluxury.data.repo.hotel.IResult
 
 class HotelListPresenter : IHotelListContract.Presenter {
 
@@ -11,17 +12,20 @@ class HotelListPresenter : IHotelListContract.Presenter {
     var adapter: HotelListAdapter? = null
 
     private val hotelRepo: IHotelRepository by lazy {
-        object : HotelRepositoryImpl() {
-            @Suppress("UNCHECKED_CAST")
-            override fun onRepoSuccess(data: Any) {
-                HotelListModel.INSTANCE.hotelList = data as List<Hotel>
-                adapter?.hotelList = HotelListModel.INSTANCE.hotelList!!
+        HotelRepositoryImpl().apply {
+            result = object : IResult {
 
-                view?.onGetHotelListSuccess()
-            }
+                @Suppress("UNCHECKED_CAST")
+                override fun onRepoSuccess(data: Any) {
+                    HotelListModel.INSTANCE.hotelList = data as List<Hotel>
+                    adapter?.hotelList = HotelListModel.INSTANCE.hotelList!!
 
-            override fun onRepoFail(message: String) {
-                view?.onGetHotelListFail(message)
+                    view?.onGetHotelListSuccess()
+                }
+
+                override fun onRepoFail(message: String) {
+                    view?.onGetHotelListFail(message)
+                }
             }
         }
     }
