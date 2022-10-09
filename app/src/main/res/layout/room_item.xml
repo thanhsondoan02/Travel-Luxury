@@ -27,6 +27,17 @@
                 android:foregroundGravity="center"
                 android:overScrollMode="never" />
 
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/diRoomDotsIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="185dp"
+                app:dotsColor="@color/white"
+                app:dotsSize="5dp"
+                app:dotsSpacing="2dp"
+                app:selectedDotColor="@color/white" />
+
             <TextView
                 android:id="@+id/tvRoomName"
                 android:layout_width="match_parent"
@@ -196,12 +207,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
-                android:textSize="16sp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/room_select_shape"
                 android:text="@string/select"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
 
         </RelativeLayout>

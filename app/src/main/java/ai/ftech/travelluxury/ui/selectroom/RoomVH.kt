@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
 class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -26,6 +27,7 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvPrice = itemView.findViewById<TextView>(R.id.tvRoomPrice)
     private val btnSelect = itemView.findViewById<TextView>(R.id.btnRoomSelect)
     private val vpImages = itemView.findViewById<ViewPager>(R.id.vpRoomImages)
+    private val diDotsIndicator = itemView.findViewById<DotsIndicator>(R.id.diRoomDotsIndicator)
 
     private var roomSelected: Room? = null
     private val roomList = SELECT_ROOM_MODEL.roomList
@@ -68,6 +70,8 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             vpImages.adapter = RoomImageAdapter().apply {
                 imageList = room.imageList
             }
+
+            diDotsIndicator.attachTo(vpImages)
         }
     }
 
