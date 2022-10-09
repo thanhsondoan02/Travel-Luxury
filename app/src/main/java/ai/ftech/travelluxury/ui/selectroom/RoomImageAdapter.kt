@@ -10,6 +10,7 @@ import androidx.viewpager.widget.PagerAdapter
 class RoomImageAdapter : PagerAdapter() {
 
     var imageList: List<String> = listOf()
+    var scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_CROP
 
     override fun getCount(): Int {
         return imageList.size
@@ -23,6 +24,7 @@ class RoomImageAdapter : PagerAdapter() {
         val inflateView = View.inflate(container.context, R.layout.room_image_item, null)
 
         val ivRoomImage = inflateView.findViewById<ImageView>(R.id.ivRoomImage)
+        ivRoomImage.scaleType = scaleType
         ivRoomImage.loadUrl(imageList[position])
 
         container.addView(inflateView)

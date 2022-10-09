@@ -5,6 +5,7 @@ import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel
 import ai.ftech.travelluxury.ui.selectroom.RoomImageAdapter
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 
@@ -25,6 +26,7 @@ class ViewPhotoActivity : AppCompatActivity() {
 
         vpViewPager.adapter = RoomImageAdapter().apply {
             imageList = this@ViewPhotoActivity.imageList
+            scaleType = ImageView.ScaleType.FIT_CENTER
         }
         vpViewPager.currentItem = intent.getIntExtra("index", 0)
     }
