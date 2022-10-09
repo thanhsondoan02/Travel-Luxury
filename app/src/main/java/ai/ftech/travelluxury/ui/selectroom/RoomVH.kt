@@ -1,11 +1,9 @@
 package ai.ftech.travelluxury.ui.selectroom
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.getPriceString
 import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.INSTANCE
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -59,18 +57,20 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             roomSelected = room
 
             tvName.text = room.name
-            tvGuest.text = INSTANCE.getGuessString(room.guessNumber)
+            tvGuest.text = INSTANCE.getGuessString(room.guessNumber ?: -1)
             tvBed.text = room.bedType
             tvBreakfast.text = room.breakfast
             tvRefund.text = room.refund
             tvPrice.text = getPriceString(room.price)
 
             vpImages.adapter = RoomImageAdapter().apply {
-                imageList = room.imageList
+                imageList = room.imageList ?: emptyList()
                 listener = object : RoomImageAdapter.IListener {
                     override fun onImageClicked() {
-                        Log.d(TAG, "onImageClicked: ")
-                        this@RoomVH.listener?.onImageClick(room.imageList, vpImages.currentItem)
+                        this@RoomVH.listener?.onImageClick(
+                            room.imageList ?: emptyList(),
+                            vpImages.currentItem
+                        )
                     }
                 }
             }

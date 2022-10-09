@@ -1,9 +1,7 @@
 package ai.ftech.travelluxury.ui.selectroom
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.data.TAG
-import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.INSTANCE
-import android.util.Log
+import ai.ftech.travelluxury.data.model.selectroom.Room
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
@@ -12,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 class SelectRoomAdapter : RecyclerView.Adapter<RoomVH>() {
 
     var listener: SelectRoomActivity.IListener? = null
+    var roomList: List<Room> = emptyList()
 
-    private val roomList = INSTANCE.roomList
     private var isFirstItem = true
     private var marginHor: Int = 0
     private var marginVer: Int = 0
@@ -44,10 +42,6 @@ class SelectRoomAdapter : RecyclerView.Adapter<RoomVH>() {
     }
 
     override fun getItemCount(): Int {
-        if (roomList == null) {
-            Log.d(TAG, "getItemCount: roomList is null")
-            return 0
-        }
         return roomList.size
     }
 }

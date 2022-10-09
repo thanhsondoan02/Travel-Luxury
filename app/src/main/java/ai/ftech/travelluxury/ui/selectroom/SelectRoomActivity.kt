@@ -2,24 +2,28 @@ package ai.ftech.travelluxury.ui.selectroom
 
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseActivity
+import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel
-import ai.ftech.travelluxury.data.model.selectroom.mockData
 import ai.ftech.travelluxury.ui.hoteldetail.allphotos.photo.ViewPhotoActivity
 import ai.ftech.travelluxury.ui.reserve.ReserveActivity
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class SelectRoomActivity : BaseActivity() {
+class SelectRoomActivity : BaseActivity(), SelectRoomContract.IView {
 
     interface IListener {
         fun onRoomSelected(room: Room)
         fun onImageClick(imageList: List<String>, imageIndex: Int)
     }
+
+    lateinit var adapter: SelectRoomAdapter
 
     private lateinit var rvRoomList: RecyclerView
     private lateinit var tvHotelName: TextView
@@ -27,11 +31,15 @@ class SelectRoomActivity : BaseActivity() {
     private lateinit var btnGoBack: ImageButton
 
     private lateinit var listener: IListener
+    private val presenter: SelectRoomContract.IPresenter by lazy {
+        SelectRoomPresenter().apply {
+            view = this@SelectRoomActivity
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mockData()
         initView()
         initListener()
 
@@ -44,12 +52,26 @@ class SelectRoomActivity : BaseActivity() {
 
         // init recycle view
         rvRoomList.layoutManager = LinearLayoutManager(this)
-        rvRoomList.adapter = SelectRoomAdapter().apply {
+        adapter = SelectRoomAdapter().apply {
             listener = this@SelectRoomActivity.listener
         }
+        rvRoomList.adapter = adapter
+
+        showLoading("", "")
+        presenter.getRoomListApi()
     }
 
     override fun getLayoutId() = R.layout.select_room_activity
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onGetRoomListSuccess() {
+        hideLoading()
+        rvRoomList.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onGetRoomListFail(message: String) {
+        Log.d(TAG, "onGetRoomListFail: $message")
+    }
 
     private fun initView() {
         rvRoomList = findViewById(R.id.rvSelectRoomRecycler)
