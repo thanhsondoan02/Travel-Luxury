@@ -6,10 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +23,7 @@ class PaymentActivity : AppCompatActivity() {
     private lateinit var tvPaymentNoSelected: TextView
     private lateinit var ivPaymentMethod: ImageView
     private lateinit var tvPaymentMethod: TextView
-    private lateinit var ivPaymentBack: ImageView
+    private lateinit var btnPaymentBack: ImageButton
 
 
     private val getContent: ActivityResultLauncher<Intent> =
@@ -54,7 +51,7 @@ class PaymentActivity : AppCompatActivity() {
         tvPaymentNoSelected = findViewById(R.id.tvPaymentNoSelected)
         ivPaymentMethod = findViewById(R.id.ivPaymentMethod)
         tvPaymentMethod = findViewById(R.id.tvPaymentMethod)
-        ivPaymentBack = findViewById(R.id.ivPaymentBack)
+        btnPaymentBack = findViewById(R.id.btnPaymentBack)
     }
 
     private fun initListener() {
@@ -64,7 +61,7 @@ class PaymentActivity : AppCompatActivity() {
         btnPayNow.setOnClickListener {
             onPayNowClick()
         }
-        ivPaymentBack.setOnClickListener {
+        btnPaymentBack.setOnClickListener {
             onBackPressed()
         }
     }

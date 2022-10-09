@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
-
         if (isHomeFragment) {
             // go to home screen
             val startMain = Intent(Intent.ACTION_MAIN)

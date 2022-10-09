@@ -4,7 +4,7 @@ import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.ui.hoteldetail.allphotos.photo.ViewPhotoActivity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,10 +19,10 @@ class AllPhotosActivity : AppCompatActivity() {
         fun onListView()
     }
 
-    private lateinit var ivGoBack: ImageView
+    private lateinit var btnGoBack: ImageButton
     private lateinit var rvAllPhotos: RecyclerView
-    private lateinit var ivList: ImageView
-    private lateinit var ivGrid: ImageView
+    private lateinit var btnList: ImageButton
+    private lateinit var btnGrid: ImageButton
 
     private val listener = object : IListener {
 
@@ -34,8 +34,8 @@ class AllPhotosActivity : AppCompatActivity() {
 
         override fun onGridView() {
             if (!isGridView) {
-                ivGrid.setImageResource(R.drawable.ic_grid_blue)
-                ivList.setImageResource(R.drawable.ic_menu_white)
+                btnGrid.setImageResource(R.drawable.ic_grid_blue)
+                btnList.setImageResource(R.drawable.ic_menu_white)
                 rvAllPhotos.layoutManager = GridLayoutManager(this@AllPhotosActivity, 4)
                 isGridView = true
             }
@@ -43,8 +43,8 @@ class AllPhotosActivity : AppCompatActivity() {
 
         override fun onListView() {
             if (isGridView) {
-                ivGrid.setImageResource(R.drawable.ic_grid_white)
-                ivList.setImageResource(R.drawable.ic_menu_blue)
+                btnGrid.setImageResource(R.drawable.ic_grid_white)
+                btnList.setImageResource(R.drawable.ic_menu_blue)
                 rvAllPhotos.layoutManager = LinearLayoutManager(this@AllPhotosActivity)
                 isGridView = false
             }
@@ -70,15 +70,15 @@ class AllPhotosActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        ivGoBack = findViewById(R.id.ivAllPhotosBack)
+        btnGoBack = findViewById(R.id.ivAllPhotosBack)
         rvAllPhotos = findViewById(R.id.rvAllPhotos)
-        ivGrid = findViewById(R.id.ivAllPhotosGrid)
-        ivList = findViewById(R.id.ivAllPhotosList)
+        btnGrid = findViewById(R.id.btnAllPhotosGrid)
+        btnList = findViewById(R.id.btnAllPhotosList)
     }
 
     private fun setOnClick() {
-        ivGoBack.setOnClickListener { onBackPressed() }
-        ivGrid.setOnClickListener { listener.onGridView() }
-        ivList.setOnClickListener { listener.onListView() }
+        btnGoBack.setOnClickListener { onBackPressed() }
+        btnGrid.setOnClickListener { listener.onGridView() }
+        btnList.setOnClickListener { listener.onListView() }
     }
 }

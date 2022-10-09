@@ -5,7 +5,7 @@ import ai.ftech.travelluxury.ui.payment.PAYMENT_METHOD
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.card.MaterialCardView
 
@@ -14,7 +14,7 @@ class PaymentMethodActivity : AppCompatActivity() {
     private lateinit var mcvVietcombank: MaterialCardView
     private lateinit var mcvTechcombank: MaterialCardView
     private lateinit var mcvMomo: MaterialCardView
-    private lateinit var ivClose: ImageView
+    private lateinit var btnClose: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class PaymentMethodActivity : AppCompatActivity() {
         mcvVietcombank = findViewById(R.id.mcvPaymentMethodVietcombank)
         mcvTechcombank = findViewById(R.id.mcvPaymentMethodTechcombank)
         mcvMomo = findViewById(R.id.mcvPaymentMethodMomo)
-        ivClose = findViewById(R.id.ivPaymentMethodClose)
+        btnClose = findViewById(R.id.btnPaymentMethodClose)
     }
 
     private fun initListener() {
@@ -41,7 +41,7 @@ class PaymentMethodActivity : AppCompatActivity() {
         mcvMomo.setOnClickListener {
             onResultClick(PAYMENT_METHOD.MOMO)
         }
-        ivClose.setOnClickListener {
+        btnClose.setOnClickListener {
             finish()
         }
     }

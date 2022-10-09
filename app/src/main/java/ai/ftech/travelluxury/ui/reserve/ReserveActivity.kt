@@ -5,7 +5,7 @@ import ai.ftech.travelluxury.ui.payment.PaymentActivity
 import ai.ftech.travelluxury.ui.reserve.contact.ContactActivity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ReserveActivity : AppCompatActivity(), ReserveAdapter.IListener {
 
     private lateinit var rvContent: RecyclerView
-    private lateinit var ivBack: ImageView
+    private lateinit var btnGoBack: ImageButton
 
     private val adapter: ReserveAdapter by lazy {
         ReserveAdapter().apply {
@@ -32,7 +32,7 @@ class ReserveActivity : AppCompatActivity(), ReserveAdapter.IListener {
         rvContent.adapter = adapter
 
         // go back
-        ivBack.setOnClickListener {
+        btnGoBack.setOnClickListener {
             finish()
         }
     }
@@ -47,6 +47,6 @@ class ReserveActivity : AppCompatActivity(), ReserveAdapter.IListener {
 
     private fun initView() {
         rvContent = findViewById(R.id.rvReserveSummary)
-        ivBack = findViewById(R.id.ivReserveBack)
+        btnGoBack = findViewById(R.id.btnReserveBack)
     }
 }

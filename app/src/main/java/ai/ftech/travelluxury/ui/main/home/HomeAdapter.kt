@@ -105,19 +105,8 @@ class HomeAdapter : BaseAdapter() {
             rvHorizontal.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
 
-//            if (viewType == 22) {
-//                rvHorizontal.adapter = CityHotelAdapter().apply {
-//                    this.listener = object : CityHotelAdapter.Listener {
-//                        override fun onCityClick() {
-//                            this@HomeAdapter.listener?.onCityClick()
-//                        }
-//                    }
-//                }
-//            } else {
             rvHorizontal.adapter = HorizontalListAdapter(type)
-//            }
         }
-
     }
 
     inner class CityListVH(itemView: View) : BaseVH<City>(itemView) {

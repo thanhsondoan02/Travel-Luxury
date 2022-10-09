@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="55dp"
-    android:background="@color/main_blue_color"
-    android:padding="16dp">
+    android:background="@color/main_blue_color">
 
-    <ImageView
-        android:id="@+id/ivActionBarGoBack"
+    <ImageButton
+        android:id="@+id/btnActionBarGoBack"
+        android:background="@color/main_blue_color"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="16dp"
         android:contentDescription="@string/go_back_button"
         android:src="@drawable/ic_arrow_left" />
 
@@ -18,8 +18,9 @@
         android:id="@+id/tvActionBarTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/ivActionBarGoBack"
+        android:layout_toEndOf="@id/btnActionBarGoBack"
         android:text="@string/action_bar_title"
         android:textColor="@android:color/white"
         android:textSize="16sp" />

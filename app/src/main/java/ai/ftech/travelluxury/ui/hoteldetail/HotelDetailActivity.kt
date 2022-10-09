@@ -19,6 +19,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,7 @@ class HotelDetailActivity : BaseActivity(), HotelDetailContract.View {
     private lateinit var btnSelectRoom: Button
     private lateinit var tvPrice: TextView
     private lateinit var rlLoading: LinearLayout
+    private lateinit var btnGoBack: ImageButton
 
     private lateinit var listener: IListener
     private lateinit var adapter: HotelDetailAdapter
@@ -50,6 +52,11 @@ class HotelDetailActivity : BaseActivity(), HotelDetailContract.View {
         btnSelectRoom.setOnClickListener {
             SELECT_ROOM_MODEL.fromHotelDetail()
             listener.onSelectRoom()
+        }
+
+        // on go back clicked
+        btnGoBack.setOnClickListener {
+            onBackPressed()
         }
 
         showLoading("", "")
@@ -82,6 +89,7 @@ class HotelDetailActivity : BaseActivity(), HotelDetailContract.View {
         tvPrice = findViewById(R.id.tvHotelDetailPrice)
         btnSelectRoom = findViewById(R.id.btnHotelDetailSelectRoom)
         rlLoading = findViewById(R.id.rlHotelDetailLoading)
+        btnGoBack = findViewById(R.id.btnHotelDetailBack)
     }
 
     private fun initListener() {
@@ -115,7 +123,6 @@ class HotelDetailActivity : BaseActivity(), HotelDetailContract.View {
                 intent.putExtra("index", index)
                 startActivity(intent)
             }
-
         }
     }
 

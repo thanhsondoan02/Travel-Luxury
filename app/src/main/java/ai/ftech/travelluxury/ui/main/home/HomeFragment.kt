@@ -26,14 +26,20 @@ class HomeFragment : Fragment(), HomeContract.View {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d(TAG, "onCreateView: ")
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d(TAG, "onViewCreated: ")
         presenter.getHotelCityListApi()
 
         rvHome = view.findViewById(R.id.rlHomeFragment)
@@ -52,7 +58,6 @@ class HomeFragment : Fragment(), HomeContract.View {
     @SuppressLint("NotifyDataSetChanged")
     override fun onGetHotelCityListSuccess() {
         homeAdapter.onGetHotelCityListSuccess()
-//        homeAdapter.notifyDataSetChanged()
     }
 
     override fun onGetHotelCityListFail(message: String) {

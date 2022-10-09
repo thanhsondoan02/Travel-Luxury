@@ -9,10 +9,7 @@ import ai.ftech.travelluxury.ui.register.RegisterActivity.Companion.resetErrorTe
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.View {
@@ -25,6 +22,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
     private lateinit var edtPassword: EditText
     private lateinit var tvEmailError: TextView
     private lateinit var tvPasswordError: TextView
+    private lateinit var btnGoBack: ImageButton
+    private lateinit var tvActionBarTitle: TextView
 
     private val presenter = LoginPresenter(this)
 
@@ -33,6 +32,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
         setContentView(R.layout.login_activity)
 
         initView()
+
+        // delete go back button
+        btnGoBack.visibility = View.GONE
+
+        // set margin start action bar title
+        val params = tvActionBarTitle.layoutParams as RelativeLayout.LayoutParams
+        params.marginStart = (params.topMargin * 1.5).toInt()
+        tvActionBarTitle.layoutParams = params
+
         setOnClickListener()
 
         // email change -> remove error text
@@ -102,6 +110,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
         edtPassword = findViewById(R.id.edtLoginPassword)
         tvEmailError = findViewById(R.id.tvLoginEmailError)
         tvPasswordError = findViewById(R.id.tvLoginPasswordError)
+        btnGoBack = findViewById(R.id.btnActionBarGoBack)
+        tvActionBarTitle = findViewById(R.id.tvActionBarTitle)
 
         // init text
         abvActionBar.setTitle(getString(R.string.login_activity_action_bar_title))

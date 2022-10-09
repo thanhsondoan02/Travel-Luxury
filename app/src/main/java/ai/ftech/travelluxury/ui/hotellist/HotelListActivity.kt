@@ -51,7 +51,7 @@ class HotelListActivity : BaseActivity(), IHotelListContract.View {
     private fun initViews() {
         tvCityName = findViewById(R.id.tvHotelListCityName)
         rvHotelList = findViewById(R.id.rvHotelList)
-        btnGoBack = findViewById(R.id.ivHotelListBack)
+        btnGoBack = findViewById(R.id.btnHotelListBack)
 //        llLoading = findViewById(R.id.llHotelListLoading)
 
         // init action bar

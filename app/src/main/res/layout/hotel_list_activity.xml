@@ -12,7 +12,7 @@
         android:background="@color/main_blue_color">
 
         <ImageButton
-            android:id="@+id/ivHotelListBack"
+            android:id="@+id/btnHotelListBack"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/ivHotelListBack"
+            android:layout_toEndOf="@id/btnHotelListBack"
             android:orientation="vertical">
 
             <TextView
