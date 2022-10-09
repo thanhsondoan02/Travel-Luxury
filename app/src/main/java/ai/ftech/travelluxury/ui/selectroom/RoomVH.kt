@@ -1,9 +1,11 @@
 package ai.ftech.travelluxury.ui.selectroom
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.getPriceString
 import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.INSTANCE
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,11 +14,7 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
 class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    interface IListener {
-        fun onRoomSelected(room: Room)
-    }
-
-    var listener: IListener? = null
+    var listener: SelectRoomActivity.IListener? = null
 
     private val tvName = itemView.findViewById<TextView>(R.id.tvRoomName)
     private val tvSeeDetail = itemView.findViewById<TextView>(R.id.tvRoomSeeDetails)
@@ -69,6 +67,12 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             vpImages.adapter = RoomImageAdapter().apply {
                 imageList = room.imageList
+                listener = object : RoomImageAdapter.IListener {
+                    override fun onImageClicked() {
+                        Log.d(TAG, "onImageClicked: ")
+                        this@RoomVH.listener?.onImageClick(room.imageList, vpImages.currentItem)
+                    }
+                }
             }
 
             diDotsIndicator.attachTo(vpImages)

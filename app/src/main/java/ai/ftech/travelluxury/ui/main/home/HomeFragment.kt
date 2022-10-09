@@ -34,12 +34,10 @@ class HomeFragment : Fragment(), HomeContract.View {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.d(TAG, "onCreateView: ")
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d(TAG, "onViewCreated: ")
         presenter.getHotelCityListApi()
 
         rvHome = view.findViewById(R.id.rlHomeFragment)

@@ -1,6 +1,7 @@
 package ai.ftech.travelluxury.ui.hoteldetail.allphotos
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel
 import ai.ftech.travelluxury.ui.hoteldetail.allphotos.photo.ViewPhotoActivity
 import android.content.Intent
 import android.os.Bundle
@@ -29,6 +30,7 @@ class AllPhotosActivity : AppCompatActivity() {
         override fun onPhotoClick(index: Int) {
             val intent = Intent(this@AllPhotosActivity, ViewPhotoActivity::class.java)
             intent.putExtra("index", index)
+            intent.putExtra("imageList", HotelDetailModel.INSTANCE.imageList as ArrayList<String>)
             startActivity(intent)
         }
 

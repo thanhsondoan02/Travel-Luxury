@@ -2,7 +2,6 @@ package ai.ftech.travelluxury.ui.selectroom
 
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.TAG
-import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel.Companion.INSTANCE
 import android.util.Log
 import android.view.View
@@ -12,11 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class SelectRoomAdapter : RecyclerView.Adapter<RoomVH>() {
 
-    interface IListener {
-        fun onRoomSelected(room: Room)
-    }
-
-    var listener: IListener? = null
+    var listener: SelectRoomActivity.IListener? = null
 
     private val roomList = INSTANCE.roomList
     private var isFirstItem = true
@@ -40,11 +35,7 @@ class SelectRoomAdapter : RecyclerView.Adapter<RoomVH>() {
         mcvRoomCard.layoutParams = params
 
         return RoomVH(inflateView).apply {
-            listener = object : RoomVH.IListener {
-                override fun onRoomSelected(room: Room) {
-                    this@SelectRoomAdapter.listener?.onRoomSelected(room)
-                }
-            }
+            listener = this@SelectRoomAdapter.listener
         }
     }
 

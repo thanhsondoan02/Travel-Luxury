@@ -1,7 +1,6 @@
 package ai.ftech.travelluxury.ui.hoteldetail.allphotos.photo
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel
 import ai.ftech.travelluxury.ui.selectroom.RoomImageAdapter
 import android.os.Bundle
 import android.widget.Button
@@ -11,7 +10,7 @@ import androidx.viewpager.widget.ViewPager
 
 class ViewPhotoActivity : AppCompatActivity() {
 
-    var imageList: List<String> = HotelDetailModel.INSTANCE.imageList ?: listOf()
+//    var imageList: List<String> = HotelDetailModel.INSTANCE.imageList ?: listOf()
 
     private lateinit var vpViewPager: ViewPager
     private lateinit var btnClose: Button
@@ -25,7 +24,8 @@ class ViewPhotoActivity : AppCompatActivity() {
         btnClose.setOnClickListener { onBackPressed() }
 
         vpViewPager.adapter = RoomImageAdapter().apply {
-            imageList = this@ViewPhotoActivity.imageList
+            imageList =
+                this@ViewPhotoActivity.intent.getStringArrayListExtra("imageList") ?: listOf()
             scaleType = ImageView.ScaleType.FIT_CENTER
         }
         vpViewPager.currentItem = intent.getIntExtra("index", 0)

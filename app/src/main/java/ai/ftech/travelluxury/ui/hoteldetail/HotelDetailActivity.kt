@@ -121,6 +121,10 @@ class HotelDetailActivity : BaseActivity(), HotelDetailContract.View {
             override fun onViewPhoto(index: Int) {
                 val intent = Intent(this@HotelDetailActivity, ViewPhotoActivity::class.java)
                 intent.putExtra("index", index)
+                intent.putExtra(
+                    "imageList",
+                    HotelDetailModel.INSTANCE.imageList as ArrayList<String>
+                )
                 startActivity(intent)
             }
         }
