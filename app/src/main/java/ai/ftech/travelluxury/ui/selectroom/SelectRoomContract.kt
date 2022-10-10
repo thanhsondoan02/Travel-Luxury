@@ -13,6 +13,7 @@ interface SelectRoomContract {
     interface IPresenter {
         fun getRoomListApi()
         fun getSpecialRoomList()
+        fun resetRoomList()
     }
 
 }

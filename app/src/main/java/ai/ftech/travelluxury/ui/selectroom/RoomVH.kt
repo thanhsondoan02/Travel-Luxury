@@ -26,7 +26,6 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val diDotsIndicator = itemView.findViewById<DotsIndicator>(R.id.diRoomDotsIndicator)
 
     private var roomSelected: Room? = null
-    private val roomList = INSTANCE.roomList
 
     init {
         vpImages.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -50,20 +49,17 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 
-    fun bind(index: Int) {
-        if (roomList != null && roomList.size > index) {
-            val room = roomList[index]
+    fun bind(room: Room) {
+        roomSelected = room
 
-            roomSelected = room
+        tvName.text = room.name
+        tvGuest.text = INSTANCE.getGuessString(room.guessNumber ?: -1)
+        tvBed.text = room.bedType
+        tvBreakfast.text = room.breakfast
+        tvRefund.text = room.refund
+        tvPrice.text = getPriceString(room.price)
 
-            tvName.text = room.name
-            tvGuest.text = INSTANCE.getGuessString(room.guessNumber ?: -1)
-            tvBed.text = room.bedType
-            tvBreakfast.text = room.breakfast
-            tvRefund.text = room.refund
-            tvPrice.text = getPriceString(room.price)
-
-            vpImages.adapter = RoomImageAdapter().apply {
+        vpImages.adapter = RoomImageAdapter().apply {
                 imageList = room.imageList ?: emptyList()
                 listener = object : RoomImageAdapter.IListener {
                     override fun onImageClicked() {
@@ -76,7 +72,6 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             }
 
             diDotsIndicator.attachTo(vpImages)
-        }
     }
 
 }

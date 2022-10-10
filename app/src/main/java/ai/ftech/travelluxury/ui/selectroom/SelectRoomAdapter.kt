@@ -38,7 +38,8 @@ class SelectRoomAdapter : RecyclerView.Adapter<RoomVH>() {
     }
 
     override fun onBindViewHolder(holder: RoomVH, position: Int) {
-        holder.bind(position)
+        val room = roomList[position]
+        holder.bind(room)
     }
 
     override fun getItemCount(): Int {

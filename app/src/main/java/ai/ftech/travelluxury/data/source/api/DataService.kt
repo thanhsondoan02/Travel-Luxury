@@ -20,4 +20,7 @@ interface DataService {
 
     @GET("bc8daa907b3c880041e9")
     fun getRoomList(): Call<SelectRoomData>
+
+    @GET("aa782fde0b30f3aa3cdf")
+    fun searchRoom(): Call<SelectRoomData>
 }

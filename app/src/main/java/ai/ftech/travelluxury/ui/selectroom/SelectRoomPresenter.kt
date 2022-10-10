@@ -41,8 +41,6 @@ class SelectRoomPresenter : SelectRoomContract.IPresenter {
     }
 
     override fun getSpecialRoomList() {
-        view?.adapter?.roomList = emptyList()
-
         val hotelId = SelectRoomModel.INSTANCE.hotelId
         val checkInDate = SelectRoomModel.INSTANCE.checkInDate
         val duration = SelectRoomModel.INSTANCE.duration
@@ -51,6 +49,11 @@ class SelectRoomPresenter : SelectRoomContract.IPresenter {
             val checkOutDate = calculateCheckOutDate(checkInDate, duration)
             repo.getRoomList(hotelId, checkInDate, checkOutDate)
         }
+    }
+
+    override fun resetRoomList() {
+        view?.adapter?.roomList = emptyList()
+        SelectRoomModel.INSTANCE.roomList = emptyList()
     }
 
 }

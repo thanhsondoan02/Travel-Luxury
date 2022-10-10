@@ -52,14 +52,9 @@ class SelectRoomActivity : BaseActivity(), SelectRoomContract.IView {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val date = result.data?.getStringExtra("date")
-                val duration = SelectRoomModel.INSTANCE.duration
                 if (date != null) {
                     SelectRoomModel.INSTANCE.checkInDate = date
                     this@SelectRoomActivity.onCheckInDateChange()
-                    if (duration != null) {
-                        presenter.getSpecialRoomList()
-                        onRoomListChange()
-                    }
                 }
             }
         }
@@ -100,7 +95,7 @@ class SelectRoomActivity : BaseActivity(), SelectRoomContract.IView {
     @SuppressLint("NotifyDataSetChanged")
     override fun onGetRoomListSuccess() {
         hideLoading()
-        rvRoomList.adapter?.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
     }
 
     override fun onGetRoomListFail(message: String) {
@@ -110,17 +105,27 @@ class SelectRoomActivity : BaseActivity(), SelectRoomContract.IView {
 
     override fun onCheckInDateChange() {
         tvCheckInDate.text = SelectRoomModel.INSTANCE.checkInDate
+        val duration = SelectRoomModel.INSTANCE.duration
+        if (duration != null) {
+            onRoomListChange()
+        }
     }
 
     @SuppressLint("SetTextI18n")
     override fun onDurationChange() {
         tvDuration.text = SelectRoomModel.INSTANCE.duration.toString() + " night(s)"
+        val checkInDate = SelectRoomModel.INSTANCE.checkInDate
+        if (checkInDate != null) {
+            onRoomListChange()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onRoomListChange() {
         showLoading("", "")
-        rvRoomList.adapter?.notifyDataSetChanged()
+        presenter.resetRoomList()
+        adapter.notifyDataSetChanged()
+        presenter.getSpecialRoomList()
     }
 
     private fun initView() {
@@ -181,14 +186,9 @@ class SelectRoomActivity : BaseActivity(), SelectRoomContract.IView {
                 // select button
                 val btnSelect = inflateView.findViewById<Button>(R.id.btnDurationPickerSelect)
                 btnSelect.setOnClickListener {
+                    dialog.dismiss()
                     SelectRoomModel.INSTANCE.duration = npNumberPicker.value
                     this@SelectRoomActivity.onDurationChange()
-                    val checkInDate = SelectRoomModel.INSTANCE.checkInDate
-                    if (checkInDate != null) {
-                        presenter.getSpecialRoomList()
-                        onRoomListChange()
-                    }
-                    dialog.dismiss()
                 }
 
                 dialog.setContentView(inflateView)

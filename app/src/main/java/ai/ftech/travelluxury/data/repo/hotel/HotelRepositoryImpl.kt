@@ -1,13 +1,11 @@
 package ai.ftech.travelluxury.data.repo.hotel
 
-import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.model.home.CityHotelData
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailData
 import ai.ftech.travelluxury.data.model.hotellist.HotelListData
 import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomData
 import ai.ftech.travelluxury.data.source.api.APIService
-import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -85,7 +83,30 @@ class HotelRepositoryImpl : IHotelRepository {
     }
 
     override fun getRoomList(hotelId: Int, checkInDate: String, checkOutDate: String) {
-        Log.d(TAG, "getRoomList: $checkInDate $checkOutDate")
+        APIService.base().searchRoom().enqueue(object : MyCallBack<SelectRoomData>() {
+            override fun checkResponseBody(responseBody: SelectRoomData) {
+                if (responseBody.data == null) {
+                    result?.onRepoFail("response body data is null")
+                } else {
+                    val listOfRoomAndImageList = responseBody.data
+                    if (listOfRoomAndImageList == null) {
+                        result?.onRepoFail("response body data list of room and image list is null")
+                    } else {
+                        val listOfRoom = mutableListOf<Room>()
+                        for (roomAndImageList in listOfRoomAndImageList) {
+                            val room = roomAndImageList.room
+                            val mImageList = roomAndImageList.imageList
+                            if (room != null && mImageList != null) {
+                                room.imageList = mImageList
+                                listOfRoom.add(room)
+                            }
+                        }
+
+                        result?.onRepoSuccess(listOfRoom as List<Room>)
+                    }
+                }
+            }
+        })
     }
 
     abstract inner class MyCallBack<Data> : Callback<Data> {
