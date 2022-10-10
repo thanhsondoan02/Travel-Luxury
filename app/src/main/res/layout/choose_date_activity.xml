@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.selectroom.ChooseDateActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlChooseDateActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/main_blue_color">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/check_in_date"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnChooseDateClose"
+            android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="@string/close"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+    <CalendarView
+        android:id="@+id/clvChooseDateCalendar"
+        android:layout_below="@id/rlChooseDateActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusedMonthDateColor="@color/main_blue_color" />
+
+</RelativeLayout>

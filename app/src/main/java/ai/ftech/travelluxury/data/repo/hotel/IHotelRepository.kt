@@ -5,4 +5,5 @@ interface IHotelRepository {
     fun getCityHotelList()
     fun getHotelDetail(hotelId: Int)
     fun getRoomList(hotelId: Int)
+    fun getRoomList(hotelId: Int, checkInDate: String, checkOutDate: String)
 }

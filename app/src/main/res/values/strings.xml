@@ -136,4 +136,8 @@
     <string name="please_wait_a_moment">Please wait a moment</string>
     <string name="close">Close</string>
     <string name="see_all_photos">See all photos</string>
+    <string name="check_in_date">Check-in Date</string>
+    <string name="choose_check_in_date">Choose check-in date</string>
+    <string name="choose_duration">Choose duration</string>
+    <string name="choose_duration_of_stay">Choose Duration of Stay</string>
 </resources>

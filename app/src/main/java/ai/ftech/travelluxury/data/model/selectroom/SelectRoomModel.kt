@@ -11,9 +11,19 @@ class SelectRoomModel {
     var hotelId: Int? = null
     var hotelName: String? = null
     var hotelAddress: String? = null
+    var checkInDate: String? = null
+    var duration: Int? = null
 
     var roomList: List<Room>? = null
 
+    fun reset() {
+        hotelId = null
+        hotelName = null
+        hotelAddress = null
+        checkInDate = null
+        duration = null
+        roomList = null
+    }
 
     fun getGuessString(number: Int): String {
         return "$number guest(s)/room"

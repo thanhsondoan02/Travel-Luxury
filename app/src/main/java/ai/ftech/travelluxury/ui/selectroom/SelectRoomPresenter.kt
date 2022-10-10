@@ -1,5 +1,6 @@
 package ai.ftech.travelluxury.ui.selectroom
 
+import ai.ftech.travelluxury.data.calculateCheckOutDate
 import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel
 import ai.ftech.travelluxury.data.repo.hotel.HotelRepositoryImpl
@@ -19,10 +20,8 @@ class SelectRoomPresenter : SelectRoomContract.IPresenter {
                     // update SelectRoomModel room list
                     SelectRoomModel.INSTANCE.roomList = data as List<Room>
 
-//                    // update room list in adapter
-//                    val adapter = view?.homeAdapter?.cityListVH?.adapter
-//                    adapter?.cityList = HomeModel.INSTANCE.cityList ?: listOf()
-                    view?.adapter?.roomList = SelectRoomModel.INSTANCE.roomList ?: listOf()
+                    // update room list in adapter
+                    view?.adapter?.roomList = SelectRoomModel.INSTANCE.roomList ?: emptyList()
 
                     view?.onGetRoomListSuccess()
                 }
@@ -37,8 +36,21 @@ class SelectRoomPresenter : SelectRoomContract.IPresenter {
 
     override fun getRoomListApi() {
         val hotelId = SelectRoomModel.INSTANCE.hotelId
-        if (hotelId != null) {
+        if (hotelId != null)
             repo.getRoomList(hotelId)
+    }
+
+    override fun getSpecialRoomList() {
+        view?.adapter?.roomList = emptyList()
+
+        val hotelId = SelectRoomModel.INSTANCE.hotelId
+        val checkInDate = SelectRoomModel.INSTANCE.checkInDate
+        val duration = SelectRoomModel.INSTANCE.duration
+
+        if (hotelId != null && checkInDate != null && duration != null) {
+            val checkOutDate = calculateCheckOutDate(checkInDate, duration)
+            repo.getRoomList(hotelId, checkInDate, checkOutDate)
         }
     }
+
 }

@@ -77,15 +77,15 @@ class HotelRepositoryImpl : IHotelRepository {
                             }
                         }
 
-                        for (i in listOfRoom.indices) {
-                            Log.d(TAG, "getRoomList: room $i: ${listOfRoom[i]}")
-                        }
-
                         result?.onRepoSuccess(listOfRoom as List<Room>)
                     }
                 }
             }
         })
+    }
+
+    override fun getRoomList(hotelId: Int, checkInDate: String, checkOutDate: String) {
+        Log.d(TAG, "getRoomList: $checkInDate $checkOutDate")
     }
 
     abstract inner class MyCallBack<Data> : Callback<Data> {

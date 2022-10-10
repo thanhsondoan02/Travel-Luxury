@@ -17,6 +17,9 @@
         android:theme="@style/Theme.TravelLuxury"
         tools:targetApi="31">
         <activity
+            android:name=".ui.selectroom.ChooseDateActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.hoteldetail.allphotos.photo.ViewPhotoActivity"
             android:exported="false" />
         <activity
