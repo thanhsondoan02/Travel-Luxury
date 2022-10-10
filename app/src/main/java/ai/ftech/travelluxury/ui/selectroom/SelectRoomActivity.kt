@@ -142,7 +142,12 @@ class SelectRoomActivity : BaseActivity(), SelectRoomContract.IView {
     private fun initListener() {
         listener = object : IListener {
             override fun onRoomSelected(room: Room) {
-                startActivity(Intent(this@SelectRoomActivity, ReserveActivity::class.java))
+                if (SelectRoomModel.INSTANCE.duration != null && SelectRoomModel.INSTANCE.checkInDate != null) {
+                    startActivity(Intent(this@SelectRoomActivity, ReserveActivity::class.java))
+                } else {
+                    // show dialog to notify user to choose date and duration
+                    dialogNotify().show()
+                }
             }
 
             override fun onImageClick(imageList: List<String>, imageIndex: Int) {
@@ -162,47 +167,77 @@ class SelectRoomActivity : BaseActivity(), SelectRoomContract.IView {
              */
             @SuppressLint("InflateParams")
             override fun onChooseDurationClick() {
-                val dialog = Dialog(this@SelectRoomActivity, R.style.DialogTheme)
-
-                val inflateView = layoutInflater.inflate(R.layout.duration_picker_layout, null)
-
-                // number picker config
-                val npNumberPicker = inflateView.findViewById<NumberPicker>(R.id.npDurationPicker)
-                npNumberPicker.minValue = 1
-                npNumberPicker.maxValue = 30
-                val durationList = mutableListOf<String>()
-                for (i in 1..30) {
-                    durationList.add("$i night(s)")
-                }
-                npNumberPicker.displayedValues = durationList.toTypedArray()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    npNumberPicker.textColor = getColor(R.color.main_blue_color)
-                }
-
-                // cancel button
-                val btnCancel = inflateView.findViewById<Button>(R.id.btnDurationPickerCancel)
-                btnCancel.setOnClickListener { dialog.dismiss() }
-
-                // select button
-                val btnSelect = inflateView.findViewById<Button>(R.id.btnDurationPickerSelect)
-                btnSelect.setOnClickListener {
-                    dialog.dismiss()
-                    SelectRoomModel.INSTANCE.duration = npNumberPicker.value
-                    this@SelectRoomActivity.onDurationChange()
-                }
-
-                dialog.setContentView(inflateView)
-
-                dialog.window?.apply {
-                    setGravity(Gravity.BOTTOM)
-                    setLayout(
-                        WindowManager.LayoutParams.MATCH_PARENT,
-                        WindowManager.LayoutParams.WRAP_CONTENT
-                    )
-                }
-
-                dialog.show()
+                dialogChooseDuration()
             }
         }
+    }
+
+    /**
+     * dialog to notify user to choose date and duration
+     */
+    @SuppressLint("InflateParams")
+    private fun dialogNotify(): Dialog {
+        val dialog = Dialog(this@SelectRoomActivity, R.style.DialogTheme)
+
+        val inflateView = layoutInflater.inflate(R.layout.notify_choose_date_duration_layout, null)
+
+        val btnClose = inflateView.findViewById<Button>(R.id.btnNotifyChooseDateDurationClose)
+        btnClose.setOnClickListener { dialog.dismiss() }
+
+        dialog.setContentView(inflateView)
+
+        dialog.window?.apply {
+            setGravity(Gravity.CENTER)
+            setLayout(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+        }
+        return dialog
+    }
+
+    @SuppressLint("InflateParams")
+    private fun dialogChooseDuration() {
+        val dialog = Dialog(this@SelectRoomActivity, R.style.DialogTheme)
+
+        val inflateView = layoutInflater.inflate(R.layout.duration_picker_layout, null)
+
+        // number picker config
+        val npNumberPicker = inflateView.findViewById<NumberPicker>(R.id.npDurationPicker)
+        npNumberPicker.minValue = 1
+        npNumberPicker.maxValue = 30
+        val durationList = mutableListOf<String>()
+        for (i in 1..30) {
+            durationList.add("$i night(s)")
+        }
+        npNumberPicker.displayedValues = durationList.toTypedArray()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            npNumberPicker.textColor = getColor(R.color.main_blue_color)
+            npNumberPicker.textSize *= 1.18f
+        }
+
+        // cancel button
+        val btnCancel = inflateView.findViewById<Button>(R.id.btnDurationPickerCancel)
+        btnCancel.setOnClickListener { dialog.dismiss() }
+
+        // select button
+        val btnSelect = inflateView.findViewById<Button>(R.id.btnDurationPickerSelect)
+        btnSelect.setOnClickListener {
+            dialog.dismiss()
+            SelectRoomModel.INSTANCE.duration = npNumberPicker.value
+            this@SelectRoomActivity.onDurationChange()
+        }
+
+        dialog.setContentView(inflateView)
+
+        dialog.window?.apply {
+            setGravity(Gravity.BOTTOM)
+            setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        dialog.show()
     }
 }

@@ -140,4 +140,6 @@
     <string name="choose_check_in_date">Choose check-in date</string>
     <string name="choose_duration">Choose duration</string>
     <string name="choose_duration_of_stay">Choose Duration of Stay</string>
+    <string name="notify_choose_date_duration">Please choose check-in date and duration</string>
+    <string name="note">Note</string>
 </resources>
