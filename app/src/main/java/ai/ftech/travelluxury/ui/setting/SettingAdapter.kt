@@ -78,7 +78,7 @@ class SettingAdapter : RecyclerView.Adapter<BaseVH>() {
                 R.drawable.ic_lock_gray,
                 view!!.getString(R.string.profile_privacy)
             ),
-            SettingData(LABEL_TYPE, null, view!!.getString(R.string.account_security)),
+            SettingData(LABEL_TYPE, null, view!!.getString(R.string.preferences)),
             SettingData(
                 CONTENT_TYPE_WO_ICON,
                 null,
