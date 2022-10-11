@@ -141,5 +141,11 @@
     <string name="choose_duration">Choose duration</string>
     <string name="choose_duration_of_stay">Choose Duration of Stay</string>
     <string name="notify_choose_date_duration">Please choose check-in date and duration</string>
+    <string name="email_empty">Email is required</string>
+    <string name="email_invalid">Invalid email format</string>
+    <string name="password_empty">Password is required</string>
+    <string name="password_invalid">Minimum length 6 character(s)</string>
+    <string name="login_success">Awesome! You have been logged in successfully</string>
+    <string name="wrong_email_or_password">Your email and password combination is incorrect. Please try again.</string>
     <string name="note">Note</string>
 </resources>

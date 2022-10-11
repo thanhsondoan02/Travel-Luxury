@@ -25,7 +25,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
     private lateinit var btnGoBack: ImageButton
     private lateinit var tvActionBarTitle: TextView
 
-    private val presenter = LoginPresenter(this)
+    private val presenter by lazy {
+        LoginPresenter().apply { view = this@LoginActivity }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,19 +67,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
 
     override fun onLoginResult(state: LOGIN_STATE, message: String) {
         when (state) {
-            LOGIN_STATE.EMPTY_EMAIL_FIELD -> {
+            LOGIN_STATE.EMPTY_EMAIL_FIELD, LOGIN_STATE.INVALID_EMAIL_FORMAT -> {
                 tvEmailError.text = message
             }
-            LOGIN_STATE.INVALID_EMAIL_FORMAT -> {
-                tvEmailError.text = message
-            }
-            LOGIN_STATE.EMPTY_PASSWORD_FIELD -> {
+            LOGIN_STATE.EMPTY_PASSWORD_FIELD, LOGIN_STATE.INVALID_PASSWORD_FORMAT -> {
                 tvPasswordError.text = message
             }
-            LOGIN_STATE.INVALID_PASSWORD_FORMAT -> {
-                tvPasswordError.text = message
-            }
-            LOGIN_STATE.WRONG_EMAIL_OR_PASSWORD -> {
+            LOGIN_STATE.FAIL -> {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
             LOGIN_STATE.SUCCESS -> {

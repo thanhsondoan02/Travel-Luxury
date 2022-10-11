@@ -3,11 +3,12 @@ package ai.ftech.travelluxury.ui.main.myaccount
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseAdapter
 import ai.ftech.travelluxury.common.BaseVH
+import ai.ftech.travelluxury.data.model.login.AccountData
 import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
-import android.widget.RelativeLayout.LayoutParams
 import android.widget.RelativeLayout
+import android.widget.RelativeLayout.LayoutParams
 import android.widget.TextView
 
 class MyAccountAdapter : BaseAdapter() {
@@ -117,9 +118,12 @@ class MyAccountAdapter : BaseAdapter() {
 
     class MyAccountProfileVH(itemView: View) : BaseVH<ProfileData>(itemView) {
 
+        private val tvFullName = itemView.findViewById<TextView>(R.id.tvMyAccountTitleName)
+        private val tvEmail = itemView.findViewById<TextView>(R.id.tvMyAccountTitleEmail)
+
         override fun onBind(data: ProfileData) {
-            itemView.findViewById<TextView>(R.id.tvMyAccountTitleName).text = data.name
-            itemView.findViewById<TextView>(R.id.tvMyAccountTitleEmail).text = data.email
+            tvFullName.text = AccountData.INSTANCE?.fullName
+            tvEmail.text = AccountData.INSTANCE?.email
         }
 
     }

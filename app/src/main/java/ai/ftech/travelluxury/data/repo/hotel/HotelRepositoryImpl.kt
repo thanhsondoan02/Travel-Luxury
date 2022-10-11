@@ -1,11 +1,14 @@
 package ai.ftech.travelluxury.data.repo.hotel
 
+import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.model.home.CityHotelData
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailData
 import ai.ftech.travelluxury.data.model.hotellist.HotelListData
+import ai.ftech.travelluxury.data.model.login.LoginData
 import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomData
 import ai.ftech.travelluxury.data.source.api.APIService
+import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -103,6 +106,30 @@ class HotelRepositoryImpl : IHotelRepository {
                         }
 
                         result?.onRepoSuccess(listOfRoom as List<Room>)
+                    }
+                }
+            }
+        })
+    }
+
+    override fun login(email: String, password: String) {
+
+        APIService.base().login().enqueue(object : MyCallBack<LoginData>() {
+            override fun checkResponseBody(responseBody: LoginData) {
+                if (responseBody.message == null) {
+                    Log.d(TAG, "login: response body message is null")
+                    result?.onRepoFail("connect to server fail")
+                } else {
+                    if (responseBody.message != "Login Success") {
+                        Log.d(TAG, "login: server message = ${responseBody.message}")
+                        result?.onRepoFail(responseBody.message!!)
+                    } else {
+                        if (responseBody.data == null) {
+                            Log.d(TAG, "login: response body data is null")
+                            result?.onRepoFail("connect to server fail")
+                        } else {
+                            result?.onRepoSuccess(responseBody.data!!)
+                        }
                     }
                 }
             }

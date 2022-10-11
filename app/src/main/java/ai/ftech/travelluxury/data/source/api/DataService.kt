@@ -3,6 +3,7 @@ package ai.ftech.travelluxury.data.source.api
 import ai.ftech.travelluxury.data.model.home.CityHotelData
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailData
 import ai.ftech.travelluxury.data.model.hotellist.HotelListData
+import ai.ftech.travelluxury.data.model.login.LoginData
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomData
 import retrofit2.Call
 import retrofit2.http.GET
@@ -23,4 +24,7 @@ interface DataService {
 
     @GET("aa782fde0b30f3aa3cdf")
     fun searchRoom(): Call<SelectRoomData>
+
+    @GET("3705e25edef8c20b7123")
+    fun login(): Call<LoginData>
 }
