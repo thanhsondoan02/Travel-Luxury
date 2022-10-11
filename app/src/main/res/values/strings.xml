@@ -148,4 +148,21 @@
     <string name="login_success">Awesome! You have been logged in successfully</string>
     <string name="wrong_email_or_password">Your email and password combination is incorrect. Please try again.</string>
     <string name="note">Note</string>
+    <string name="settings">Settings</string>
+    <string name="account_information">Account Information</string>
+    <string name="preferences">Preferences</string>
+    <string name="account_security"><![CDATA[Account & Security]]></string>
+    <string name="password_security"><![CDATA[Password & Security]]></string>
+    <string name="profile_privacy">Profile Privacy</string>
+    <string name="country">Country</string>
+    <string name="currency">Currency</string>
+    <string name="language">Language</string>
+    <string name="passenger_quick_pick">Passenger Quick Pick</string>
+    <string name="push_notification">Push Notification</string>
+    <string name="newsletter_promo_info"><![CDATA[Newsletter & Promo Info]]></string>
+    <string name="app_version">App Version</string>
+    <string name="term_conditions"><![CDATA[Term & Conditions]]></string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="about_us">About us</string>
+    <string name="log_out">Log Out</string>
 </resources>
