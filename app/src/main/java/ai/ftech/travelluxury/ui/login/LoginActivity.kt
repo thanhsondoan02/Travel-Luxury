@@ -25,12 +25,43 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
     private lateinit var btnGoBack: ImageButton
     private lateinit var tvActionBarTitle: TextView
 
+    private var savedInstanceState: Bundle? = null
+
     private val presenter by lazy {
         LoginPresenter().apply { view = this@LoginActivity }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        presenter.checkPreferences()
+    }
+
+    override fun onBackPressed() {
+        val startMain = Intent(Intent.ACTION_MAIN)
+        startMain.addCategory(Intent.CATEGORY_HOME)
+        startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(startMain)
+    }
+
+    override fun onClick(p0: View?) {
+        when (p0?.id) {
+            R.id.btnLogin -> {
+                val userEmail = edtEmail.text.toString()
+                val password = edtPassword.text.toString()
+                presenter.handleLogin(userEmail, password)
+            }
+            R.id.tvFooterRight -> {
+                startActivity(Intent(this, RegisterActivity::class.java))
+            }
+        }
+    }
+
+    override fun onPreferencesSuccess() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
+    override fun onPreferencesFail() {
         setContentView(R.layout.login_activity)
 
         initView()
@@ -58,13 +89,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
         )
     }
 
-    override fun onBackPressed() {
-        val startMain = Intent(Intent.ACTION_MAIN)
-        startMain.addCategory(Intent.CATEGORY_HOME)
-        startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(startMain)
-    }
-
     override fun onLoginResult(state: LOGIN_STATE, message: String) {
         when (state) {
             LOGIN_STATE.EMPTY_EMAIL_FIELD, LOGIN_STATE.INVALID_EMAIL_FORMAT -> {
@@ -80,19 +104,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, LoginContract.V
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
-            }
-        }
-    }
-
-    override fun onClick(p0: View?) {
-        when (p0?.id) {
-            R.id.btnLogin -> {
-                val userName = edtEmail.text.toString()
-                val password = edtPassword.text.toString()
-                presenter.handleLogin(userName, password)
-            }
-            R.id.tvFooterRight -> {
-                startActivity(Intent(this, RegisterActivity::class.java))
             }
         }
     }

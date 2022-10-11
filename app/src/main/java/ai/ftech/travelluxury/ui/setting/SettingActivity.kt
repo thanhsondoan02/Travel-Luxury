@@ -1,6 +1,7 @@
 package ai.ftech.travelluxury.ui.setting
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.data.model.login.AccountData
 import ai.ftech.travelluxury.ui.login.LoginActivity
 import android.content.Intent
 import android.os.Bundle
@@ -46,11 +47,23 @@ class SettingActivity : AppCompatActivity() {
     private fun initListener() {
         listener = object : IListener {
             override fun onLogout() {
+
+                clearPreferences()
+                AccountData.INSTANCE = null
+
                 val intent = Intent(this@SettingActivity, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
+                finishAffinity()
             }
         }
+    }
+
+    private fun clearPreferences() {
+        val preferences = getSharedPreferences("myPreferences", MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.clear()
+        editor.apply()
     }
 
 }
