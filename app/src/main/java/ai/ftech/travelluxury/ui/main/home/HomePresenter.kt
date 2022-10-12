@@ -7,7 +7,7 @@ import ai.ftech.travelluxury.data.repo.hotel.HotelRepositoryImpl
 import ai.ftech.travelluxury.data.repo.hotel.IResult
 import android.util.Log
 
-const val DOMESTIC_CITY_NUMBER = 16
+const val DOMESTIC_CITY_NUMBER = 64
 
 class HomePresenter : HomeContract.IPresenter {
 
