@@ -165,4 +165,12 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="about_us">About us</string>
     <string name="log_out">Log Out</string>
+    <string name="free_cancellation_util">Free cancellation util</string>
+    <string name="logged_in_as">Logged in as</string>
+    <string name="payment_successful">Payment Successful!</string>
+    <string name="payment_success_message">Your booking and payment was placed successfully. You will receive a confirmation email shortly.</string>
+    <string name="go_to_home_screen">Go to Home Screen</string>
+    <string name="pay_as">Pay as</string>
+    <string name="booking_id">Booking ID:</string>
+    <string name="date_example">01/01/2022</string>
 </resources>

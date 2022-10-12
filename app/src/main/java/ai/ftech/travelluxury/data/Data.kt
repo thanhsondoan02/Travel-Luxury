@@ -230,12 +230,12 @@ fun calculateCheckOutDate(checkInDateString: String, duration: Int): String {
     return SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(calendar.time)
 }
 
-fun birthDayApiToBirthdayString(birthday: String): String {
+fun dateApiToDateApp(birthday: String): String {
     val parts = birthday.split("-")
     return "${parts[2]}/${parts[1]}/${parts[0]}"
 }
 
-fun birthdayStringToBirthdayApi(birthday: String): String {
+fun dateAppToDateApi(birthday: String): String {
     val parts = birthday.split("/")
     return "${parts[2]}-${parts[1]}-${parts[0]}"
 }

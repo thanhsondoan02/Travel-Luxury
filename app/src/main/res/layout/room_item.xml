@@ -199,22 +199,30 @@
                 android:textColor="#929292"
                 android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/btnRoomSelect"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_below="@id/tvRoomPerNight"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/room_select_shape"
-                android:text="@string/select"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:layout_below="@id/tvRoomPerNight"
+                app:cardCornerRadius="5dp"
+                android:layout_height="wrap_content">
 
+                <Button
+                    android:id="@+id/btnRoomSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@color/button_valid"
+                    android:text="@string/select"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.card.MaterialCardView>
 
         </RelativeLayout>
+
     </com.google.android.material.card.MaterialCardView>
+
 </RelativeLayout>

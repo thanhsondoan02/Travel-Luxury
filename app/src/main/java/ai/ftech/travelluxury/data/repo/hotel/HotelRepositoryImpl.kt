@@ -1,10 +1,13 @@
 package ai.ftech.travelluxury.data.repo.hotel
 
 import ai.ftech.travelluxury.data.TAG
+import ai.ftech.travelluxury.data.model.booking.BookingData
+import ai.ftech.travelluxury.data.model.history.HistoryData
 import ai.ftech.travelluxury.data.model.home.CityHotelData
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailData
 import ai.ftech.travelluxury.data.model.hotellist.HotelListData
 import ai.ftech.travelluxury.data.model.login.LoginData
+import ai.ftech.travelluxury.data.model.payment.PaymentData
 import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomData
 import ai.ftech.travelluxury.data.source.api.APIService
@@ -113,7 +116,6 @@ class HotelRepositoryImpl : IHotelRepository {
     }
 
     override fun login(email: String, password: String) {
-
         APIService.base().login().enqueue(object : MyCallBack<LoginData>() {
             override fun checkResponseBody(responseBody: LoginData) {
                 if (responseBody.message == null) {
@@ -130,6 +132,67 @@ class HotelRepositoryImpl : IHotelRepository {
                         } else {
                             result?.onRepoSuccess(responseBody.data!!)
                         }
+                    }
+                }
+            }
+        })
+    }
+
+    override fun booking(userId: Int, roomId: Int, checkIn: String, checkOut: String) {
+        APIService.base().booking().enqueue(object : MyCallBack<BookingData>() {
+            override fun checkResponseBody(responseBody: BookingData) {
+                if (responseBody.message == null) {
+                    Log.d(TAG, "booking: response body message is null")
+                    result?.onRepoFail("connect to server fail")
+                } else {
+                    if (responseBody.message != "Success") {
+                        Log.d(TAG, "booking: server message = ${responseBody.message}")
+                        result?.onRepoFail(responseBody.message!!)
+                    } else {
+                        result?.onRepoSuccess(responseBody)
+                    }
+                }
+            }
+        })
+    }
+
+    override fun payment(
+        bookingId: Int,
+        userId: Int,
+        roomId: Int,
+        checkIn: String,
+        checkOut: String,
+        price: Int
+    ) {
+        APIService.base().payment().enqueue(object : MyCallBack<PaymentData>() {
+            override fun checkResponseBody(responseBody: PaymentData) {
+                if (responseBody.message == null) {
+                    Log.d(TAG, "payment: response body message is null")
+                    result?.onRepoFail("connect to server fail")
+                } else {
+                    if (responseBody.message != "Success") {
+                        Log.d(TAG, "payment: server message = ${responseBody.message}")
+                        result?.onRepoFail(responseBody.message!!)
+                    } else {
+                        result?.onRepoSuccess("")
+                    }
+                }
+            }
+        })
+    }
+
+    override fun history(userId: Int) {
+        APIService.base().history().enqueue(object : MyCallBack<HistoryData>() {
+            override fun checkResponseBody(responseBody: HistoryData) {
+                if (responseBody.message == null) {
+                    Log.d(TAG, "history: response body message is null")
+                    result?.onRepoFail("connect to server fail")
+                } else {
+                    if (responseBody.message != "Success") {
+                        Log.d(TAG, "history: server message = ${responseBody.message}")
+                        result?.onRepoFail(responseBody.message!!)
+                    } else {
+                        result?.onRepoSuccess(responseBody)
                     }
                 }
             }

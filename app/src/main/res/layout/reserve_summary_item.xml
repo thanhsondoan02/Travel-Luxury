@@ -170,7 +170,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/ivReserveSummaryCancel"
-                        android:text="Free cancellation util 16 Nov 2022"
+                        android:text="@string/free_cancellation_util"
                         android:textColor="#00a651"
                         android:textSize="12sp" />
                 </RelativeLayout>

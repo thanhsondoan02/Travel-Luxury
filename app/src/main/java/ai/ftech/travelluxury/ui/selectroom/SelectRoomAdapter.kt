@@ -11,6 +11,7 @@ class SelectRoomAdapter : RecyclerView.Adapter<RoomVH>() {
 
     var listener: SelectRoomActivity.IListener? = null
     var roomList: List<Room> = emptyList()
+    var activity: SelectRoomActivity? = null
 
     private var isFirstItem = true
     private var marginHor: Int = 0
@@ -34,6 +35,7 @@ class SelectRoomAdapter : RecyclerView.Adapter<RoomVH>() {
 
         return RoomVH(inflateView).apply {
             listener = this@SelectRoomAdapter.listener
+            activity = this@SelectRoomAdapter.activity
         }
     }
 

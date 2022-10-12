@@ -262,6 +262,7 @@
                     android:text="@string/total_price" />
 
                 <TextView
+                    android:id="@+id/tvPaymentPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -300,6 +301,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
+                android:id="@+id/tvPaymentPayAs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mcvPaymentPayNow"
@@ -307,7 +309,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
                 android:gravity="center_horizontal"
-                android:text="Pay as thanhsondoan02@gmail.com"
+                android:text="@string/pay_as"
                 android:textColor="@color/main_blue_color"
                 android:textSize="13sp" />
 

@@ -1,29 +1,35 @@
 package ai.ftech.travelluxury.ui.reserve
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.common.BaseActivity
 import ai.ftech.travelluxury.ui.payment.PaymentActivity
-import ai.ftech.travelluxury.ui.reserve.contact.ContactActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ReserveActivity : AppCompatActivity(), ReserveAdapter.IListener {
+class ReserveActivity : BaseActivity(), ReserveAdapter.IListener, IReserveContract.View {
 
     private lateinit var rvContent: RecyclerView
     private lateinit var btnGoBack: ImageButton
 
     private val adapter: ReserveAdapter by lazy {
         ReserveAdapter().apply {
+            view = this@ReserveActivity
             listener = this@ReserveActivity
+        }
+    }
+
+    private val presenter by lazy {
+        ReservePresenter().apply {
+            view = this@ReserveActivity
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.reserve_activity)
 
         initView()
 
@@ -37,12 +43,23 @@ class ReserveActivity : AppCompatActivity(), ReserveAdapter.IListener {
         }
     }
 
-    override fun onContactClick() {
-        startActivity(Intent(this, ContactActivity::class.java))
+    override fun onContinueClick() {
+        showLoading("", "")
+        presenter.handleBooking()
     }
 
-    override fun onContinueClick() {
+    override fun onBookingSuccess() {
+        hideLoading()
         startActivity(Intent(this, PaymentActivity::class.java))
+    }
+
+    override fun onBookingFail() {
+        hideLoading()
+        Toast.makeText(this, "Booking failed, please try again later", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.reserve_activity
     }
 
     private fun initView() {

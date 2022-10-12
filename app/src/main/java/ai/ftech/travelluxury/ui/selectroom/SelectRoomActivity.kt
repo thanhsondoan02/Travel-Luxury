@@ -3,6 +3,7 @@ package ai.ftech.travelluxury.ui.selectroom
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseActivity
 import ai.ftech.travelluxury.data.TAG
+import ai.ftech.travelluxury.data.model.reserve.ReserveModel
 import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel
 import ai.ftech.travelluxury.ui.hoteldetail.allphotos.photo.ViewPhotoActivity
@@ -78,6 +79,7 @@ class SelectRoomActivity : BaseActivity(), SelectRoomContract.IView {
         rvRoomList.layoutManager = LinearLayoutManager(this)
         adapter = SelectRoomAdapter().apply {
             listener = this@SelectRoomActivity.listener
+            activity = this@SelectRoomActivity
         }
         rvRoomList.adapter = adapter
 
@@ -143,6 +145,7 @@ class SelectRoomActivity : BaseActivity(), SelectRoomContract.IView {
         listener = object : IListener {
             override fun onRoomSelected(room: Room) {
                 if (SelectRoomModel.INSTANCE.duration != null && SelectRoomModel.INSTANCE.checkInDate != null) {
+                    ReserveModel.INSTANCE.room = room
                     startActivity(Intent(this@SelectRoomActivity, ReserveActivity::class.java))
                 } else {
                     // show dialog to notify user to choose date and duration

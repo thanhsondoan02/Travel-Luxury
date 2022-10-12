@@ -7,6 +7,7 @@ import ai.ftech.travelluxury.data.getCategoryData
 import ai.ftech.travelluxury.data.model.home.City
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -111,7 +112,13 @@ class HomeAdapter : BaseAdapter() {
 
     inner class CityListVH(itemView: View) : BaseVH<City>(itemView) {
 
-        var adapter: CityHotelAdapter
+        var adapter = CityHotelAdapter().apply {
+            this.listener = object : CityHotelAdapter.Listener {
+                override fun onCityClick() {
+                    this@HomeAdapter.listener?.onCityClick()
+                }
+            }
+        }
 
         private val rvHorizontal = itemView.findViewById<RecyclerView>(R.id.rvHorizontalList)
         private val llLoading = itemView.findViewById<View>(R.id.llHorizontalListLoading)
@@ -119,14 +126,10 @@ class HomeAdapter : BaseAdapter() {
         init {
             rvHorizontal.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = CityHotelAdapter().apply {
-                this.listener = object : CityHotelAdapter.Listener {
-                    override fun onCityClick() {
-                        this@HomeAdapter.listener?.onCityClick()
-                    }
-                }
-            }
+
             rvHorizontal.adapter = adapter
+
+            Log.d("anhnd", "xxxxxxxxxxxxxxxxx: ")
             showLoading()
         }
 

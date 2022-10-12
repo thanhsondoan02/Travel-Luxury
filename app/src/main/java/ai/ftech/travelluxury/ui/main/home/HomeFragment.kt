@@ -18,16 +18,23 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     private lateinit var rvHome: RecyclerView
 
-    lateinit var homeAdapter: HomeAdapter
-
     private val presenter: HomePresenter by lazy {
         HomePresenter().apply {
             view = this@HomeFragment
         }
     }
 
+    val homeAdapter = HomeAdapter().apply {
+        listener = object : HomeAdapter.Listener {
+            override fun onCityClick() {
+                startActivity(Intent(context, HotelListActivity::class.java))
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        presenter.getHotelCityListApi()
     }
 
     override fun onCreateView(
@@ -38,18 +45,8 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        presenter.getHotelCityListApi()
-
         rvHome = view.findViewById(R.id.rlHomeFragment)
         rvHome.layoutManager = LinearLayoutManager(context)
-
-        homeAdapter = HomeAdapter().apply {
-            listener = object : HomeAdapter.Listener {
-                override fun onCityClick() {
-                    startActivity(Intent(context, HotelListActivity::class.java))
-                }
-            }
-        }
         rvHome.adapter = homeAdapter
     }
 

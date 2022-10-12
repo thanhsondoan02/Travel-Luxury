@@ -81,12 +81,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         ivMessage.setOnClickListener(this)
     }
 
+    private val fm = supportFragmentManager
+
     private fun loadFragment(fragment: Fragment) {
         isHomeFragment = fragment is HomeFragment
 
-        supportFragmentManager.beginTransaction()
+        fm.beginTransaction()
             .replace(R.id.flMainContent, fragment)
-            .commit()
+            .commitAllowingStateLoss()
     }
 
     private fun setNavigatorListener() {

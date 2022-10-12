@@ -1,10 +1,15 @@
 package ai.ftech.travelluxury.data.model.reserve
 
+import ai.ftech.travelluxury.data.model.selectroom.Room
+
 class ReserveModel {
 
     companion object {
         val INSTANCE = ReserveModel()
     }
+
+    var room: Room? = null
+    var bookingId: Int? = null
 
     var contactName: String? = null
     var contactPhone: String? = null

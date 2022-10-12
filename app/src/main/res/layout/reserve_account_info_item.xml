@@ -31,21 +31,23 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvReserveAccountName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="#434343"
                 android:layout_marginStart="10dp"
-                android:text="Logged in as Jennie Kim" />
+                android:text="@string/logged_in_as" />
 
             <TextView
+                android:id="@+id/tvReserveAccountEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textSize="12sp"
                 android:textColor="#8f8f8f"
                 android:layout_marginStart="10dp"
-                android:text="jennie@yg.com" />
+                android:text="@string/email" />
 
         </LinearLayout>
 

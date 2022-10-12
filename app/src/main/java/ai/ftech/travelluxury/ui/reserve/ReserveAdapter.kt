@@ -1,8 +1,11 @@
 package ai.ftech.travelluxury.ui.reserve
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.data.calculateCheckOutDate
 import ai.ftech.travelluxury.data.getPriceString
+import ai.ftech.travelluxury.data.model.login.AccountData
 import ai.ftech.travelluxury.data.model.reserve.ReserveModel
+import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel
 import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 class ReserveAdapter : RecyclerView.Adapter<ReserveVH>() {
 
     interface IListener {
-        fun onContactClick()
         fun onContinueClick()
     }
 
+    var view: ReserveActivity? = null
     var listener: IListener? = null
 
     private val presenter by lazy {
@@ -74,28 +77,66 @@ class ReserveAdapter : RecyclerView.Adapter<ReserveVH>() {
     }
 
     inner class SummaryVH(itemView: View) : ReserveVH(itemView) {
+
+        private val tvHotelName = itemView.findViewById<TextView>(R.id.tvReserveSummaryHotelName)
+        private val tvCheckInDate =
+            itemView.findViewById<TextView>(R.id.tvReserveSummaryCheckInDate)
+        private val tvCheckOutDate =
+            itemView.findViewById<TextView>(R.id.tvReserveSummaryCheckOutDate)
+        private val tvRoomType = itemView.findViewById<TextView>(R.id.tvReserveSummaryRoomName)
+        private val tvBedType = itemView.findViewById<TextView>(R.id.tvReserveSummaryBedType)
+        private val tvMaxGuest = itemView.findViewById<TextView>(R.id.tvReserveSummaryMaxGuest)
+        private val tvCancel = itemView.findViewById<TextView>(R.id.tvReserveSummaryCancel)
+
+        @SuppressLint("SetTextI18n")
         override fun bind(position: Int) {
-            super.bind(position)
+            tvHotelName.text = SelectRoomModel.INSTANCE.hotelName
+            tvCheckInDate.text = SelectRoomModel.INSTANCE.checkInDate
+            tvCheckOutDate.text = calculateCheckOutDate(
+                SelectRoomModel.INSTANCE.checkInDate!!,
+                SelectRoomModel.INSTANCE.duration!!
+            )
+            tvRoomType.text = ReserveModel.INSTANCE.room!!.name
+            tvBedType.text = ReserveModel.INSTANCE.room!!.bedType
+            tvMaxGuest.text = SelectRoomModel.INSTANCE.getGuessString(
+                ReserveModel.INSTANCE.room!!.guessNumber ?: -1
+            )
+            tvCancel.text =
+                view?.getString(R.string.free_cancellation_util) + " " + SelectRoomModel.INSTANCE.checkInDate
         }
     }
 
     inner class AccountInfoVH(itemView: View) : ReserveVH(itemView) {
+
+        private val tvAccountName: TextView = itemView.findViewById(R.id.tvReserveAccountName)
+        private val tvAccountEmail: TextView = itemView.findViewById(R.id.tvReserveAccountEmail)
+
+        @SuppressLint("SetTextI18n")
         override fun bind(position: Int) {
             super.bind(position)
+
+            tvAccountName.text =
+                view?.getString(R.string.logged_in_as) + " " + AccountData.INSTANCE?.fullName
+            tvAccountEmail.text = AccountData.INSTANCE?.email
         }
     }
 
+    @SuppressLint("SetTextI18n")
     inner class ContactVH(itemView: View) : ReserveVH(itemView) {
 
         private val rdGrpBookType: RadioGroup =
             itemView.findViewById(R.id.rdGrpReserveContactBookType)
         private val rlTitle: RelativeLayout = itemView.findViewById(R.id.rlReserveContactTitle)
+        private val tvContactName: TextView = itemView.findViewById(R.id.tvReserveContactName)
+        private val tvContactMailPhone: TextView =
+            itemView.findViewById(R.id.tvReserveContactMailPhone)
 
         init {
             rdGrpBookType.check(R.id.rdBtnReserveContactBookMyself)
-            rlTitle.setOnClickListener {
-                listener?.onContactClick()
-            }
+
+            tvContactName.text = AccountData.INSTANCE?.fullName
+            tvContactMailPhone.text =
+                AccountData.INSTANCE?.email + " • +84" + AccountData.INSTANCE?.phoneNumber
         }
 
         override fun bind(position: Int) {
@@ -133,6 +174,7 @@ class ReserveAdapter : RecyclerView.Adapter<ReserveVH>() {
 
         private val rlTotalPrice = itemView.findViewById<RelativeLayout>(R.id.rlReservePriceTotal)
         private val ivChevron = itemView.findViewById<ImageView>(R.id.rlReservePriceTotalIcon)
+        private val tvTotalPrice: TextView = itemView.findViewById(R.id.tvReserveTotalPrice)
 
         init {
             rlTotalPrice.setOnClickListener {
@@ -150,6 +192,8 @@ class ReserveAdapter : RecyclerView.Adapter<ReserveVH>() {
                     notifyItemRemoved(positionRemove)
                 }
             }
+
+            tvTotalPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price)
         }
 
         override fun bind(position: Int) {
@@ -161,14 +205,12 @@ class ReserveAdapter : RecyclerView.Adapter<ReserveVH>() {
 
         private val tvRoomName = itemView.findViewById<TextView>(R.id.tvReservePriceRoomName)
         private val tvRoomPrice = itemView.findViewById<TextView>(R.id.tvReservePriceRoomPrice)
-        private val tvTaxName = itemView.findViewById<TextView>(R.id.tvReservePriceTaxName)
         private val tvTaxPrice = itemView.findViewById<TextView>(R.id.tvReservePriceTaxPrice)
 
         override fun bind(position: Int) {
-            tvTaxName.text = ReserveModel.INSTANCE.taxName
-            tvTaxPrice.text = getPriceString(ReserveModel.INSTANCE.taxPrice)
-            tvRoomName.text = ReserveModel.INSTANCE.roomName
-            tvRoomPrice.text = getPriceString(ReserveModel.INSTANCE.roomPrice)
+            tvRoomName.text = ReserveModel.INSTANCE.room?.name
+            tvRoomPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price!! * 80 / 100)
+            tvTaxPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price!! * 20 / 100)
         }
     }
 
