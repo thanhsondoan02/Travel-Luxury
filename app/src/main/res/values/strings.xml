@@ -173,4 +173,6 @@
     <string name="pay_as">Pay as</string>
     <string name="booking_id">Booking ID:</string>
     <string name="date_example">01/01/2022</string>
+    <string name="oops">Oops!</string>
+    <string name="page_not_available">Page temporarily unavailable</string>
 </resources>
