@@ -7,6 +7,7 @@ interface HomeContract {
     }
 
     interface IPresenter {
-        fun getHotelCityListApi()
+        fun getDomesticCityList()
+        fun getInternationalCityList()
     }
 }

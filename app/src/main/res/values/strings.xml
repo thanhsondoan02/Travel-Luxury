@@ -175,4 +175,5 @@
     <string name="date_example">01/01/2022</string>
     <string name="oops">Oops!</string>
     <string name="page_not_available">Page temporarily unavailable</string>
+    <string name="Description">Description</string>
 </resources>

@@ -3,14 +3,17 @@ package ai.ftech.travelluxury.data.model.home
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class City(
+class City {
+
     @SerializedName("id_city")
     @Expose
-    val id: Int,
+    var id: Int? = null
+
     @SerializedName("name")
     @Expose
-    val name: String,
+    var name: String? = null
+
     @SerializedName("image")
     @Expose
-    val image: String,
-)
+    var image: String? = null
+}

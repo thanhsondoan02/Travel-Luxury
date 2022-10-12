@@ -49,7 +49,7 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val ivCityImage = itemView.findViewById<ImageView>(R.id.ivHorizontalListSquareImage)
 
         fun bind(city: City) {
-            ivCityImage.loadUrl(city.image)
+            ivCityImage.loadUrl(city.image!!)
             ivCityImage.setOnClickListener {
                 listener?.onCityClick()
 

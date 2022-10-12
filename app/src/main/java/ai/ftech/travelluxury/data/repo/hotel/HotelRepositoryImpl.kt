@@ -34,6 +34,8 @@ class HotelRepositoryImpl : IHotelRepository {
     }
 
     override fun getCityHotelList() {
+        Log.d(TAG, "call api")
+
         APIService.base().getHotelCityList().enqueue(object : MyCallBack<CityHotelData>() {
             override fun checkResponseBody(responseBody: CityHotelData) {
                 if (responseBody.data == null) {

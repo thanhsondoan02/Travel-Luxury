@@ -2,7 +2,6 @@ package ai.ftech.travelluxury.ui.hoteldetail
 
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.HotelPoliciesHandler
-import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.loadUrl
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelInfo
@@ -10,7 +9,6 @@ import ai.ftech.travelluxury.data.model.hoteldetail.Policy
 import ai.ftech.travelluxury.data.model.hoteldetail.Rating
 import ai.ftech.travelluxury.data.setStar
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -213,13 +211,12 @@ class HotelDetailAdapter() : RecyclerView.Adapter<BaseVH>() {
 
         @SuppressLint("SetTextI18n")
         override fun bindData() {
-            if (HotelDetailModel.INSTANCE.descriptionList == null) return
-            if (HotelDetailModel.INSTANCE.descriptionList!!.size != 3) {
-                Log.d(TAG, "Description list size is not 3")
-                return
+            val listDes = HotelDetailModel.INSTANCE.descriptionList!!
+            var des = ""
+            for (i in listDes) {
+                des += "$i\n"
             }
-
-            tvDescriptionShort.text = HotelDetailModel.INSTANCE.getDescriptionShort()
+            tvDescriptionShort.text = des
         }
     }
 

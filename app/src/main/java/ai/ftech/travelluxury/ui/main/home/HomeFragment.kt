@@ -16,25 +16,34 @@ import androidx.recyclerview.widget.RecyclerView
 
 class HomeFragment : Fragment(), HomeContract.View {
 
-    private lateinit var rvHome: RecyclerView
-
-    private val presenter: HomePresenter by lazy {
-        HomePresenter().apply {
-            view = this@HomeFragment
-        }
+    interface IListener {
+        fun onDomesticClick()
+        fun onInternationalClick()
+        fun onCityClick()
     }
 
-    val homeAdapter = HomeAdapter().apply {
-        listener = object : HomeAdapter.Listener {
-            override fun onCityClick() {
-                startActivity(Intent(context, HotelListActivity::class.java))
-            }
+    val homeAdapter: HomeAdapter
+
+    private lateinit var rvHome: RecyclerView
+
+    private val listener: IListener
+    private val presenter: HomePresenter
+
+    init {
+        listener = initListener()
+
+        homeAdapter = HomeAdapter().apply {
+            listener = this@HomeFragment.listener
+        }
+
+        presenter = HomePresenter().apply {
+            view = this@HomeFragment
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter.getHotelCityListApi()
+        presenter.getDomesticCityList()
     }
 
     override fun onCreateView(
@@ -57,5 +66,22 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun onGetHotelCityListFail(message: String) {
         Log.d(TAG, "onGetHotelCityListFail: $message")
+    }
+
+    private fun initListener(): IListener {
+        return object : IListener {
+            override fun onDomesticClick() {
+                presenter.getDomesticCityList()
+            }
+
+            override fun onInternationalClick() {
+                Log.d(TAG, "onInternationalClick: ")
+                presenter.getInternationalCityList()
+            }
+
+            override fun onCityClick() {
+                startActivity(Intent(context, HotelListActivity::class.java))
+            }
+        }
     }
 }

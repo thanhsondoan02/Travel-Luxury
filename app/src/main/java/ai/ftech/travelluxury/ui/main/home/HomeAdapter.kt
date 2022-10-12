@@ -3,6 +3,7 @@ package ai.ftech.travelluxury.ui.main.home
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseAdapter
 import ai.ftech.travelluxury.common.BaseVH
+import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.getCategoryData
 import ai.ftech.travelluxury.data.model.home.City
 import android.annotation.SuppressLint
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class HomeAdapter : BaseAdapter() {
 
-    var listener: Listener? = null
+    var listener: HomeFragment.IListener? = null
     var cityListVH: CityListVH? = null
 
     override fun getItemViewType(position: Int): Int {
@@ -129,7 +130,6 @@ class HomeAdapter : BaseAdapter() {
 
             rvHorizontal.adapter = adapter
 
-            Log.d("anhnd", "xxxxxxxxxxxxxxxxx: ")
             showLoading()
         }
 
@@ -144,7 +144,7 @@ class HomeAdapter : BaseAdapter() {
         }
     }
 
-    class DoubleButtonVH(itemView: View) : BaseVH<DoubleButtonData>(itemView) {
+    inner class DoubleButtonVH(itemView: View) : BaseVH<DoubleButtonData>(itemView) {
 
         private val btnDomestic: Button = itemView.findViewById(R.id.btnHomeDoubleButtonDomestic)
         private val btnInternational: Button =
@@ -159,12 +159,19 @@ class HomeAdapter : BaseAdapter() {
                 if (!isDomestic) {
                     isDomestic = !isDomestic
                     updateDoubleButton()
+
+                    listener!!.onDomesticClick()
+                    cityListVH?.showLoading()
                 }
             }
             btnInternational.setOnClickListener {
                 if (isDomestic) {
                     isDomestic = !isDomestic
                     updateDoubleButton()
+
+                    Log.d(TAG, "inter click: ")
+                    listener!!.onInternationalClick()
+                    cityListVH?.showLoading()
                 }
             }
         }
@@ -200,9 +207,5 @@ class HomeAdapter : BaseAdapter() {
     class FlightListData
 
     class DoubleButtonData
-
-    interface Listener {
-        fun onCityClick()
-    }
 
 }
