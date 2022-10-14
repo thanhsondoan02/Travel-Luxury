@@ -59,7 +59,7 @@ class RoomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         tvBed.text = room.bedType
         tvBreakfast.text = room.breakfast
         tvRefund.text = room.refund
-        tvPrice.text = getPriceString(room.price)
+        tvPrice.text = getPriceString(room.price!!.toInt())
 
         vpImages.adapter = RoomImageAdapter().apply {
             imageList = room.imageList ?: emptyList()

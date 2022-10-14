@@ -74,7 +74,7 @@ class PaymentActivity : AppCompatActivity(), PaymentContract.View {
         tvPrice = findViewById(R.id.tvPaymentPrice)
 
         tvPayAs.text = getString(R.string.pay_as) + " " + AccountData.INSTANCE?.email
-        tvPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price)
+        tvPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price!!.toInt())
     }
 
     private fun initListener() {

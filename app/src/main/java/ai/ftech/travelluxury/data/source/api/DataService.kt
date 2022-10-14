@@ -1,42 +1,54 @@
 package ai.ftech.travelluxury.data.source.api
 
+import ai.ftech.travelluxury.data.model.booking.BookingBody
 import ai.ftech.travelluxury.data.model.booking.BookingData
 import ai.ftech.travelluxury.data.model.history.HistoryData
 import ai.ftech.travelluxury.data.model.home.CityHotelData
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailData
 import ai.ftech.travelluxury.data.model.hotellist.HotelListData
 import ai.ftech.travelluxury.data.model.login.LoginData
+import ai.ftech.travelluxury.data.model.payment.PaymentBody
 import ai.ftech.travelluxury.data.model.payment.PaymentData
+import ai.ftech.travelluxury.data.model.selectroom.SearchRoomBody
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomData
+import ai.ftech.travelluxury.data.model.selectroom.SelectRoomData2
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface DataService {
 
-    @GET("b74fe13f8f09259a60b0/")
+    @GET("/v1/home")
     fun getHotelCityList(): Call<CityHotelData>
 
-    @GET("918efc7b7072794ddebc")
-    fun getHotelList(): Call<HotelListData>
+    @GET("/v1/home/city/hotel/{id}")
+    fun getHotelList(@Path("id") hotelId: Int): Call<HotelListData>
 
-    @GET("57389369118b59df9d1a")
-    fun getHotelDetail(): Call<HotelDetailData>
+    @GET("/v1/home/hotel/detail/{id}")
+    fun getHotelDetail(@Path("id") hotelId: Int): Call<HotelDetailData>
 
-    @GET("bc8daa907b3c880041e9")
-    fun getRoomList(): Call<SelectRoomData>
+    @GET("/v1/home/room/{id}")
+    fun getRoomList(@Path("id") hotelId: Int): Call<SelectRoomData>
 
-    @GET("aa782fde0b30f3aa3cdf")
-    fun searchRoom(): Call<SelectRoomData>
+    @POST("/v1/search/booking/room")
+    fun searchRoom(
+        @Body body: SearchRoomBody
+    ): Call<SelectRoomData2>
 
-    @GET("3705e25edef8c20b7123")
-    fun login(): Call<LoginData>
+    @POST("/v1/login/{userName}/{password}")
+    fun login(
+        @Path("userName") userName: String,
+        @Path("password") password: String
+    ): Call<LoginData>
 
-    @GET("82f71a728dafbfbbb4a0")
-    fun booking(): Call<BookingData>
+    @POST("/v1/home/hotel/booking")
+    fun booking(@Body body: BookingBody): Call<BookingData>
 
-    @GET("6577e0c60d2fcc55356d")
-    fun payment(): Call<PaymentData>
+    @POST("/v1/home/hotel/payment")
+    fun payment(@Body body: PaymentBody): Call<PaymentData>
 
-    @GET("ac11ca2d124ebf91c11a")
-    fun history(): Call<HistoryData>
+    @GET("/v1/home/hotel/list/booking/{id}")
+    fun history(@Path("id") userId: Int): Call<HistoryData>
 }

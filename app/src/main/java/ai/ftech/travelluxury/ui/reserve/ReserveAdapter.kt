@@ -193,7 +193,7 @@ class ReserveAdapter : RecyclerView.Adapter<ReserveVH>() {
                 }
             }
 
-            tvTotalPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price)
+            tvTotalPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price!!.toInt())
         }
 
         override fun bind(position: Int) {
@@ -209,8 +209,9 @@ class ReserveAdapter : RecyclerView.Adapter<ReserveVH>() {
 
         override fun bind(position: Int) {
             tvRoomName.text = ReserveModel.INSTANCE.room?.name
-            tvRoomPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price!! * 80 / 100)
-            tvTaxPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price!! * 20 / 100)
+            tvRoomPrice.text =
+                getPriceString(ReserveModel.INSTANCE.room?.price!!.toInt() * 80 / 100)
+            tvTaxPrice.text = getPriceString(ReserveModel.INSTANCE.room?.price!!.toInt() * 20 / 100)
         }
     }
 

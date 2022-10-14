@@ -1,11 +1,14 @@
 package ai.ftech.travelluxury.ui.selectroom
 
+import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.calculateCheckOutDate
+import ai.ftech.travelluxury.data.formatDate
 import ai.ftech.travelluxury.data.model.selectroom.Room
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel
 import ai.ftech.travelluxury.data.repo.hotel.HotelRepositoryImpl
 import ai.ftech.travelluxury.data.repo.hotel.IHotelRepository
 import ai.ftech.travelluxury.data.repo.hotel.IResult
+import android.util.Log
 
 class SelectRoomPresenter : SelectRoomContract.IPresenter {
 
@@ -47,7 +50,10 @@ class SelectRoomPresenter : SelectRoomContract.IPresenter {
 
         if (hotelId != null && checkInDate != null && duration != null) {
             val checkOutDate = calculateCheckOutDate(checkInDate, duration)
-            repo.getRoomList(hotelId, checkInDate, checkOutDate)
+
+            Log.d(TAG, "date: ${formatDate(checkInDate)} - ${formatDate(checkOutDate)}}")
+
+            repo.getRoomList(hotelId, formatDate(checkInDate), formatDate(checkOutDate))
         }
     }
 
@@ -55,5 +61,6 @@ class SelectRoomPresenter : SelectRoomContract.IPresenter {
         view?.adapter?.roomList = emptyList()
         SelectRoomModel.INSTANCE.roomList = emptyList()
     }
+
 
 }

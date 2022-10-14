@@ -239,3 +239,8 @@ fun dateAppToDateApi(birthday: String): String {
     val parts = birthday.split("/")
     return "${parts[2]}-${parts[1]}-${parts[0]}"
 }
+
+fun formatDate(date: String): String {
+    val dateList = date.split("/")
+    return "${dateList[0]}-${dateList[1]}-${dateList[2]}"
+}

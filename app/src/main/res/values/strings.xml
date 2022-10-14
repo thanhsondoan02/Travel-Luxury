@@ -176,4 +176,6 @@
     <string name="oops">Oops!</string>
     <string name="page_not_available">Page temporarily unavailable</string>
     <string name="Description">Description</string>
+    <string name="da_thanh_toan">Đã thanh toán</string>
+    <string name="chua_thanh_toan">Chưa thanh toán</string>
 </resources>

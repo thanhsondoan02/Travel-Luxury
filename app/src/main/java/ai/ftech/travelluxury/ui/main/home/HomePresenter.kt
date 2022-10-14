@@ -1,13 +1,11 @@
 package ai.ftech.travelluxury.ui.main.home
 
-import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.model.home.City
 import ai.ftech.travelluxury.data.model.home.HomeModel
 import ai.ftech.travelluxury.data.repo.hotel.HotelRepositoryImpl
 import ai.ftech.travelluxury.data.repo.hotel.IResult
-import android.util.Log
 
-const val DOMESTIC_CITY_NUMBER = 64
+const val DOMESTIC_CITY_NUMBER = 5
 
 class HomePresenter : HomeContract.IPresenter {
 
@@ -36,8 +34,6 @@ class HomePresenter : HomeContract.IPresenter {
 
             }
         }
-
-        Log.d(TAG, "getDomesticCityList: ")
 
         hotelRepo.getCityHotelList()
     }

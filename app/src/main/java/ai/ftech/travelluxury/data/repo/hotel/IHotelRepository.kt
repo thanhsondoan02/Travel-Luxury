@@ -1,7 +1,7 @@
 package ai.ftech.travelluxury.data.repo.hotel
 
 interface IHotelRepository {
-    fun getHotelList()
+    fun getHotelList(hotelId: Int)
     fun getCityHotelList()
     fun getHotelDetail(hotelId: Int)
     fun getRoomList(hotelId: Int)

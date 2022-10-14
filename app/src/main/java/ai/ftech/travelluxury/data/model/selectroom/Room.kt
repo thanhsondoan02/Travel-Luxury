@@ -15,7 +15,7 @@ class Room {
 
     @SerializedName("current_price")
     @Expose
-    var price: Int? = null
+    var price: Float? = null
 
     @SerializedName("max_guest")
     @Expose

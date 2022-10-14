@@ -38,7 +38,7 @@ class HotelListPresenter : IHotelListContract.Presenter {
         if (cityId == null) {
             view?.onGetHotelListFail("City id is null")
         } else {
-            hotelRepo.getHotelList()
+            hotelRepo.getHotelList(cityId)
         }
     }
 }

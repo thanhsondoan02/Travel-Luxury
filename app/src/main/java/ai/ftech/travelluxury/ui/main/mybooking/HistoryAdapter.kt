@@ -2,6 +2,7 @@ package ai.ftech.travelluxury.ui.main.mybooking
 
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.data.dateApiToDateApp
+import ai.ftech.travelluxury.data.getPriceString
 import ai.ftech.travelluxury.data.model.history.Booking
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -37,10 +38,13 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.BookingVH>() {
 
     inner class BookingVH(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val tvBookingID: TextView = view.findViewById(R.id.tvHistoryBookingId)
         private val tvCheckInDate: TextView = view.findViewById(R.id.tvHistoryBookingCheckInDate)
         private val tvCheckOutDate: TextView = view.findViewById(R.id.tvHistoryBookingCheckOutDate)
         private val mcvHistoryCard: MaterialCardView = view.findViewById(R.id.mcvHistoryCard)
+        private val tvHotelName: TextView = view.findViewById(R.id.tvHistoryBookingHotelName)
+        private val tvPrice: TextView = view.findViewById(R.id.tvHistoryBookingPrice)
+        private val tvPaymentStatus: TextView =
+            view.findViewById(R.id.tvHistoryBookingPaymentStatus)
 
         private val params = mcvHistoryCard.layoutParams as RelativeLayout.LayoutParams
 
@@ -53,13 +57,15 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.BookingVH>() {
 
         @SuppressLint("SetTextI18n")
         fun bind(position: Int) {
-            if (position == 0 || position == 1) { // x2 margin for first and second item
+            if (position == 0) { // x2 margin for first item
                 params.setMargins(marginHor!!, marginVer!! * 2, marginHor!!, marginVer!!)
             }
 
-            tvBookingID.text = view?.getString(R.string.booking_id) + dataList[position].bookingId
+            tvHotelName.text = dataList[position].hotelName
             tvCheckInDate.text = dateApiToDateApp(dataList[position].checkIn!!)
             tvCheckOutDate.text = dateApiToDateApp(dataList[position].checkOut!!)
+            tvPrice.text = getPriceString(dataList[position].price)
+            tvPaymentStatus.text = dataList[position].status
         }
     }
 

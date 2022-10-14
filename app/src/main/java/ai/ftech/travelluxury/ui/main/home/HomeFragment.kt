@@ -75,7 +75,6 @@ class HomeFragment : Fragment(), HomeContract.View {
             }
 
             override fun onInternationalClick() {
-                Log.d(TAG, "onInternationalClick: ")
                 presenter.getInternationalCityList()
             }
 

@@ -2,6 +2,7 @@ package ai.ftech.travelluxury.ui.reserve
 
 import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.calculateCheckOutDate
+import ai.ftech.travelluxury.data.formatDate
 import ai.ftech.travelluxury.data.model.booking.BookingData
 import ai.ftech.travelluxury.data.model.login.AccountData
 import ai.ftech.travelluxury.data.model.reserve.ReserveModel
@@ -61,7 +62,7 @@ class ReservePresenter : IReserveContract.Presenter {
             SelectRoomModel.INSTANCE.duration!!
         )
 
-        repo.booking(userId, roomId, checkIn, checkOut)
+        repo.booking(userId, roomId, formatDate(checkIn), formatDate(checkOut))
     }
 
 }

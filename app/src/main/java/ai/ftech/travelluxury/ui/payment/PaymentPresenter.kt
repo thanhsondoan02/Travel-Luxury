@@ -1,6 +1,7 @@
 package ai.ftech.travelluxury.ui.payment
 
 import ai.ftech.travelluxury.data.calculateCheckOutDate
+import ai.ftech.travelluxury.data.formatDate
 import ai.ftech.travelluxury.data.model.login.AccountData
 import ai.ftech.travelluxury.data.model.reserve.ReserveModel
 import ai.ftech.travelluxury.data.model.selectroom.SelectRoomModel
@@ -36,7 +37,14 @@ class PaymentPresenter : PaymentContract.Presenter {
             SelectRoomModel.INSTANCE.duration!!
         )
         val price = ReserveModel.INSTANCE.room?.price!!
-        repo.payment(bookingId, userId, roomId, checkIn, checkOut, price)
+        repo.payment(
+            bookingId,
+            userId,
+            roomId,
+            formatDate(checkIn),
+            formatDate(checkOut),
+            price.toInt()
+        )
     }
 
 }

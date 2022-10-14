@@ -69,6 +69,7 @@ class HomeAdapter : BaseAdapter() {
     fun onGetHotelCityListSuccess() {
         cityListVH?.adapter?.isSuccess = true
         cityListVH?.hideLoading()
+        Log.d(TAG, "onGetHotelCityListSuccess: hid loading")
         cityListVH?.adapter?.notifyDataSetChanged()
     }
 
@@ -169,7 +170,6 @@ class HomeAdapter : BaseAdapter() {
                     isDomestic = !isDomestic
                     updateDoubleButton()
 
-                    Log.d(TAG, "inter click: ")
                     listener!!.onInternationalClick()
                     cityListVH?.showLoading()
                 }

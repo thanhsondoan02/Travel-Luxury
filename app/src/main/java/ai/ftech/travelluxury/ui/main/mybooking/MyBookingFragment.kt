@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MyBookingFragment : Fragment(), MyBookingContract.View {
@@ -44,7 +44,7 @@ class MyBookingFragment : Fragment(), MyBookingContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rvContent = view.findViewById(R.id.rvMyBookingContent)
         rvContent.adapter = adapter
-        rvContent.layoutManager = GridLayoutManager(context, 2)
+        rvContent.layoutManager = LinearLayoutManager(context)
     }
 
     @SuppressLint("NotifyDataSetChanged")
