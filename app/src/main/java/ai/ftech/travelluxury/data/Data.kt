@@ -6,6 +6,8 @@ import ai.ftech.travelluxury.ui.main.home.HorizontalListAdapter
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 const val TAG = "Peswoc"
 
@@ -28,7 +30,7 @@ fun getCategoryData(): MutableList<Any> {
 
     dataList.add(
         HomeAdapter.CategoryData(
-            R.drawable.hotel_icon_white,
+            R.drawable.ic_hotel_white,
             "#225c9f",
             "Plenty of hotel selection",
             "Comfortable stay from neighborhood to cross-border"
@@ -205,4 +207,35 @@ fun setStar(star: Float, listStarImage: List<ImageView>) {
     if (star - star.toInt() > 0) {
         listStarImage[star.toInt()].setImageResource(R.drawable.ic_half_star)
     }
+}
+
+fun dateInString(year: Int, month: Int, dayOfMonth: Int): String {
+    val dayString = if (dayOfMonth < 10) "0$dayOfMonth" else "$dayOfMonth"
+    val monthString = if (month < 10) "0$month" else "$month"
+    return "$dayString/$monthString/$year"
+}
+
+fun dateStringToCalendar(dateString: String): Calendar {
+    val parts = dateString.split("/")
+    val calendar = Calendar.getInstance()
+    calendar.set(parts[2].toInt(), parts[1].toInt() - 1, parts[0].toInt())
+    return calendar
+}
+
+fun calculateCheckOutDate(checkInDateString: String, duration: Int): String {
+    val checkInDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(checkInDateString)
+    val calendar = Calendar.getInstance()
+    calendar.time = checkInDate!!
+    calendar.add(Calendar.DATE, duration)
+    return SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(calendar.time)
+}
+
+fun dateApiToDateApp(birthday: String): String {
+    val parts = birthday.split("-")
+    return "${parts[2]}/${parts[1]}/${parts[0]}"
+}
+
+fun dateAppToDateApi(birthday: String): String {
+    val parts = birthday.split("/")
+    return "${parts[2]}-${parts[1]}-${parts[0]}"
 }

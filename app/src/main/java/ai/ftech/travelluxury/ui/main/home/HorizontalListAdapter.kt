@@ -77,7 +77,7 @@ class HorizontalListAdapter(val type: ListType) : BaseAdapter() {
                 tvEndOfSection.text = itemView.context.resources.getText(R.string.end_of_section)
             } else {
 
-                ivCityImage.loadUrl(data.image)
+                ivCityImage.loadUrl(data.image!!)
             }
         }
     }

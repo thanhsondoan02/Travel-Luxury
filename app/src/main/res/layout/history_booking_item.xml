@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvHistoryCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#235D9F"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvHistoryBookingId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/booking_id"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/rlReserveSummaryLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:id="@+id/tvHistoryBookingCheckIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/check_in"
+                        android:textColor="#03121a" />
+
+                    <TextView
+                        android:id="@+id/tvHistoryBookingCheckOut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_below="@id/tvHistoryBookingCheckIn"
+                        android:gravity="center_vertical"
+                        android:text="@string/check_out"
+                        android:textColor="#03121a" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/ivHistoryBookingCenterLine"
+                    android:layout_width="1dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvHistoryBookingCheckInDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/date_example"
+                        android:textColor="#03121a" />
+
+                    <TextView
+                        android:id="@+id/tvHistoryBookingCheckOutDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_below="@id/tvHistoryBookingCheckInDate"
+                        android:gravity="center_vertical"
+                        android:text="@string/date_example"
+                        android:textColor="#03121a" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</RelativeLayout>

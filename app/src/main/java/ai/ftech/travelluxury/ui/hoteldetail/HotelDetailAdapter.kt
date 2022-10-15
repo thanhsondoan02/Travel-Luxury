@@ -1,9 +1,7 @@
 package ai.ftech.travelluxury.ui.hoteldetail
 
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.common.IOnClickListener
 import ai.ftech.travelluxury.data.HotelPoliciesHandler
-import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.loadUrl
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelInfo
@@ -11,7 +9,6 @@ import ai.ftech.travelluxury.data.model.hoteldetail.Policy
 import ai.ftech.travelluxury.data.model.hoteldetail.Rating
 import ai.ftech.travelluxury.data.setStar
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -20,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.min
 
-class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.Adapter<BaseVH>() {
+class HotelDetailAdapter() : RecyclerView.Adapter<BaseVH>() {
 
     var imageUrlList: List<String> = listOf()
     var hotelInfo: HotelInfo = HotelInfo()
@@ -29,16 +26,18 @@ class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.
 
     lateinit var facilitiesAdapter: FacilitiesAdapter
 
+    var listener: IListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVH {
         val inflateView = View.inflate(parent.context, getLayoutResource(viewType), null)
 
         return when (viewType) {
             0 -> PreviewVH(inflateView)
             1 -> HotelInfoVH(inflateView)
-            2 -> RatingVH(inflateView, listener)
-            3 -> FacilitiesVH(inflateView, listener)
-            4 -> PoliciesVH(inflateView, listener)
-            5 -> DescriptionVH(inflateView, listener)
+            2 -> RatingVH(inflateView)
+            3 -> FacilitiesVH(inflateView)
+            4 -> PoliciesVH(inflateView)
+            5 -> DescriptionVH(inflateView)
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -77,6 +76,14 @@ class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.
         private val ivBot3 = itemView.findViewById<ImageView>(R.id.ivHotelDetailPreviewBotPicture3)
         private val ivBot4 = itemView.findViewById<ImageView>(R.id.ivHotelDetailPreviewBotPicture4)
 
+        init {
+            ivTop.setOnClickListener { listener?.onViewPhoto(0) }
+            ivBot1.setOnClickListener { listener?.onViewPhoto(1) }
+            ivBot2.setOnClickListener { listener?.onViewPhoto(2) }
+            ivBot3.setOnClickListener { listener?.onViewPhoto(3) }
+            ivBot4.setOnClickListener { listener?.onSeeAllPhotos() }
+        }
+
         override fun bindData() {
             val ivList = listOf(ivTop, ivBot1, ivBot2, ivBot3, ivBot4)
             var i = 0
@@ -106,7 +113,7 @@ class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.
         }
     }
 
-    inner class RatingVH(itemView: View, listener: IOnClickListener) : BaseVH(itemView) {
+    inner class RatingVH(itemView: View) : BaseVH(itemView) {
 
         private val tvPoint = itemView.findViewById<TextView>(R.id.tvHotelDetailRatingPoint)
         private val tvType = itemView.findViewById<TextView>(R.id.tvHotelDetailRatingType)
@@ -116,7 +123,7 @@ class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.
 
         init {
             tvSeeReviews.setOnClickListener {
-                listener.onClick(HotelDetailActivity.NEXT_ACTIVITY.SEE_REVIEWS)
+                listener?.onSeeAllReviews()
             }
         }
 
@@ -127,7 +134,7 @@ class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.
         }
     }
 
-    inner class FacilitiesVH(itemView: View, listener: IOnClickListener) : BaseVH(itemView) {
+    inner class FacilitiesVH(itemView: View) : BaseVH(itemView) {
 
         private val recyclerView =
             itemView.findViewById<RecyclerView>(R.id.rvHotelDetailFacilitiesRecyclerView)
@@ -141,12 +148,12 @@ class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.
             recyclerView.adapter = facilitiesAdapter
 
             tvSeeFacilities.setOnClickListener {
-                listener.onClick(HotelDetailActivity.NEXT_ACTIVITY.SEE_FACILITIES)
+                listener?.onSeeAllFacilities()
             }
         }
     }
 
-    inner class PoliciesVH(itemView: View, listener: IOnClickListener) : BaseVH(itemView) {
+    inner class PoliciesVH(itemView: View) : BaseVH(itemView) {
 
         private val tvTitle1 = itemView.findViewById<TextView>(R.id.tvHotelDetailPoliciesTitle1)
         private val tvTitle2 = itemView.findViewById<TextView>(R.id.tvHotelDetailPoliciesTitle2)
@@ -170,7 +177,7 @@ class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.
 
         init {
             tvSeePolicies.setOnClickListener {
-                listener.onClick(HotelDetailActivity.NEXT_ACTIVITY.SEE_POLICIES)
+                listener?.onSeeAllPolicies()
             }
         }
 
@@ -189,7 +196,7 @@ class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.
         }
     }
 
-    inner class DescriptionVH(itemView: View, listener: IOnClickListener) : BaseVH(itemView) {
+    inner class DescriptionVH(itemView: View) : BaseVH(itemView) {
 
         private val tvDescriptionShort =
             itemView.findViewById<TextView>(R.id.tvHotelDetailDescription)
@@ -198,19 +205,18 @@ class HotelDetailAdapter(private val listener: IOnClickListener) : RecyclerView.
 
         init {
             tvSeeDescription.setOnClickListener {
-                listener.onClick(HotelDetailActivity.NEXT_ACTIVITY.SEE_POLICIES)
+                listener?.onSeeAllDescription()
             }
         }
 
         @SuppressLint("SetTextI18n")
         override fun bindData() {
-            if (HotelDetailModel.INSTANCE.descriptionList == null) return
-            if (HotelDetailModel.INSTANCE.descriptionList!!.size != 3) {
-                Log.d(TAG, "Description list size is not 3")
-                return
+            val listDes = HotelDetailModel.INSTANCE.descriptionList!!
+            var des = ""
+            for (i in listDes) {
+                des += "$i\n"
             }
-
-            tvDescriptionShort.text = HotelDetailModel.INSTANCE.getDescriptionShort()
+            tvDescriptionShort.text = des
         }
     }
 

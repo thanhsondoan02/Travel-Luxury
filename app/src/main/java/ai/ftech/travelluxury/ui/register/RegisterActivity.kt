@@ -1,19 +1,16 @@
 package ai.ftech.travelluxury.ui.register
 
-import ai.ftech.travelluxury.ui.customview.ActionBarView
 import ai.ftech.travelluxury.R
-import ai.ftech.travelluxury.ui.login.LoginActivity
+import ai.ftech.travelluxury.ui.customview.ActionBarView
 import ai.ftech.travelluxury.ui.customview.FooterView
+import ai.ftech.travelluxury.ui.login.LoginActivity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 
 class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClickListener {
 
@@ -43,6 +40,8 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
     private lateinit var abvActionBar: ActionBarView
     private lateinit var fvFooter: FooterView
     private lateinit var tvFooterRight: TextView
+    private lateinit var btnGoBack: ImageButton
+    private lateinit var tvActionBarTitle: TextView
 
     private val presenter = RegisterPresenter(this)
 
@@ -51,6 +50,15 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
         setContentView(R.layout.register_activity)
 
         initView()
+
+        // delete go back button
+        btnGoBack.visibility = View.GONE
+
+        // set margin start action bar title
+        val params = tvActionBarTitle.layoutParams as RelativeLayout.LayoutParams
+        params.marginStart = (params.topMargin * 1.5).toInt()
+        tvActionBarTitle.layoutParams = params
+
         setOnClickListener()
 
         // email change -> remove error text
@@ -58,6 +66,13 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
             edtEmail,
             tvEmailError
         )
+    }
+
+    override fun onBackPressed() {
+        val startMain = Intent(Intent.ACTION_MAIN)
+        startMain.addCategory(Intent.CATEGORY_HOME)
+        startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(startMain)
     }
 
     override fun onRegisterResult(state: REGISTER_STATE, message: String) {
@@ -94,6 +109,8 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View, View.OnClic
         abvActionBar = findViewById(R.id.abvRegisterActionBar)
         fvFooter = findViewById(R.id.fvRegisterFooter)
         tvFooterRight = findViewById(R.id.tvFooterRight)
+        btnGoBack = findViewById(R.id.btnActionBarGoBack)
+        tvActionBarTitle = findViewById(R.id.tvActionBarTitle)
 
         // init text
         abvActionBar.setTitle(getString(R.string.register_activity_action_bar_title))

@@ -13,6 +13,7 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var cityList: List<City>? = listOf()
     var listener: Listener? = null
+    var isSuccess = false
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -33,7 +34,11 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return (cityList?.size ?: 0) + 1
+        return if (isSuccess) {
+            (cityList?.size ?: 0) + 1
+        } else {
+            0
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -44,7 +49,7 @@ class CityHotelAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val ivCityImage = itemView.findViewById<ImageView>(R.id.ivHorizontalListSquareImage)
 
         fun bind(city: City) {
-            ivCityImage.loadUrl(city.image)
+            ivCityImage.loadUrl(city.image!!)
             ivCityImage.setOnClickListener {
                 listener?.onCityClick()
 

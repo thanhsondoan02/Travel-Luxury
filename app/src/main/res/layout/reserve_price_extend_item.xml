@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivReservePriceDivider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <RelativeLayout
+            android:id="@+id/rlReservePriceExactly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivReservePriceDivider2"
+            android:layout_marginHorizontal="16dp">
+
+            <TextView
+                android:id="@+id/tvReservePriceRoomName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:paddingVertical="10dp"
+                android:layout_marginEnd="40dp"
+                android:layout_toStartOf="@id/tvReservePriceRoomPrice"
+                android:text="Phòng Ở Trong 2 Giờ - Day Use Room Within 02 Hours"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvReservePriceRoomPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="VND 77.389"
+                android:textColor="#687176"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlReservePriceTax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlReservePriceExactly"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/tvReservePriceTaxName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="40dp"
+                android:layout_toStartOf="@id/tvReservePriceTaxPrice"
+                android:text="@string/taxes_and_fees"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvReservePriceTaxPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="VND 10.370"
+                android:textColor="#687176"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

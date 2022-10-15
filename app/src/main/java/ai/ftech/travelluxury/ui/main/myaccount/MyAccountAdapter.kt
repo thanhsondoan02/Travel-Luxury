@@ -3,14 +3,17 @@ package ai.ftech.travelluxury.ui.main.myaccount
 import ai.ftech.travelluxury.R
 import ai.ftech.travelluxury.common.BaseAdapter
 import ai.ftech.travelluxury.common.BaseVH
+import ai.ftech.travelluxury.data.model.login.AccountData
 import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
-import android.widget.RelativeLayout.LayoutParams
 import android.widget.RelativeLayout
+import android.widget.RelativeLayout.LayoutParams
 import android.widget.TextView
 
 class MyAccountAdapter : BaseAdapter() {
+
+    var listener: MyAccountFragment.IListener? = null
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
@@ -29,7 +32,7 @@ class MyAccountAdapter : BaseAdapter() {
         }
     }
 
-    override fun initData() : MutableList<Any> {
+    override fun initData(): MutableList<Any> {
         val newDataList = mutableListOf<Any>()
 
         newDataList.add(ProfileData("Jennie Kim", "nini@gmail.com"))
@@ -117,9 +120,12 @@ class MyAccountAdapter : BaseAdapter() {
 
     class MyAccountProfileVH(itemView: View) : BaseVH<ProfileData>(itemView) {
 
+        private val tvFullName = itemView.findViewById<TextView>(R.id.tvMyAccountTitleName)
+        private val tvEmail = itemView.findViewById<TextView>(R.id.tvMyAccountTitleEmail)
+
         override fun onBind(data: ProfileData) {
-            itemView.findViewById<TextView>(R.id.tvMyAccountTitleName).text = data.name
-            itemView.findViewById<TextView>(R.id.tvMyAccountTitleEmail).text = data.email
+            tvFullName.text = AccountData.INSTANCE?.fullName
+            tvEmail.text = AccountData.INSTANCE?.email
         }
 
     }
@@ -143,15 +149,19 @@ class MyAccountAdapter : BaseAdapter() {
 
     }
 
-    class MyAccountFeatureVH(itemView: View) : BaseVH<FeatureData>(itemView) {
+    inner class MyAccountFeatureVH(itemView: View) : BaseVH<FeatureData>(itemView) {
+
+        private val tvTitle: TextView = itemView.findViewById(R.id.tvMyAccountFeatureTitle)
+        private val tvDes: TextView = itemView.findViewById(R.id.tvMyAccountFeatureDescription)
+        private val ivIcon: ImageView = itemView.findViewById(R.id.ivMyAccountFeatureIcon)
+        private val rlContainer: RelativeLayout =
+            itemView.findViewById(R.id.rlMyAccountFeatureItemContainer)
 
         @SuppressLint("UseCompatLoadingForDrawables")
         override fun onBind(data: FeatureData) {
-            itemView.findViewById<TextView>(R.id.tvMyAccountFeatureTitle).text = data.title
-            itemView.findViewById<TextView>(R.id.tvMyAccountFeatureDescription).text =
-                data.description
-            itemView.findViewById<ImageView>(R.id.ivMyAccountFeatureIcon)
-                .setImageResource(data.iconSrc)
+            tvTitle.text = data.title
+            tvDes.text = data.description
+            ivIcon.setImageResource(data.iconSrc)
 
             // Choose border type of feature item
             val container = itemView.findViewById<View>(R.id.rlMyAccountFeatureItemContainer)
@@ -162,6 +172,12 @@ class MyAccountAdapter : BaseAdapter() {
                     itemView.context.getDrawable(R.drawable.my_account_feature_item_bottom_boder_shape)
                 3 -> container.background =
                     itemView.context.getDrawable(R.drawable.my_account_feature_item_4_border_shape)
+            }
+
+            if (data.iconSrc == R.drawable.ic_settings) {
+                rlContainer.setOnClickListener {
+                    listener?.onSettingClick()
+                }
             }
         }
 

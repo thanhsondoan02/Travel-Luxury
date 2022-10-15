@@ -4,22 +4,27 @@ import ai.ftech.travelluxury.data.model.hotellist.Hotel
 import ai.ftech.travelluxury.data.model.hotellist.HotelListModel
 import ai.ftech.travelluxury.data.repo.hotel.HotelRepositoryImpl
 import ai.ftech.travelluxury.data.repo.hotel.IHotelRepository
-import ai.ftech.travelluxury.data.repo.hotel.IRepoResult
+
+import ai.ftech.travelluxury.data.repo.hotel.IResult
+
 
 class HotelListPresenter : IHotelListContract.Presenter {
 
     var view: IHotelListContract.View? = null
     var adapter: HotelListAdapter? = null
 
-    private val hotelRepo : IHotelRepository by lazy {
+
+    private val hotelRepo: IHotelRepository by lazy {
         HotelRepositoryImpl().apply {
-            callback = object : IRepoResult {
+            result = object : IResult {
                 @Suppress("UNCHECKED_CAST")
                 override fun onRepoSuccess(data: Any) {
                     HotelListModel.INSTANCE.hotelList = data as List<Hotel>
                     adapter?.hotelList = HotelListModel.INSTANCE.hotelList!!
+
                     view?.onGetHotelListSuccess()
                 }
+
 
                 override fun onRepoFail(message: String) {
                     view?.onGetHotelListFail(message)
@@ -29,6 +34,8 @@ class HotelListPresenter : IHotelListContract.Presenter {
     }
 
     override fun getHotelListApi() {
+        view?.showLoading("Searching for hotels")
+
         val cityId = HotelListModel.INSTANCE.cityId
 
         if (cityId == null) {

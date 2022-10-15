@@ -4,7 +4,8 @@ import ai.ftech.travelluxury.data.model.hoteldetail.HotelDetailModel
 import ai.ftech.travelluxury.data.model.hoteldetail.HotelInfo
 import ai.ftech.travelluxury.data.model.hoteldetail.Rating
 import ai.ftech.travelluxury.data.repo.hotel.HotelRepositoryImpl
-import ai.ftech.travelluxury.data.repo.hotel.IRepoResult
+
+import ai.ftech.travelluxury.data.repo.hotel.IResult
 import android.annotation.SuppressLint
 
 class HotelDetailPresenter : HotelDetailContract.Presenter {
@@ -14,7 +15,9 @@ class HotelDetailPresenter : HotelDetailContract.Presenter {
 
     private val hotelRepo by lazy {
         HotelRepositoryImpl().apply {
-            callback = object : IRepoResult {
+
+            result = object : IResult {
+
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onRepoSuccess(data: Any) {
                     val hotelDetailModel = data as HotelDetailModel

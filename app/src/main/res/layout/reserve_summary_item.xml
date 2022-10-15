@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/main_blue_color">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvReserveSummaryTapToSee"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/tap_below_to_see_your_booking_summary"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcvReserveSummaryTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/tvReserveSummaryTapToSee"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp">
+
+                <ImageView
+                    android:id="@+id/ivReserveSummaryHotelIcon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ic_hotel" />
+
+                <TextView
+                    android:id="@+id/tvReserveSummaryHotelName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_toEndOf="@id/ivReserveSummaryHotelIcon"
+                    android:text="Hotel Name"
+                    android:textColor="#03121a"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:id="@+id/rlReserveSummaryLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ivReserveSummaryHotelIcon"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="6dp">
+
+                    <TextView
+                        android:id="@+id/tvReserveSummaryCheckIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/check_in"
+                        android:textColor="#03121a" />
+
+                    <TextView
+                        android:id="@+id/tvReserveSummaryCheckOut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvReserveSummaryCheckIn"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/check_out"
+                        android:textColor="#03121a" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ivReserveSummaryHotelIcon"
+                    android:layout_marginTop="6dp"
+                    android:layout_toEndOf="@id/rlReserveSummaryLeft">
+
+                    <TextView
+                        android:id="@+id/tvReserveSummaryCheckInDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="70dp"
+                        android:text="Wed, 16 Nov 2022 (14:00)"
+                        android:textColor="#03121a" />
+
+                    <TextView
+                        android:id="@+id/tvReserveSummaryCheckOutDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvReserveSummaryCheckInDate"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="6dp"
+                        android:text="Thu, 17 Nov 2022 (14:00)"
+                        android:textColor="#03121a" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/ivReserveSummaryDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/rlReserveSummaryLeft"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:id="@+id/tvReserveSummaryRoomName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ivReserveSummaryDivider"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Room Name"
+                    android:textColor="#1b1b1b" />
+
+                <TextView
+                    android:id="@+id/tvReserveSummaryBedType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_below="@id/tvReserveSummaryRoomName"
+                    android:layout_marginStart="10dp"
+                    android:text="bed type"
+                    android:textColor="#939393"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvReserveSummaryMaxGuest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvReserveSummaryBedType"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"
+                    android:text="max guest"
+                    android:textColor="#939393"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rlReserveSummaryCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:layout_below="@id/tvReserveSummaryMaxGuest"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="10dp">
+
+                    <ImageView
+                        android:id="@+id/ivReserveSummaryCancel"
+                        android:layout_width="14dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_height="14dp"
+                        android:padding="0.5dp"
+                        android:layout_marginBottom="1dp"
+                        android:src="@drawable/ic_cancel" />
+
+                    <TextView
+                        android:id="@+id/tvReserveSummaryCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="4dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/ivReserveSummaryCancel"
+                        android:text="@string/free_cancellation_util"
+                        android:textColor="#00a651"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:layout_below="@id/rlReserveSummaryCancel"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="10dp">
+
+                    <ImageView
+                        android:id="@+id/ivReserveSummaryPolicy"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:padding="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="1dp"
+                        android:src="@drawable/ic_reschedule" />
+
+                    <TextView
+                        android:id="@+id/tvReserveSummaryPolicy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="4dp"
+                        android:layout_toEndOf="@id/ivReserveSummaryPolicy"
+                        android:text="Reschedule Policy Applies"
+                        android:textColor="#00a651"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+</LinearLayout>

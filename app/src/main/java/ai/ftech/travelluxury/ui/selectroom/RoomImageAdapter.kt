@@ -7,7 +7,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 
-class RoomImageAdapter(private val imageList: List<String>) : PagerAdapter() {
+class RoomImageAdapter : PagerAdapter() {
+
+    interface IListener {
+        fun onImageClicked()
+    }
+
+    var imageList: List<String> = listOf()
+    var scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_CROP
+    var listener: IListener? = null
 
     override fun getCount(): Int {
         return imageList.size
@@ -21,7 +29,11 @@ class RoomImageAdapter(private val imageList: List<String>) : PagerAdapter() {
         val inflateView = View.inflate(container.context, R.layout.room_image_item, null)
 
         val ivRoomImage = inflateView.findViewById<ImageView>(R.id.ivRoomImage)
+        ivRoomImage.scaleType = scaleType
         ivRoomImage.loadUrl(imageList[position])
+        ivRoomImage.setOnClickListener {
+            listener?.onImageClicked()
+        }
 
         container.addView(inflateView)
 

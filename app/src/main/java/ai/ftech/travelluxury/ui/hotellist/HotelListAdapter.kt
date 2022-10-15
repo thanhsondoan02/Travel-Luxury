@@ -11,6 +11,7 @@ import ai.ftech.travelluxury.data.setStar
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -22,6 +23,10 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
 
     var listener: Listener? = null
     var hotelList: List<Hotel> = mutableListOf()
+
+    private var isFirstItem = true
+    private var marginHor: Int = 0
+    private var marginVer: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelVH {
         return HotelVH(View.inflate(parent.context, R.layout.hotel_item, null))
@@ -50,6 +55,20 @@ class HotelListAdapter : RecyclerView.Adapter<HotelListAdapter.HotelVH>() {
         private val mcvHotelCard = itemView.findViewById<View>(R.id.mcvHotelCard)
 
         private val listStarImage = listOf(ivStar1, ivStar2, ivStar3, ivStar4, ivStar5)
+
+        init {
+            // fix first item margin top
+            val params = mcvHotelCard.layoutParams as RelativeLayout.LayoutParams
+            if (isFirstItem) {
+                isFirstItem = false
+                marginHor = params.leftMargin
+                marginVer = params.topMargin
+                params.setMargins(marginHor, marginVer * 2, marginHor, marginVer)
+            } else {
+                params.setMargins(marginHor, marginVer, marginHor, marginVer)
+            }
+            mcvHotelCard.layoutParams = params
+        }
 
         fun bind(hotel: Hotel) {
 

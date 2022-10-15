@@ -1,6 +1,7 @@
 package ai.ftech.travelluxury.ui.hotellist
 
 import ai.ftech.travelluxury.R
+import ai.ftech.travelluxury.common.BaseActivity
 import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.model.hotellist.HotelListModel
 import ai.ftech.travelluxury.ui.hoteldetail.HotelDetailActivity
@@ -8,15 +9,16 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class HotelListActivity : AppCompatActivity(), IHotelListContract.View {
+class HotelListActivity : BaseActivity(), IHotelListContract.View {
 
     private lateinit var tvCityName: TextView
     private lateinit var rvHotelList: RecyclerView
+    private lateinit var btnGoBack: ImageButton
 
     private lateinit var adapter: HotelListAdapter
     private val presenter by lazy {
@@ -28,7 +30,6 @@ class HotelListActivity : AppCompatActivity(), IHotelListContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.hotel_list_activity)
 
         initViews()
         presenter.getHotelListApi()
@@ -36,19 +37,29 @@ class HotelListActivity : AppCompatActivity(), IHotelListContract.View {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onGetHotelListSuccess() {
+        hideLoading()
         adapter.notifyDataSetChanged()
     }
 
     override fun onGetHotelListFail(message: String?) {
+        hideLoading()
         Log.d(TAG, "onGetHotelListFail: $message")
     }
+
+    override fun getLayoutId() = R.layout.hotel_list_activity
 
     private fun initViews() {
         tvCityName = findViewById(R.id.tvHotelListCityName)
         rvHotelList = findViewById(R.id.rvHotelList)
+        btnGoBack = findViewById(R.id.btnHotelListBack)
+//        llLoading = findViewById(R.id.llHotelListLoading)
 
         // init action bar
         tvCityName.text = HotelListModel.INSTANCE.cityName
+
+        btnGoBack.setOnClickListener {
+            onBackPressed()
+        }
 
         // init recyclerview
         rvHotelList.layoutManager = LinearLayoutManager(this)

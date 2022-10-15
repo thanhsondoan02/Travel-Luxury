@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/main_blue_color"
+    android:layout_height="match_parent"
+    tools:context=".ui.payment.success.PaymentSuccessActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        app:cardCornerRadius="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/tvPaymentSuccessTitle"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_baseline_check_24"
+            android:padding="20dp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvPaymentSuccessTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/payment_successful"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_centerInParent="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvPaymentSuccessDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPaymentSuccessTitle"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/payment_success_message" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        app:cardCornerRadius="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvPaymentSuccessDetails"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/tvPaymentSuccessGoHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to_home_screen"
+            android:paddingHorizontal="16dp"
+            android:textAllCaps="false"
+            android:textColor="@color/main_blue_color"
+            android:background="@color/white" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</RelativeLayout>

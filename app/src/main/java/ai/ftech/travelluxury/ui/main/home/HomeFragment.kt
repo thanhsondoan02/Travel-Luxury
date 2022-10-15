@@ -16,14 +16,34 @@ import androidx.recyclerview.widget.RecyclerView
 
 class HomeFragment : Fragment(), HomeContract.View {
 
+    interface IListener {
+        fun onDomesticClick()
+        fun onInternationalClick()
+        fun onCityClick()
+    }
+
+    val homeAdapter: HomeAdapter
+
     private lateinit var rvHome: RecyclerView
 
-    lateinit var homeAdapter: HomeAdapter
+    private val listener: IListener
+    private val presenter: HomePresenter
 
-    private val presenter: HomePresenter by lazy {
-        HomePresenter().apply {
+    init {
+        listener = initListener()
+
+        homeAdapter = HomeAdapter().apply {
+            listener = this@HomeFragment.listener
+        }
+
+        presenter = HomePresenter().apply {
             view = this@HomeFragment
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter.getDomesticCityList()
     }
 
     override fun onCreateView(
@@ -34,28 +54,34 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        presenter.getHotelCityListApi()
-
         rvHome = view.findViewById(R.id.rlHomeFragment)
         rvHome.layoutManager = LinearLayoutManager(context)
-
-        homeAdapter = HomeAdapter().apply {
-            listener = object : HomeAdapter.Listener {
-                override fun onCityClick() {
-                    startActivity(Intent(context, HotelListActivity::class.java))
-                }
-            }
-        }
         rvHome.adapter = homeAdapter
     }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onGetHotelCityListSuccess() {
-        homeAdapter.cityListVH?.adapter?.notifyDataSetChanged()
-        homeAdapter.notifyDataSetChanged()
+        homeAdapter.onGetHotelCityListSuccess()
     }
 
     override fun onGetHotelCityListFail(message: String) {
         Log.d(TAG, "onGetHotelCityListFail: $message")
+    }
+
+    private fun initListener(): IListener {
+        return object : IListener {
+            override fun onDomesticClick() {
+                presenter.getDomesticCityList()
+            }
+
+            override fun onInternationalClick() {
+                Log.d(TAG, "onInternationalClick: ")
+                presenter.getInternationalCityList()
+            }
+
+            override fun onCityClick() {
+                startActivity(Intent(context, HotelListActivity::class.java))
+            }
+        }
     }
 }
