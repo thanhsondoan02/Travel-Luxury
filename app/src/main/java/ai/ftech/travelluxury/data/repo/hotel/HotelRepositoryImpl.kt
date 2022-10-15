@@ -21,13 +21,16 @@ class HotelRepositoryImpl : IHotelRepository {
 
     var result: IResult? = null
 
+
     override fun getHotelList() {
         APIService.base().getHotelList().enqueue(object : MyCallBack<HotelListData>() {
             override fun checkResponseBody(responseBody: HotelListData) {
                 if (responseBody.data == null) {
+
                     result?.onRepoFail("response body data is null")
                 } else {
                     result?.onRepoSuccess(responseBody.data)
+
                 }
             }
         })
@@ -39,6 +42,7 @@ class HotelRepositoryImpl : IHotelRepository {
         APIService.base().getHotelCityList().enqueue(object : MyCallBack<CityHotelData>() {
             override fun checkResponseBody(responseBody: CityHotelData) {
                 if (responseBody.data == null) {
+
                     result?.onRepoFail("response body data is null")
                 } else {
                     if (responseBody.data.listCity == null) {

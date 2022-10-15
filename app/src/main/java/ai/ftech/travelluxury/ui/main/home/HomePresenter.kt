@@ -4,6 +4,7 @@ import ai.ftech.travelluxury.data.TAG
 import ai.ftech.travelluxury.data.model.home.City
 import ai.ftech.travelluxury.data.model.home.HomeModel
 import ai.ftech.travelluxury.data.repo.hotel.HotelRepositoryImpl
+
 import ai.ftech.travelluxury.data.repo.hotel.IResult
 import android.util.Log
 
@@ -16,7 +17,7 @@ class HomePresenter : HomeContract.IPresenter {
     override fun getDomesticCityList() {
         val hotelRepo = HotelRepositoryImpl().apply {
             result = object : IResult {
-
+            
                 @Suppress("UNCHECKED_CAST")
                 override fun onRepoSuccess(data: Any) {
                     // update Home Model city list
@@ -33,6 +34,7 @@ class HomePresenter : HomeContract.IPresenter {
                 override fun onRepoFail(message: String) {
                     view?.onGetHotelCityListFail(message)
                 }
+
 
             }
         }
